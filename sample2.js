@@ -13,14 +13,14 @@ function getLinks(){
 
 casper.start("http://google.fr/", function(){
     //SERACH FOR CASPERJS FROM GOOGLE. form
-    this.fill('form[action="/search]', {q: 'casperjs'}, true);
+    this.fill('form[action="/search"]', {q: 'casperjs'}, true);
 });
 
 casper.then(function(){
    //aggregate results for t he casperjs search
     links = this.evaluate(getLinks);
     //now search for phantomjs by filling the form again
-    this.fill('form[action="/search"', {q: "phantomjs"}, true);
+    this.fill('form[action="/search"]', {q: "phantomjs"}, true);
 });
 
 casper.then(function() {
