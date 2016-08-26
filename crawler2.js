@@ -45,9 +45,26 @@ casper.wait(10000, function() {
     this.click("label[for='energy-concession-no']");
     this.click("#disclaimer_chkbox");
     this.click("#btn-proceed");
-    this.capture("vic.png");
 });
 
-//casper.capture("vic.png");
+casper.wait(10000, function() {
+    this.mouse.click("#select2-number_person-container");
+    this.mouse.click("#select2-number_person-results");
+
+
+    this.mouse.click("#select2-number_room-container");
+    this.mouse.click("#select2-number_room-results");
+
+    this.mouse.click("#spaceheat-appl-group input[value='none']");
+    this.mouse.click("#cloth-dryer-group label[for='dryer-no']");
+
+    this.mouse.click("#water-heating-group input[value='other']");
+
+    this.click(".profile-btn");
+});
+
+casper.wait(10000, function() {
+    casper.capture("vic.png");
+});
 
 casper.run();
