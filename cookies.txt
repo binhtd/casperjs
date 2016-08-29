@@ -1,2 +1,2 @@
 [General]
-cookies="@Variant(\0\0\0\x7f\0\0\0\x16QList<QNetworkCookie>\0\0\0\0\x1\0\0\0\x2\0\0\0R_gat=1; expires=Fri, 26-Aug-2016 10:53:01 GMT; domain=.switchon.vic.gov.au; path=/\0\0\0k_ga=GA1.4.1233564712.1472199850; expires=Sun, 26-Aug-2018 10:52:51 GMT; domain=.switchon.vic.gov.au; path=/)"
+cookies="@Variant(\0\0\0\x7f\0\0\0\x16QList<QNetworkCookie>\0\0\0\0\x1\0\0\0\x2\0\0\0k_ga=GA1.4.1233564712.1472199850; expires=Wed, 29-Aug-2018 05:37:55 GMT; domain=.switchon.vic.gov.au; path=/\0\0\0R_gat=1; expires=Mon, 29-Aug-2016 05:47:55 GMT; domain=.switchon.vic.gov.au; path=/)"
