@@ -30,3 +30,35 @@ casper.start("http://domain.tld/page.html", function(){
 casper.run();
 
 casper.exit();
+
+
+casper.then(function() {
+    links = this.evaluate(getLinks);
+    var j = 0;
+    this.eachThen(links,function(response){
+        j++;
+        if(j >= maxLinks) return;
+
+        this.thenOpen(response.data, function writeOnJson() {
+
+            var objectsCount = this.evaluate(function(){
+                return __utils__.findAll('.list .quote p').length;
+            });
+
+            var objects = this.evaluate(function(){
+                return __utils__.findAll('.list .quote p');
+            });
+
+            quotes = new Array();
+            if(objectsCount != undefined) {
+                for(i = 0; i < objectsCount; i++) {
+                    if(objects[i] != null) {
+                        var quote = new Quote(objects[i]['innerText']);
+                        quotes.push(quote);
+                    }
+                }
+            }
+        });
+    });
+
+});

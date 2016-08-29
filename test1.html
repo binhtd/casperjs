@@ -28,9 +28,7 @@ casper.saveJSON = function(what) {
 };
 
 casper.start(url);
-casper.each(gasHomePostcodeList, function(self, gasHomepPostcode){
-
-});
+//casper.each(gasHomePostcodeList, function(self, gasHomePostcode){
     casper.then(function(){
         this.mouse.click("label[for='gas']");
         this.mouse.click("label[for='home']");
@@ -75,11 +73,11 @@ casper.each(gasHomePostcodeList, function(self, gasHomepPostcode){
                 json = JSON.parse(data),
                 offers = json["offersList"];
 
-            this.each(offers, function(self, offer){
-                offerList.push(offer);
-            });
-
-            casper.echo(offerList.length);
+            offerList.push(offers)
+            this.echo(offerList.length);
         });
-   });
+    });
+//});
+
 casper.run();
+
