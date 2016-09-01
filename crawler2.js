@@ -8,7 +8,9 @@ var x = require('casper').selectXPath,
     url = 'https://compare.switchon.vic.gov.au',
     offerList = [],
     gasHomePostcodeList = [3011, 3953, 3179, 3141, 3199],
+    gasSmallBusinessPostcodeList = [3011, 3953, 3179, 3141, 3199]
     electricHomePostcodeList = [3000, 3011, 3944, 3284, 3841],
+    electricSmallBusinessPostcodeList = [3000, 3011, 3944, 3284, 3841],
     current = 0,
     end = 0;
 
@@ -35,7 +37,7 @@ casper.saveJSON = function(what) {
 casper.start(url);
 
 //--------------------------------------------------------------------------------------------------------
-//start parse for home gas
+//start parse for gas home
 //end = gasHomePostcodeList.length;
 //for (;current < end;) {
 //    (function(cntr) {
@@ -95,38 +97,168 @@ casper.start(url);
 //    })(current);
 //    current++;
 //}
-//end parse for home gas
+//end parse for gas home
 //--------------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------------
+//start parse for gas small business
+end = gasSmallBusinessPostcodeList.length;
+for (;current < end;) {
+    (function(cntr) {
+        casper.then(function() {
+            this.mouse.click("label[for='gas']");
+            this.mouse.click("label[for='small-business']");
+
+            this.mouse.click("#select2-retailer-container");
+            this.mouse.click("#select2-retailer-results li:nth-child(2)");
+
+            this.sendKeys("input[name='postcode']", casper.page.event.key.Enter , {keepFocus: true});
+            this.sendKeys("input[name='postcode']", gasSmallBusinessPostcodeList[cntr] + "");
+            this.click("#postcode-btn");
+
+            this.wait(5000, function() {
+                this.click("#disclaimer_chkbox");
+                this.click("#btn-proceed");
+            });
+
+            this.wait(5000, function() {
+                this.sendKeys("#gas-start-date", "8/1/2016");
+                this.sendKeys("#gas-end-date", "8/2/2016");
+                this.sendKeys("#gas-usage", "50");
+
+                this.click(".profile-btn");
+            });
+
+            this.capture("png" + gasSmallBusinessPostcodeList[cntr] + ".png");
+            this.wait(10000, function() {
+                this.thenOpen("https://compare.switchon.vic.gov.au/service/offers", {
+                    method: 'get',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
+            });
+
+            this.wait(5000, function(){
+                var data = this.getPageContent().replace(/<\/?[^>]+(>|$)/g, ""),
+                    json = JSON.parse(data),
+                    offers = json["offersList"];
+
+                this.each(offers, function(self, offer){
+                    offerList.push(offer);
+                });
+
+                casper.thenOpen(url, function(){
+                });
+            });
+        });
+    })(current);
+    current++;
+}
+//end parse for gas small business
+//--------------------------------------------------------------------------------------------------------
+
 
 
 //--------------------------------------------------------------------------------------------------------
 //start electricity home
-//end = electricHomePostcodeList.length;
+    //end = electricHomePostcodeList.length;
+    //for (;current < end;) {
+    //    (function(cntr) {
+    //        casper.then(function() {
+    //            this.mouse.click("label[for='electricity']");
+    //            this.mouse.click("label[for='home']");
+    //            this.mouse.click("label[for='home-here']");
+    //
+    //            this.mouse.click("#select2-retailer-container");
+    //            this.mouse.click("#select2-retailer-results li:nth-child(2)");
+    //
+    //
+    //            this.sendKeys("input[name='postcode']", casper.page.event.key.Enter , {keepFocus: true});
+    //            this.sendKeys("input[name='postcode']", electricHomePostcodeList[cntr] + "");
+    //            this.click("#postcode-btn");
+    //
+    //            this.wait(5000, function() {
+    //                this.click("label[for='energy-concession-no']");
+    //                this.click("label[for='upload-yes']");
+    //            });
+    //
+    //            this.wait(5000, function(){
+    //                this.evaluate(function(){
+    //                    $("select#file-provider").select2("val", "agl");
+    //                    $("#uploadFile").val("MyUsageData_06-05-2016.csv");
+    //                });
+    //            });
+    //
+    //            this.wait(5000, function(){
+    //                this.page.uploadFile("#data-file-secondary input[name=fileupload]", "./MyUsageData_06-05-2016.csv");
+    //                this.evaluate(function(){
+    //                    $("#data-file-secondary input[name=fileupload]").trigger("fileuploadadd");
+    //                });
+    //            })
+    //
+    //            this.wait(100000,function(){
+    //                this.click("#disclaimer_chkbox");
+    //                this.click("#btn-proceed");
+    //            });
+    //
+    //            this.wait(100000, function(){
+    //                this.capture("png" + electricHomePostcodeList[cntr] + ".png");
+    //            });
+    //
+    //            this.wait(10000, function() {
+    //                this.thenOpen("https://compare.switchon.vic.gov.au/service/offers", {
+    //                    method: 'get',
+    //                    headers: {
+    //                        'Content-Type': 'application/json',
+    //                        'Accept': 'application/json'
+    //                    }
+    //                });
+    //            });
+    //
+    //            this.wait(10000, function(){
+    //                var data = this.getPageContent().replace(/<\/?[^>]+(>|$)/g, ""),
+    //                    json = JSON.parse(data),
+    //                    offers = json["offersList"];
+    //
+    //                this.each(offers, function(self, offer){
+    //                    offerList.push(offer);
+    //                });
+    //
+    //                casper.thenOpen(url, function(){
+    //                });
+    //            });
+    //        });
+    //    })(current);
+    //    current++;
+    //}
+//end electricity home
+//--------------------------------------------------------------------------------------------------------
+
+
+//--------------------------------------------------------------------------------------------------------
+//start electricity small business
+//end = electricSmallBusinessPostcodeList.length;
 //for (;current < end;) {
 //    (function(cntr) {
 //        casper.then(function() {
 //            this.mouse.click("label[for='electricity']");
-//            this.mouse.click("label[for='home']");
-//            this.mouse.click("label[for='home-here']");
+//            this.mouse.click("label[for='small-business']");
 //
 //            this.mouse.click("#select2-retailer-container");
 //            this.mouse.click("#select2-retailer-results li:nth-child(2)");
 //
 //
 //            this.sendKeys("input[name='postcode']", casper.page.event.key.Enter , {keepFocus: true});
-//            this.sendKeys("input[name='postcode']", electricHomePostcodeList[cntr] + "");
+//            this.sendKeys("input[name='postcode']", electricSmallBusinessPostcodeList[cntr] + "");
 //            this.click("#postcode-btn");
 //
-//            this.wait(5000, function() {
-//                this.click("label[for='energy-concession-no']");
-//                this.click("label[for='upload-yes']");
-//            });
 //
 //            this.wait(5000, function(){
 //                this.evaluate(function(){
 //                    $("select#file-provider").select2("val", "agl");
 //                    $("#uploadFile").val("MyUsageData_06-05-2016.csv");
-//                    //$("#terms").show();
 //                });
 //            });
 //
@@ -143,7 +275,7 @@ casper.start(url);
 //            });
 //
 //            this.wait(100000, function(){
-//                this.capture("png" + electricHomePostcodeList[cntr] + ".png");
+//                this.capture("png" + electricSmallBusinessPostcodeList[cntr] + ".png");
 //            });
 //
 //            this.wait(10000, function() {
@@ -172,9 +304,8 @@ casper.start(url);
 //    })(current);
 //    current++;
 //}
-//end electricity home
+//end electricity small business
 //--------------------------------------------------------------------------------------------------------
-
 
 casper.then(function(){
     casper.echo(offerList.length);
