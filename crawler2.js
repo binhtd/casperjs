@@ -70,6 +70,10 @@ for (;current < end;) {
                 this.click(".profile-btn");
             });
 
+            this.wait(15000, function(){
+                this.capture("png-gas-home" + gasHomePostcodeList[cntr] + ".png");
+            });
+
             this.wait(30000, function() {
                 this.thenOpen("https://compare.switchon.vic.gov.au/service/offers", {
                     method: 'get',
@@ -85,7 +89,6 @@ for (;current < end;) {
                     json = JSON.parse(data),
                     offers = json["offersList"];
 
-                this.capture("png-gas-home" + gasHomePostcodeList[cntr] + ".png");
                 this.each(offers, function(self, offer){
                     offerList.push(offer);
                 });
@@ -122,15 +125,18 @@ for (;current < end;) {
                 this.click("#btn-proceed");
             });
 
-            this.wait(10000, function() {
+            this.wait(15000, function() {
                 this.sendKeys("#gas-start-date", "8/1/2016");
                 this.sendKeys("#gas-end-date", "8/2/2016");
                 this.sendKeys("#gas-usage", "50");
                 this.click(".profile-btn");
             });
 
-            this.wait(30000, function() {
+            this.wait(15000, function(){
+                this.capture("png-gas-smallbusiness" + gasSmallBusinessPostcodeList[cntr] + ".png");
+            });
 
+            this.wait(30000, function() {
                 this.thenOpen("https://compare.switchon.vic.gov.au/service/offers", {
                     method: 'get',
                     headers: {
@@ -140,12 +146,10 @@ for (;current < end;) {
                 });
             });
 
-            this.wait(5000, function(){
+            this.wait(15000, function(){
                 var data = this.getPageContent().replace(/<\/?[^>]+(>|$)/g, ""),
                     json = JSON.parse(data),
                     offers = json["offersList"];
-
-                this.capture("png-gas-smallbusiness" + gasSmallBusinessPostcodeList[cntr] + ".png");
 
                 this.each(offers, function(self, offer){
                     offerList.push(offer);
