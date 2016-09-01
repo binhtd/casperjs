@@ -48,7 +48,6 @@ for (;current < end;) {
             this.sendKeys("input[name='postcode']", casper.page.event.key.Enter , {keepFocus: true});
             this.sendKeys("input[name='postcode']", gasHomePostcodeList[cntr] + "");
             this.click("#postcode-btn");
-            this.capture("png-gas-home" + gasHomePostcodeList[cntr] + ".png");
 
             this.wait(5000, function() {
                 this.click("label[for='energy-concession-no']");
@@ -56,7 +55,7 @@ for (;current < end;) {
                 this.click("#btn-proceed");
             });
 
-            this.wait(5000, function() {
+            this.wait(15000, function() {
                 this.mouse.click("#select2-number_person-container");
                 this.mouse.click("#select2-number_person-results li:first-child");
 
@@ -71,7 +70,7 @@ for (;current < end;) {
                 this.click(".profile-btn");
             });
 
-            this.wait(5000, function() {
+            this.wait(30000, function() {
                 this.thenOpen("https://compare.switchon.vic.gov.au/service/offers", {
                     method: 'get',
                     headers: {
@@ -81,11 +80,12 @@ for (;current < end;) {
                 });
             });
 
-            this.wait(5000, function(){
+            this.wait(15000, function(){
                 var data = this.getPageContent().replace(/<\/?[^>]+(>|$)/g, ""),
                     json = JSON.parse(data),
                     offers = json["offersList"];
 
+                this.capture("png-gas-home" + gasHomePostcodeList[cntr] + ".png");
                 this.each(offers, function(self, offer){
                     offerList.push(offer);
                 });
@@ -130,7 +130,7 @@ for (;current < end;) {
             });
 
             this.wait(30000, function() {
-                this.capture("png-gas-smallbusiness" + gasSmallBusinessPostcodeList[cntr] + ".png");
+
                 this.thenOpen("https://compare.switchon.vic.gov.au/service/offers", {
                     method: 'get',
                     headers: {
@@ -144,6 +144,8 @@ for (;current < end;) {
                 var data = this.getPageContent().replace(/<\/?[^>]+(>|$)/g, ""),
                     json = JSON.parse(data),
                     offers = json["offersList"];
+
+                this.capture("png-gas-smallbusiness" + gasSmallBusinessPostcodeList[cntr] + ".png");
 
                 this.each(offers, function(self, offer){
                     offerList.push(offer);
