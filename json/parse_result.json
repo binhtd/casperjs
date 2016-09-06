@@ -1,1625 +1,806 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" class=" js flexbox canvas canvastext no-webgl touch no-geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent no-video no-audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" style=""><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
-    <title>Results - Victorian Energy Compare - Switch On Victoria</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="robots" content="all">
-    <link rel="shortcut icon" href="https://compare.switchon.vic.gov.au/includes/mpp3/favicon-so.ico">
-
-    <!-- AGLS //-->
-
-    <!-- Mandatory //-->
-    <meta name="Title" content="Victorian Energy Compare">
-    <meta name="Description" content="Find the best electricity offers with Victoria's independent Victorian Energy Compare application.">
-    <meta name="Keywords" content="Victorian Energy Compare; switch; electricity; electricity price comparison">
-    <meta name="DCTERMS.Title" content="Victorian Energy Compare">
-    <meta name="DCTERMS.Description" content="Find the best electricity offers with Victoria's independent Victorian Energy Compare application.">
-    <meta name="DCTERMS.Creator" content="DEDJTR">
-    <meta name="DCTERMS.Publisher" content="DEDJTR VIC">
-    <meta name="dcterms.created" content="2014-01-01">
-    <meta name="DCTERMS.Date.modified" content="2014-09-01">
-    <meta name="DCTERMS.Identifier" content="https://mpp.switchon.vic.gov.au">
-    <meta name="DCTERMS.Rights" content="http://economicdevelopment.vic.gov.au/privacy">
-    <meta name="DCTERMS.Type.category" content="Document">
-    <meta name="DCTERMS.Type.documentType" content="guidelines">
-    <meta name="DCTERMS.Subject" content="Victorian Energy Compare; switch; electricity; electricity price comparison">
-
-    <!-- Optional //-->
-    <meta name="DCTERMS.Language" content="en-AU">
-    <meta name="DCTERMS.Coverage.spatial" content="Victoria">
-    <meta name="DCTERMS.Coverage.jurisdiction" content="State of Victoria">
-
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi">
-
-    <link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/bootstrap-print.min.css" media="print">
-    <link href="https://compare.switchon.vic.gov.au/css/webfont.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/mpp3_main.css">
-    <link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/progress-bar.css">
-    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Javascript for IE8-->
-    <script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/modernizr.min.js"></script>
-    <script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/common.js"></script>
-    <script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/css3-mediaqueries.js"></script>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="js/checked-polyfill.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('input:radio, input:checkbox').checkedPolyfill();
-        });
-    </script>
-
-
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/session/analytics"></script>
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create',google_ua_code,{'cookieDomain':google_analytics_cookie_domain});ga('send','pageview');</script><link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/fancybox/jquery.fancybox.css">
-<link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/fancybox/helpers/jquery.fancybox-buttons.css">
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/libs/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/libs/fancybox/jquery.fancybox-buttons.js"></script><script type="text/javascript">var global_survey_ajax_url='https://compare.switchon.vic.gov.au/survey/ajax/call';</script>
-<script type="text/javascript">var global_survey_monkey_url='https://www.surveymonkey.com/s/7T67VD5';</script>
-<script src="https://compare.switchon.vic.gov.au/js/surveymonkey.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular-route.min.js"></script>
-<script type="text/javascript" src="js/ng_modules/ui-bootstrap-tpls-0.12.1.min.js"></script>
-<script type="text/javascript" src="js/ng_modules/ui-bootstrap-tpls-20150909-tooltip.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular-sanitize.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.12.1/select.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.12.1/select.min.css">
-<link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/bootstrap/bootstrap-toggle.min.css?1443513675">
-<link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/bootstrap/awesome-bootstrap-checkbox.css?1443513675">
-<link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/font-awesome.min.css?1443513675">
-<link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/offers/offer.css?1444872837">
-<link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/bill_detail/bill-details.css?1443513675">
-<link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/select2.min.css?1445984614">
-<link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/bootstrap/bootstrap-datepicker3.min.css?1443513675">
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/libs/bootstrap/bootstrap-datepicker.min.js?1443513675"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/libs/bootstrap/bootstrap-toggle.min.js?1443513675"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/select2.js?1443513675"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/offers_app/app.js?1443513675"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/offers_app/config.js?1443513675"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/offers_app/routes.js?1443513675"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/offers_app/directives.js?1445984614"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/offers_app/filters.js?1445984614"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/offers_app/services.js?1445984614"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/offers_app/controllers.js?1456801145"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/isMobile.min.js?1443513675"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/libs/jwplayer/jwplayer.js?1444803586"></script>
-
-</head>
-
-<body ng-app="offersApp" id="ng-app" class="ng-scope">
-<div id="wrapper">
-    <div class="page-help ng-scope" ng-controller="SkipController">
-        <div class="container">
-            <div class="page-help-header">
-                <a href="javascript:void(0);" ng-click="scrollTo('main')">Skip to main content</a>
-            </div>
-        </div>
-    </div>
-    <div class="top-bar">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-xs-6">
-                    <div class="tag">
-                        <a href="https://compare.switchon.vic.gov.au/restart" id="homepage-link">
-                            <img class="img-responsive mpp-logo" alt="Victorian Energy Compare" src="https://compare.switchon.vic.gov.au//img/vic_energy_compare_logo.png">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xs-6">
-                    <div class="logo">
-                        <ul id="brought-to-you-by">
-                            <li class="hidden-sm hidden-xs">
-                                <a target="_blank" href="http://vic.gov.au" id="vicgov-link">
-                                    <img class="img-responsive" src="https://compare.switchon.vic.gov.au//img/vic_logo_large.png" alt="State Government of Victoria, Australia – link to Government home">
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/.container-->
-    </div>
-    <!--/.top-bar-->
-
-
-    <div class="body-contents">
-        
-<!-- Survey -->
-<link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/fancybox/jquery.fancybox.css">
-<link rel="stylesheet" type="text/css" href="https://compare.switchon.vic.gov.au/css/fancybox/helpers/jquery.fancybox-buttons.css">
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/libs/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript" src="https://compare.switchon.vic.gov.au/js/libs/fancybox/jquery.fancybox-buttons.js"></script>
-
-<script type="text/javascript">
-    var global_survey_ajax_url = 'https://compare.switchon.vic.gov.au/survey/ajax/call';
-    var global_survey_monkey_url = 'https://www.surveymonkey.com/s/7T67VD5';
-</script>
-<script src="https://compare.switchon.vic.gov.au/js/surveymonkey.js"></script>
-<!-- /Survey -->
-
-<div class="row ng-scope" data-no-email="" ng-controller="ProgressController">
-    
-<div class="custom-progress-bar">
-    <div class="container">
-        <div class="row fivecolumns bs-wizard hidden-sm hidden-xs" style="border-bottom: 0;">
-            <div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-0 col-sm-offset-0 col-xs-offset-1 bs-wizard-step complete" id="step1">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped"></div>
-                </div>
-                <a href="./start" class="bs-wizard-dot" title="Start" aria-label="Start">✓</a>
-                <div class="text-center bs-wizard-stepnum">Start</div>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-2 bs-wizard-step complete" id="step2">
-                <!-- complete -->
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped"></div>
-                </div>
-                                    <a href="./energy_questionnaire" class="bs-wizard-dot" title="Your energy profile" aria-label="Your energy profile">✓</a>
-                                <div class="text-center bs-wizard-stepnum">Your energy profile</div>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-2 bs-wizard-step disabled complete" id="step3">
-                <!-- complete -->
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped"></div>
-                </div>
-                                    <a href="./bill_details" class="bs-wizard-dot" title="Consumption" aria-label="Consumption">✓</a>
-                                <div class="text-center bs-wizard-stepnum">Consumption</div>
-            </div>
-
-            <div class="col-md-2 col-sm-2 col-xs-2 bs-wizard-step active" id="step4" ng-class="step4">
-                <!-- active -->
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped"></div>
-                </div>
-                                    <a href="./offers" class="bs-wizard-dot" title="Available Offers" aria-label="Available Offers">✓</a>
-                                <div class="text-center bs-wizard-stepnum">Available Offers</div>
-            </div>
-            <div class="col-md-2 col-sm-2 col-xs-2 bs-wizard-step disabled last-step" id="step5" ng-class="step5">
-                <!-- active -->
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped"></div>
-                </div>
-                                    <a href="./compare" class="bs-wizard-dot" title="Compare Results" aria-label="Compare Results"></a>
-                                <div class="text-center bs-wizard-stepnum">Compare results</div>
-            </div>
-        </div>
-
-    </div>
-</div>
-</div>
-<div class="row main-contents">
-    <div class="container">
-        <div class="row" id="main" tabindex="-1">
-            <div class="back-navigation-link" data-no-email="">
-                <a href="javascript:window.history.back();" class="anchor-style">&lt; return to prev. page</a>
-            </div>
-            <div class="custom-jumbotron-offer">
-                <div class="row">
-                    <div class="col-md-9 col-sm-12">
-                        <div class="row">
-                            <h1>Your gas offers</h1>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-7 col-sm-12">
-                                <div class="row edit-offer-link">
-                                    <p>
-                                        <span>These offers are based on the details you provided:</span>
-                                    </p>
-                                </div>
-                                <div class="offer-profile-summary row">
-                                    <div class="col-md-5 col-sm-12">
-                                        <p>
-                                            Post code:                                            <strong>3011</strong>
-                                        </p>
-
-                                        <p>
-                                            Energy concessions:                                            <strong>No</strong>
-                                        </p>
-                                    </div>
-                                    <div class="col-md-7 col-sm-12">
-                                        <p>
-                                            Installed:                                            <strong>Gas</strong>
-                                        </p>
-
-                                                                            </div>
-                                </div>
-                            </div>
-                                                    </div>
-                    </div>
-
-                    <div class="col-md-3 hidden-sm hidden-xs ng-scope" id="greenBoxVideoModal" tabindex="0" ng-controller="videoModalController" ng-click="showVideoModal()">
-                        <div class="offer-tips-desc market-desc">
-                            <div class="mm-head ng-binding">Want to learn more about your results list?</div>
-                            <div aria-hidden="true">
-                                <img class="img-desc" src="img/greenbox/offerlist_greenbox.jpg">
-
-                                <div class="flags">
-                                    <img src="img/flag-gr.png" alt="Greece Flag">
-                                    <img src="img/flag-cam.png" alt="Cambodia Flag">
-                                    <img src="img/flag-it.png" alt="Italy flag">
-                                    <img src="img/flag-mk.png" alt="Macedonia Flag">
-                                    <a>Other languages</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ngView:  --><div ng-view="" class="sub-contents ng-scope"><script type="text/javascript" class="ng-scope">
-    $(document).ready(function () {
-        if (isMobile.apple.device) {
-            $('head').append('<style type="text/css">.modal {position: fixed;top: 3%;right: 3%;left: 3%;width: auto;margin: 0;} .modal-body {height: 60%;max-height: 350px;padding: 15px;overflow-y: auto;-webkit-overflow-scrolling: touch; width: 100%;}</style>');
-        }
-    });
-</script>
-<div class="container ng-scope">
-    <div class="row ng-hide" id="dual-energy-buttons" role="group" aria-labelledby="lbl-dual-energy-button" ng-show="offersService.metaData.showDual">
-        <div id="lbl-dual-energy-button" class="col-md-12 col-sm-12 col-xs-12 text-center HelveticaNeueLTStd-UltLt-Offer">
-            Select the energy type to view the offers        </div>
-
-        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-            <a class="btn energy-button btn-default" ng-class="{'energy-button-selected': (0 === offersListStateService.getCurrentOfferFuelType())}" href="#/list/electric">ELECTRICITY</a>
-            <a class="btn energy-button btn-default energy-button-selected" ng-class="{'energy-button-selected': (1 === offersListStateService.getCurrentOfferFuelType())}" href="#/list/gas">GAS</a>
-            <a class="btn energy-button btn-default" ng-class="{'energy-button-selected': (2 === offersListStateService.getCurrentOfferFuelType())}" href="#/list/dual">BOTH </a>
-        </div>
-    </div>
-    <div class="row content-separator">
-        <div class="col-md-2 tou-privileges ng-hide" ng-show="'gas' !== routeFuelType">
-            <div class="row">
-                <div class="col-md-12 ">
-                    <span class="HelveticaNeueLTStd-Regular">Show Time of use offers (ToU)</span>
-                </div>
-            </div>
-            <!-- FIRST RUN -->
-            <div class="row custom-margin tou-contents">
-                <div class="col-md-6">
-                    <div class="toggle btn btn-default off" data-toggle="toggle" style="width: 58px; height: 34px;"><input toggle-checkbox="" ng-model="offersListStateService.touFilterFlag[offersListStateService.getCurrentOfferFuelType()]" type="checkbox" class="toggle-button ng-pristine ng-valid" ng-change="changeTouToggle()"><div class="toggle-group" tabindex="0" onkeypress="$(this).click();event.preventDefault();"><label class="btn btn-primary toggle-on">On</label><label class="btn btn-default active toggle-off">Off</label><span class="toggle-handle btn btn-default"></span></div></div>
-                </div>
-                <div class="col-md-6">
-                    <a href="javascript:void(0)" class="anchor-style" tooltip="Time of use (TOU) offers are tariffs with 'peak' and 'off-peak' rates. Only customers who are already on a TOU plan can switch to other TOU Offers." aria-label="Time of use (TOU) offers are tariffs with 'peak' and 'off-peak' rates. Only customers who are already on a TOU plan can switch to other TOU Offers." tooltip-trigger="click focus mouseenter">
-                        Am I eligible?                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2" ng-hide="'gas' !== routeFuelType">&nbsp;</div>
-        <div class="col-md-4 hidden-sm hidden-xs submenu-compare">
-            <a class="btn compare-offer-btn compare-offer-btn-txt" ng-disabled="0 === offersListStateService.getCheckedCount()" ng-href="#/compare/gas" ng-click="compareClick()" href="#/compare/gas">Compare selected offers</a>
-        </div>
-        <div class="col-md-4 col-sm-12 col-xs-12 col-md-offset-2 display-section" role="group" aria-labelledby="lbl_sorting">
-            <p class="HelveticaNeueLTStd-Regular" id="lbl_sorting">Sort offers based on:</p>
-            <button class="btn btn-default btn-primary" ng-class="{'btn-primary': ('conditionalPrice' === offersListStateService.getSortingOrder())}" ng-click="changeSortingField('conditionalPrice')">Price</button>
-            <button class="btn btn-default" ng-class="{'btn-primary': ('fullDiscountedPrice' === offersListStateService.getSortingOrder())}" ng-click="changeSortingField('fullDiscountedPrice')">Discounted Price</button>                  
-			<span class="custom-tooltip"> <i class="material-icons" tabindex="0" tooltip="The discounted price includes all your discounts, including any that you may receive by meeting certain conditions (such as pay-on-time or e-billing). Any applicable concessions have been applied to both prices." aria-label="The discounted price includes all your discounts, including any that you may receive by meeting certain conditions (such as pay-on-time or e-billing). Any applicable concessions have been applied to both prices." tooltip-trigger="click focus mouseenter">
-                    </i>
-			</span>
-        </div>
-    </div>
-
-    <div class="row content-separator">
-        <div class="col-md-2 hidden-sm hidden-xs" role="group" aria-labelledby="hd_filters">
-            <div class="row column-headers">
-                <span class="HelveticaNeueLTStd-UltLt-Small" id="hd_filters">FILTERS</span>
-                <a href="javascript:void(0);" class="anchor-style" ng-click="offersListStateService.resetAllFilters()">Reset filters</a>
-            </div>
-            <div role="group" aria-labelledby="hd_filter_retailer">
-                <div class="row">
-                    <div class="HelveticaNeueLTStd-Regular" id="hd_filter_retailer">Energy retailers</div>
-
-                    <div class="checkbox">
-                        <input type="checkbox" ng-click="offersListStateService.checkAllRetailers()" ng-checked="offersListStateService.isAllRetailerSelected()" id="all-retailers" name="all-retailers" checked="checked"><label for="all-retailers">Consider all retailers</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <!-- ngRepeat: retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName' --><div class="checkbox checkbox-primary ng-scope" ng-repeat="retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName'">
-                        <input type="checkbox" id="agl" ng-model="retailerFilter.isChecked" ng-checked="retailerFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="agl" class="ng-binding">AGL</label>
-                    </div><!-- end ngRepeat: retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName' --><div class="checkbox checkbox-primary ng-scope" ng-repeat="retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName'">
-                        <input type="checkbox" id="alinta_energy" ng-model="retailerFilter.isChecked" ng-checked="retailerFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="alinta_energy" class="ng-binding">Alinta Energy</label>
-                    </div><!-- end ngRepeat: retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName' --><div class="checkbox checkbox-primary ng-scope" ng-repeat="retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName'">
-                        <input type="checkbox" id="click_energy" ng-model="retailerFilter.isChecked" ng-checked="retailerFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="click_energy" class="ng-binding">Click Energy</label>
-                    </div><!-- end ngRepeat: retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName' --><div class="checkbox checkbox-primary ng-scope" ng-repeat="retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName'">
-                        <input type="checkbox" id="covau" ng-model="retailerFilter.isChecked" ng-checked="retailerFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="covau" class="ng-binding">CovaU</label>
-                    </div><!-- end ngRepeat: retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName' --><div class="checkbox checkbox-primary ng-scope" ng-repeat="retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName'">
-                        <input type="checkbox" id="dodo_power_gas" ng-model="retailerFilter.isChecked" ng-checked="retailerFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="dodo_power_gas" class="ng-binding">Dodo Power &amp; Gas</label>
-                    </div><!-- end ngRepeat: retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName' --><div class="checkbox checkbox-primary ng-scope" ng-repeat="retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName'">
-                        <input type="checkbox" id="energy_australia" ng-model="retailerFilter.isChecked" ng-checked="retailerFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="energy_australia" class="ng-binding">Energy Australia</label>
-                    </div><!-- end ngRepeat: retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName' --><div class="checkbox checkbox-primary ng-scope" ng-repeat="retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName'">
-                        <input type="checkbox" id="lumo_energy" ng-model="retailerFilter.isChecked" ng-checked="retailerFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="lumo_energy" class="ng-binding">Lumo Energy</label>
-                    </div><!-- end ngRepeat: retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName' --><div class="checkbox checkbox-primary ng-scope" ng-repeat="retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName'">
-                        <input type="checkbox" id="momentum_energy" ng-model="retailerFilter.isChecked" ng-checked="retailerFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="momentum_energy" class="ng-binding">Momentum Energy</label>
-                    </div><!-- end ngRepeat: retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName' --><div class="checkbox checkbox-primary ng-scope" ng-repeat="retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName'">
-                        <input type="checkbox" id="origin_energy" ng-model="retailerFilter.isChecked" ng-checked="retailerFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="origin_energy" class="ng-binding">Origin Energy</label>
-                    </div><!-- end ngRepeat: retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName' --><div class="checkbox checkbox-primary ng-scope" ng-repeat="retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName'">
-                        <input type="checkbox" id="red_energy" ng-model="retailerFilter.isChecked" ng-checked="retailerFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="red_energy" class="ng-binding">Red Energy</label>
-                    </div><!-- end ngRepeat: retailerFilter in offersListStateService.getAllRetailers() | orderBy: 'optionName' -->
-                </div>
-            </div>
-            <div class="row content-separator" role="group" aria-labelledby="lbl_filter_contract">
-                <div class="HelveticaNeueLTStd-Regular" id="lbl_filter_contract">Contract length:</div>
-
-                <div class="checkbox checkbox-primary">
-                    <input type="checkbox" id="contract-type-any" name="contract-any" ng-click="offersListStateService.checkAllContractLengths()" ng-checked="offersListStateService.isAllContractLengthsSelected()" checked="checked"><label for="contract-type-any">Any contract length</label>
-                </div>
-                <!-- ngRepeat: contractsFilter in offersListStateService.getAllContractLengths() --><div class="checkbox checkbox-primary ng-scope" ng-repeat="contractsFilter in offersListStateService.getAllContractLengths()">
-                    <input type="checkbox" id="Ongoing contract" ng-model="contractsFilter.isChecked" ng-checked="contractsFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="Ongoing contract" class="ng-binding">Ongoing contract</label>
-                </div><!-- end ngRepeat: contractsFilter in offersListStateService.getAllContractLengths() --><div class="checkbox checkbox-primary ng-scope" ng-repeat="contractsFilter in offersListStateService.getAllContractLengths()">
-                    <input type="checkbox" id="1 Year Contract" ng-model="contractsFilter.isChecked" ng-checked="contractsFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="1 Year Contract" class="ng-binding">1 Year Contract</label>
-                </div><!-- end ngRepeat: contractsFilter in offersListStateService.getAllContractLengths() --><div class="checkbox checkbox-primary ng-scope" ng-repeat="contractsFilter in offersListStateService.getAllContractLengths()">
-                    <input type="checkbox" id="2 Year Contract" ng-model="contractsFilter.isChecked" ng-checked="contractsFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="2 Year Contract" class="ng-binding">2 Year Contract</label>
-                </div><!-- end ngRepeat: contractsFilter in offersListStateService.getAllContractLengths() --><div class="checkbox checkbox-primary ng-scope" ng-repeat="contractsFilter in offersListStateService.getAllContractLengths()">
-                    <input type="checkbox" id="3 Year Contract" ng-model="contractsFilter.isChecked" ng-checked="contractsFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="3 Year Contract" class="ng-binding">3 Year Contract</label>
-                </div><!-- end ngRepeat: contractsFilter in offersListStateService.getAllContractLengths() --><div class="checkbox checkbox-primary ng-scope" ng-repeat="contractsFilter in offersListStateService.getAllContractLengths()">
-                    <input type="checkbox" id="4 Year Contract" ng-model="contractsFilter.isChecked" ng-checked="contractsFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="4 Year Contract" class="ng-binding">4 Year Contract</label>
-                </div><!-- end ngRepeat: contractsFilter in offersListStateService.getAllContractLengths() --><div class="checkbox checkbox-primary ng-scope" ng-repeat="contractsFilter in offersListStateService.getAllContractLengths()">
-                    <input type="checkbox" id="5 Year Contract" ng-model="contractsFilter.isChecked" ng-checked="contractsFilter.isChecked" class="ng-pristine ng-valid" checked="checked"> <label for="5 Year Contract" class="ng-binding">5 Year Contract</label>
-                </div><!-- end ngRepeat: contractsFilter in offersListStateService.getAllContractLengths() -->
-            </div>
-            <div class="row content-separator" role="group" aria-labelledby="lbl_filter_other">
-                <div class="HelveticaNeueLTStd-Regular" id="lbl_filter_other">Other Features:</div>
-
-                <div class="checkbox checkbox-primary">
-                    <input type="checkbox" id="other-filters-1" name="green-power" ng-checked="offersListStateService.isShowGreenPowerOnly()" ng-click="offersListStateService.toggleShowGreenPowerOnly()"> <label for="other-filters-1">Show Green Power only</label>
-                </div>
-                <div class="checkbox checkbox-primary">
-                    <input type="checkbox" id="other-filters-2" name="hide-incentives" ng-checked="offersListStateService.isHideIncentives()" ng-click="offersListStateService.toggleHideIncentives()"> <label for="other-filters-2">Hide incentives</label>
-                </div>
-                <div class="checkbox checkbox-primary">
-                    <input type="checkbox" id="other-filters-3" name="hide-dd-only" ng-checked="offersListStateService.isHideDDOnly()" ng-click="offersListStateService.toggleHideDDOnly()"> <label for="other-filters-3">Hide direct debit only</label>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-10" id="main" name="main">
-            <div class="row column-headers hidden-sm hidden-xs">
-                <div class="col-md-5" id="retailer-header">
-                    <span class="HelveticaNeueLTStd-UltLt-Small">ENERGY RETAILER</span>
-                </div>
-                <div class="col-md-2" id="feature-header">
-                    <span class="HelveticaNeueLTStd-UltLt-Small">FEATURES</span>
-                </div>
-                <div class="col-md-1" id="contract-header">
-                    <span class="HelveticaNeueLTStd-UltLt-Small">CONTRACT</span>
-                </div>
-                <div class="col-md-4" id="price-header">
-                    <span class="HelveticaNeueLTStd-UltLt-Small ">EST. PRICES (inc. GST)</span>
-                    <button class="reset-btn reset-btn-text" ng-click="masterReset()">RESET RESULT</button>
-                </div>
-            </div>
-            <div class="row best-offer-tab" ng-show="0 &lt; offersService.offers.length">
-                <span class="btn">Best Price</span>
-                <a href="javascript:void(0);" class="anchor-style" tooltip="This offer has been calculated to be the cheapest offer for the way you use your energy" aria-label="This offer has been calculated to be the cheapest offer for the way you use your energy" tooltip-trigger="click focus mouseenter">why this offer?</a>
-            </div>
-            <div class="row ng-hide" ng-show="0 &gt;= offersService.offers.length &amp;&amp; false === showSpinner">
-                <div class="col-md-12 text-center h2">No offers have been returned for your postcode</div>
-            </div>
-            <div class="row ng-hide" ng-show="true === showSpinner">
-                <div class="col-md-12 text-center">
-                    <img src="img/offers/offers_list_loader.gif">
-                </div>
-            </div>
-            <ul class="list-group offer-list" ng-show="0 &lt; offersService.offers.length">
-                <!-- ngRepeat: offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount()) --><li ng-repeat="offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount())" is-open="true" ng-init="filteredTopOffers(filtered)" class="ng-scope">
-                    <!-- ngIf: 'dual' !== routeFuelType --><div class="row ng-scope best-retailer" ng-if="'dual' !== routeFuelType" ng-class="{'best-retailer': offer.isBestOffer}">
-
-                        <!-- checkbox draw  -->
-                        <div class="col-md-1 col-xs-1 col-sm-1 checkbox-compare hidden-sm hidden-xs">
-                            <div class="checkbox checkbox-warning">
-                                <input type="checkbox" class="styled ng-pristine ng-valid" aria-labelledby="offer-info-0" ng-disabled="!(offer.isChecked || 3 &gt; offersListStateService.getCheckedCount())" ng-click="checkOffer(offer)" ng-model="offer.isChecked"><label></label>
-                            </div>
-                        </div>
-
-                        <!-- retailer image -->
-
-                        <!-- ngRepeat: offerInfo in offer.offerDetails --><div ng-repeat="offerInfo in offer.offerDetails" id="offer-info-0" class="ng-scope">
-                            <div class="retailer-logo col-xs-6 col-sm-6">
-                                <a href="javascript:void(0)" ng-click="viewRetailer(offerInfo, $event)" id="retailer-3613-0">
-                                    <img ng-src="img/retailers/big/dodo.png" alt="Dodo Power &amp; Gas." src="img/retailers/big/dodo.png">
-                                </a>
-                            </div>
-
-                            <div class="retailer-details col-md-2 col-xs-6 col-sm-6">
-                                <p class="retailer-name" aria-hidden="true">
-                                    <span class="HelveticaNeueLTStd-Regular ng-binding">Dodo Power &amp; Gas</span>
-                                </p>
-
-                                <p class="ng-binding">
-                                    ID: DOD36978SR
-                                    <a href="javascript:void(0);" class="anchor-style" alt="view offer." id="3613-0" ng-click="viewOffer(offerInfo, $event)">view offer</a>
-                                </p>
-                            </div>
-
-                            <div class="feature-display col-md-2 col-xs-6 col-sm-6">
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.isDirectDebitOnly -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasPayOnTimeDiscount -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasIncentive -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: 0 !== offerInfo.greenPowerDisplay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="contract-display col-md-1 col-xs-6 col-sm-6">
-                                <img src="img/offers/ic_contract_multiple.png" ng-show="false" class="ng-hide"> <img src="img/offers/ic_contract_ongoing.png" alt="Ongoing contract." ng-show="true" class="">
-                                <img src="img/offers/ic_contract_other.png" alt="Other contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_1_year.png" alt="1 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_2_year.png" alt="2 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_3_year.png" alt="3 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_4_year.png" alt="4 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_5_year.png" alt="5 year contract." ng-show="false" class="ng-hide">
-
-                                <p class="exitFee ng-binding">Exit fee:                                    $0</p>
-                            </div>
-
-                            <div class="price-display col-sm-12 col-xs-12">
-                                <div class="row solar-credit-display ng-hide" ng-hide="true">
-                                    <p>Estimate includes solar credit of <strong class="ng-binding">$0</strong></p>
-                                </div>
-                                <div class="row" ng-show="true">
-                                    <p> &nbsp;</p>
-                                </div>
-                                <!-- ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() --><div class="row ng-scope" ng-if="'conditionalPrice' === offersListStateService.getSortingOrder()">
-                                    <div class="price-condition col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            With conditional discounts                                            <strong class="ng-binding">$390
-                                                <!-- ngIf: 0 > offerInfo.fullDiscountedPrice -->
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="actual-price col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            <sup class="usd">$</sup>
-                                            <span class="currency-value ng-binding">390</span>
-                                            <!-- ngIf: 0 > offerInfo.conditionalPrice -->
-
-                                            <sub>/ year</sub>
-                                        </p>
-                                    </div>
-                                </div><!-- end ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() -->
-
-
-                                <!-- ngIf: 'conditionalPrice' !== offersListStateService.getSortingOrder() -->
-
-                            </div>
-
-                        </div><!-- end ngRepeat: offerInfo in offer.offerDetails -->
-                        <div class="cancel-icon-display col-md-1 col-xs-1 col-sm-1 hidden-sm hidden-xs">
-                            <button ng-click="closeOffer(offer)" ng-hide="offer.isBestOffer" type="button" class="btn btn-link ng-hide" aria-label="delete offer">
-                                <i class="material-icons cancel-icon"></i>
-                            </button>
-                        </div>
-                    </div><!-- end ngIf: 'dual' !== routeFuelType -->
-                    <!-- Dual offer template : START -->
-                    <!-- ngIf: 'dual' === routeFuelType -->
-                    <!-- Dual offer template : END -->
-                    <!-- ngIf: filtered.length === 1 -->
-                </li><!-- end ngRepeat: offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount()) --><li ng-repeat="offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount())" is-open="false" ng-init="filteredTopOffers(filtered)" class="ng-scope">
-                    <!-- ngIf: 'dual' !== routeFuelType --><div class="row ng-scope" ng-if="'dual' !== routeFuelType" ng-class="{'best-retailer': offer.isBestOffer}">
-
-                        <!-- checkbox draw  -->
-                        <div class="col-md-1 col-xs-1 col-sm-1 checkbox-compare hidden-sm hidden-xs">
-                            <div class="checkbox checkbox-warning">
-                                <input type="checkbox" class="styled ng-pristine ng-valid" aria-labelledby="offer-info-1" ng-disabled="!(offer.isChecked || 3 &gt; offersListStateService.getCheckedCount())" ng-click="checkOffer(offer)" ng-model="offer.isChecked"><label></label>
-                            </div>
-                        </div>
-
-                        <!-- retailer image -->
-
-                        <!-- ngRepeat: offerInfo in offer.offerDetails --><div ng-repeat="offerInfo in offer.offerDetails" id="offer-info-1" class="ng-scope">
-                            <div class="retailer-logo col-xs-6 col-sm-6">
-                                <a href="javascript:void(0)" ng-click="viewRetailer(offerInfo, $event)" id="retailer-7404-1">
-                                    <img ng-src="img/retailers/big/lumo.jpg" alt="Lumo Energy." src="img/retailers/big/lumo.jpg">
-                                </a>
-                            </div>
-
-                            <div class="retailer-details col-md-2 col-xs-6 col-sm-6">
-                                <p class="retailer-name" aria-hidden="true">
-                                    <span class="HelveticaNeueLTStd-Regular ng-binding">Lumo Energy</span>
-                                </p>
-
-                                <p class="ng-binding">
-                                    ID: LU240179MR
-                                    <a href="javascript:void(0);" class="anchor-style" alt="view offer." id="7404-1" ng-click="viewOffer(offerInfo, $event)">view offer</a>
-                                </p>
-                            </div>
-
-                            <div class="feature-display col-md-2 col-xs-6 col-sm-6">
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.isDirectDebitOnly -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasPayOnTimeDiscount -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasIncentive --><i class="material-icons incentive ng-scope" ng-if="true === offerInfo.hasIncentive" tabindex="0" popover="Offer has an incentive" aria-label="Offer has an incentive" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.hasIncentive -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: 0 !== offerInfo.greenPowerDisplay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="contract-display col-md-1 col-xs-6 col-sm-6">
-                                <img src="img/offers/ic_contract_multiple.png" ng-show="false" class="ng-hide"> <img src="img/offers/ic_contract_ongoing.png" alt="Ongoing contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_other.png" alt="Other contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_1_year.png" alt="1 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_2_year.png" alt="2 year contract." ng-show="true" class="">
-                                <img src="img/offers/ic_contract_3_year.png" alt="3 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_4_year.png" alt="4 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_5_year.png" alt="5 year contract." ng-show="false" class="ng-hide">
-
-                                <p class="exitFee ng-binding">Exit fee:                                    $0</p>
-                            </div>
-
-                            <div class="price-display col-sm-12 col-xs-12">
-                                <div class="row solar-credit-display ng-hide" ng-hide="true">
-                                    <p>Estimate includes solar credit of <strong class="ng-binding">$0</strong></p>
-                                </div>
-                                <div class="row" ng-show="true">
-                                    <p> &nbsp;</p>
-                                </div>
-                                <!-- ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() --><div class="row ng-scope" ng-if="'conditionalPrice' === offersListStateService.getSortingOrder()">
-                                    <div class="price-condition col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            With conditional discounts                                            <strong class="ng-binding">$390
-                                                <!-- ngIf: 0 > offerInfo.fullDiscountedPrice -->
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="actual-price col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            <sup class="usd">$</sup>
-                                            <span class="currency-value ng-binding">390</span>
-                                            <!-- ngIf: 0 > offerInfo.conditionalPrice -->
-
-                                            <sub>/ year</sub>
-                                        </p>
-                                    </div>
-                                </div><!-- end ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() -->
-
-
-                                <!-- ngIf: 'conditionalPrice' !== offersListStateService.getSortingOrder() -->
-
-                            </div>
-
-                        </div><!-- end ngRepeat: offerInfo in offer.offerDetails -->
-                        <div class="cancel-icon-display col-md-1 col-xs-1 col-sm-1 hidden-sm hidden-xs">
-                            <button ng-click="closeOffer(offer)" ng-hide="offer.isBestOffer" type="button" class="btn btn-link" aria-label="delete offer">
-                                <i class="material-icons cancel-icon"></i>
-                            </button>
-                        </div>
-                    </div><!-- end ngIf: 'dual' !== routeFuelType -->
-                    <!-- Dual offer template : START -->
-                    <!-- ngIf: 'dual' === routeFuelType -->
-                    <!-- Dual offer template : END -->
-                    <!-- ngIf: filtered.length === 1 -->
-                </li><!-- end ngRepeat: offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount()) --><li ng-repeat="offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount())" is-open="false" ng-init="filteredTopOffers(filtered)" class="ng-scope">
-                    <!-- ngIf: 'dual' !== routeFuelType --><div class="row ng-scope" ng-if="'dual' !== routeFuelType" ng-class="{'best-retailer': offer.isBestOffer}">
-
-                        <!-- checkbox draw  -->
-                        <div class="col-md-1 col-xs-1 col-sm-1 checkbox-compare hidden-sm hidden-xs">
-                            <div class="checkbox checkbox-warning">
-                                <input type="checkbox" class="styled ng-pristine ng-valid" aria-labelledby="offer-info-2" ng-disabled="!(offer.isChecked || 3 &gt; offersListStateService.getCheckedCount())" ng-click="checkOffer(offer)" ng-model="offer.isChecked"><label></label>
-                            </div>
-                        </div>
-
-                        <!-- retailer image -->
-
-                        <!-- ngRepeat: offerInfo in offer.offerDetails --><div ng-repeat="offerInfo in offer.offerDetails" id="offer-info-2" class="ng-scope">
-                            <div class="retailer-logo col-xs-6 col-sm-6">
-                                <a href="javascript:void(0)" ng-click="viewRetailer(offerInfo, $event)" id="retailer-9018-2">
-                                    <img ng-src="img/retailers/big/momentumenergy.jpg" alt="Momentum Energy." src="img/retailers/big/momentumenergy.jpg">
-                                </a>
-                            </div>
-
-                            <div class="retailer-details col-md-2 col-xs-6 col-sm-6">
-                                <p class="retailer-name" aria-hidden="true">
-                                    <span class="HelveticaNeueLTStd-Regular ng-binding">Momentum Energy</span>
-                                </p>
-
-                                <p class="ng-binding">
-                                    ID: MOM41356SR
-                                    <a href="javascript:void(0);" class="anchor-style" alt="view offer." id="9018-2" ng-click="viewOffer(offerInfo, $event)">view offer</a>
-                                </p>
-                            </div>
-
-                            <div class="feature-display col-md-2 col-xs-6 col-sm-6">
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.isDirectDebitOnly -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasPayOnTimeDiscount -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasIncentive -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: 0 !== offerInfo.greenPowerDisplay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="contract-display col-md-1 col-xs-6 col-sm-6">
-                                <img src="img/offers/ic_contract_multiple.png" ng-show="false" class="ng-hide"> <img src="img/offers/ic_contract_ongoing.png" alt="Ongoing contract." ng-show="true" class="">
-                                <img src="img/offers/ic_contract_other.png" alt="Other contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_1_year.png" alt="1 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_2_year.png" alt="2 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_3_year.png" alt="3 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_4_year.png" alt="4 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_5_year.png" alt="5 year contract." ng-show="false" class="ng-hide">
-
-                                <p class="exitFee ng-binding">Exit fee:                                    $0</p>
-                            </div>
-
-                            <div class="price-display col-sm-12 col-xs-12">
-                                <div class="row solar-credit-display ng-hide" ng-hide="true">
-                                    <p>Estimate includes solar credit of <strong class="ng-binding">$0</strong></p>
-                                </div>
-                                <div class="row" ng-show="true">
-                                    <p> &nbsp;</p>
-                                </div>
-                                <!-- ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() --><div class="row ng-scope" ng-if="'conditionalPrice' === offersListStateService.getSortingOrder()">
-                                    <div class="price-condition col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            With conditional discounts                                            <strong class="ng-binding">$400
-                                                <!-- ngIf: 0 > offerInfo.fullDiscountedPrice -->
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="actual-price col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            <sup class="usd">$</sup>
-                                            <span class="currency-value ng-binding">400</span>
-                                            <!-- ngIf: 0 > offerInfo.conditionalPrice -->
-
-                                            <sub>/ year</sub>
-                                        </p>
-                                    </div>
-                                </div><!-- end ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() -->
-
-
-                                <!-- ngIf: 'conditionalPrice' !== offersListStateService.getSortingOrder() -->
-
-                            </div>
-
-                        </div><!-- end ngRepeat: offerInfo in offer.offerDetails -->
-                        <div class="cancel-icon-display col-md-1 col-xs-1 col-sm-1 hidden-sm hidden-xs">
-                            <button ng-click="closeOffer(offer)" ng-hide="offer.isBestOffer" type="button" class="btn btn-link" aria-label="delete offer">
-                                <i class="material-icons cancel-icon"></i>
-                            </button>
-                        </div>
-                    </div><!-- end ngIf: 'dual' !== routeFuelType -->
-                    <!-- Dual offer template : START -->
-                    <!-- ngIf: 'dual' === routeFuelType -->
-                    <!-- Dual offer template : END -->
-                    <!-- ngIf: filtered.length === 1 -->
-                </li><!-- end ngRepeat: offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount()) --><li ng-repeat="offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount())" is-open="false" ng-init="filteredTopOffers(filtered)" class="ng-scope">
-                    <!-- ngIf: 'dual' !== routeFuelType --><div class="row ng-scope" ng-if="'dual' !== routeFuelType" ng-class="{'best-retailer': offer.isBestOffer}">
-
-                        <!-- checkbox draw  -->
-                        <div class="col-md-1 col-xs-1 col-sm-1 checkbox-compare hidden-sm hidden-xs">
-                            <div class="checkbox checkbox-warning">
-                                <input type="checkbox" class="styled ng-pristine ng-valid" aria-labelledby="offer-info-3" ng-disabled="!(offer.isChecked || 3 &gt; offersListStateService.getCheckedCount())" ng-click="checkOffer(offer)" ng-model="offer.isChecked"><label></label>
-                            </div>
-                        </div>
-
-                        <!-- retailer image -->
-
-                        <!-- ngRepeat: offerInfo in offer.offerDetails --><div ng-repeat="offerInfo in offer.offerDetails" id="offer-info-3" class="ng-scope">
-                            <div class="retailer-logo col-xs-6 col-sm-6">
-                                <a href="javascript:void(0)" ng-click="viewRetailer(offerInfo, $event)" id="retailer-11944-3">
-                                    <img ng-src="img/retailers/big/momentumenergy.jpg" alt="Momentum Energy." src="img/retailers/big/momentumenergy.jpg">
-                                </a>
-                            </div>
-
-                            <div class="retailer-details col-md-2 col-xs-6 col-sm-6">
-                                <p class="retailer-name" aria-hidden="true">
-                                    <span class="HelveticaNeueLTStd-Regular ng-binding">Momentum Energy</span>
-                                </p>
-
-                                <p class="ng-binding">
-                                    ID: MOM45566MR
-                                    <a href="javascript:void(0);" class="anchor-style" alt="view offer." id="11944-3" ng-click="viewOffer(offerInfo, $event)">view offer</a>
-                                </p>
-                            </div>
-
-                            <div class="feature-display col-md-2 col-xs-6 col-sm-6">
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.isDirectDebitOnly -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasPayOnTimeDiscount -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasIncentive --><i class="material-icons incentive ng-scope" ng-if="true === offerInfo.hasIncentive" tabindex="0" popover="Offer has an incentive" aria-label="Offer has an incentive" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.hasIncentive -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: 0 !== offerInfo.greenPowerDisplay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="contract-display col-md-1 col-xs-6 col-sm-6">
-                                <img src="img/offers/ic_contract_multiple.png" ng-show="false" class="ng-hide"> <img src="img/offers/ic_contract_ongoing.png" alt="Ongoing contract." ng-show="true" class="">
-                                <img src="img/offers/ic_contract_other.png" alt="Other contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_1_year.png" alt="1 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_2_year.png" alt="2 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_3_year.png" alt="3 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_4_year.png" alt="4 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_5_year.png" alt="5 year contract." ng-show="false" class="ng-hide">
-
-                                <p class="exitFee ng-binding">Exit fee:                                    $0</p>
-                            </div>
-
-                            <div class="price-display col-sm-12 col-xs-12">
-                                <div class="row solar-credit-display ng-hide" ng-hide="true">
-                                    <p>Estimate includes solar credit of <strong class="ng-binding">$0</strong></p>
-                                </div>
-                                <div class="row" ng-show="true">
-                                    <p> &nbsp;</p>
-                                </div>
-                                <!-- ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() --><div class="row ng-scope" ng-if="'conditionalPrice' === offersListStateService.getSortingOrder()">
-                                    <div class="price-condition col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            With conditional discounts                                            <strong class="ng-binding">$400
-                                                <!-- ngIf: 0 > offerInfo.fullDiscountedPrice -->
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="actual-price col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            <sup class="usd">$</sup>
-                                            <span class="currency-value ng-binding">400</span>
-                                            <!-- ngIf: 0 > offerInfo.conditionalPrice -->
-
-                                            <sub>/ year</sub>
-                                        </p>
-                                    </div>
-                                </div><!-- end ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() -->
-
-
-                                <!-- ngIf: 'conditionalPrice' !== offersListStateService.getSortingOrder() -->
-
-                            </div>
-
-                        </div><!-- end ngRepeat: offerInfo in offer.offerDetails -->
-                        <div class="cancel-icon-display col-md-1 col-xs-1 col-sm-1 hidden-sm hidden-xs">
-                            <button ng-click="closeOffer(offer)" ng-hide="offer.isBestOffer" type="button" class="btn btn-link" aria-label="delete offer">
-                                <i class="material-icons cancel-icon"></i>
-                            </button>
-                        </div>
-                    </div><!-- end ngIf: 'dual' !== routeFuelType -->
-                    <!-- Dual offer template : START -->
-                    <!-- ngIf: 'dual' === routeFuelType -->
-                    <!-- Dual offer template : END -->
-                    <!-- ngIf: filtered.length === 1 -->
-                </li><!-- end ngRepeat: offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount()) --><li ng-repeat="offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount())" is-open="false" ng-init="filteredTopOffers(filtered)" class="ng-scope">
-                    <!-- ngIf: 'dual' !== routeFuelType --><div class="row ng-scope" ng-if="'dual' !== routeFuelType" ng-class="{'best-retailer': offer.isBestOffer}">
-
-                        <!-- checkbox draw  -->
-                        <div class="col-md-1 col-xs-1 col-sm-1 checkbox-compare hidden-sm hidden-xs">
-                            <div class="checkbox checkbox-warning">
-                                <input type="checkbox" class="styled ng-pristine ng-valid" aria-labelledby="offer-info-4" ng-disabled="!(offer.isChecked || 3 &gt; offersListStateService.getCheckedCount())" ng-click="checkOffer(offer)" ng-model="offer.isChecked"><label></label>
-                            </div>
-                        </div>
-
-                        <!-- retailer image -->
-
-                        <!-- ngRepeat: offerInfo in offer.offerDetails --><div ng-repeat="offerInfo in offer.offerDetails" id="offer-info-4" class="ng-scope">
-                            <div class="retailer-logo col-xs-6 col-sm-6">
-                                <a href="javascript:void(0)" ng-click="viewRetailer(offerInfo, $event)" id="retailer-9318-4">
-                                    <img ng-src="img/retailers/big/dodo.png" alt="Dodo Power &amp; Gas." src="img/retailers/big/dodo.png">
-                                </a>
-                            </div>
-
-                            <div class="retailer-details col-md-2 col-xs-6 col-sm-6">
-                                <p class="retailer-name" aria-hidden="true">
-                                    <span class="HelveticaNeueLTStd-Regular ng-binding">Dodo Power &amp; Gas</span>
-                                </p>
-
-                                <p class="ng-binding">
-                                    ID: DOD42545MR
-                                    <a href="javascript:void(0);" class="anchor-style" alt="view offer." id="9318-4" ng-click="viewOffer(offerInfo, $event)">view offer</a>
-                                </p>
-                            </div>
-
-                            <div class="feature-display col-md-2 col-xs-6 col-sm-6">
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.isDirectDebitOnly --><i class="material-icons direct-debit ng-scope" ng-if="true === offerInfo.isDirectDebitOnly" tabindex="0" popover="Direct Debit Only" aria-label="Direct Debit Only" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.isDirectDebitOnly -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasPayOnTimeDiscount --><i class="material-icons payontime ng-scope" tabindex="0" ng-if="true === offerInfo.hasPayOnTimeDiscount" popover="Offer has a pay on time discount" aria-label="Offer has a pay on time discount" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.hasPayOnTimeDiscount -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasIncentive --><i class="material-icons incentive ng-scope" ng-if="true === offerInfo.hasIncentive" tabindex="0" popover="Offer has an incentive" aria-label="Offer has an incentive" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.hasIncentive -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: 0 !== offerInfo.greenPowerDisplay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="contract-display col-md-1 col-xs-6 col-sm-6">
-                                <img src="img/offers/ic_contract_multiple.png" ng-show="false" class="ng-hide"> <img src="img/offers/ic_contract_ongoing.png" alt="Ongoing contract." ng-show="true" class="">
-                                <img src="img/offers/ic_contract_other.png" alt="Other contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_1_year.png" alt="1 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_2_year.png" alt="2 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_3_year.png" alt="3 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_4_year.png" alt="4 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_5_year.png" alt="5 year contract." ng-show="false" class="ng-hide">
-
-                                <p class="exitFee ng-binding">Exit fee:                                    $0</p>
-                            </div>
-
-                            <div class="price-display col-sm-12 col-xs-12">
-                                <div class="row solar-credit-display ng-hide" ng-hide="true">
-                                    <p>Estimate includes solar credit of <strong class="ng-binding">$0</strong></p>
-                                </div>
-                                <div class="row" ng-show="true">
-                                    <p> &nbsp;</p>
-                                </div>
-                                <!-- ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() --><div class="row ng-scope" ng-if="'conditionalPrice' === offersListStateService.getSortingOrder()">
-                                    <div class="price-condition col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            With conditional discounts                                            <strong class="ng-binding">$380
-                                                <!-- ngIf: 0 > offerInfo.fullDiscountedPrice -->
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="actual-price col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            <sup class="usd">$</sup>
-                                            <span class="currency-value ng-binding">410</span>
-                                            <!-- ngIf: 0 > offerInfo.conditionalPrice -->
-
-                                            <sub>/ year</sub>
-                                        </p>
-                                    </div>
-                                </div><!-- end ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() -->
-
-
-                                <!-- ngIf: 'conditionalPrice' !== offersListStateService.getSortingOrder() -->
-
-                            </div>
-
-                        </div><!-- end ngRepeat: offerInfo in offer.offerDetails -->
-                        <div class="cancel-icon-display col-md-1 col-xs-1 col-sm-1 hidden-sm hidden-xs">
-                            <button ng-click="closeOffer(offer)" ng-hide="offer.isBestOffer" type="button" class="btn btn-link" aria-label="delete offer">
-                                <i class="material-icons cancel-icon"></i>
-                            </button>
-                        </div>
-                    </div><!-- end ngIf: 'dual' !== routeFuelType -->
-                    <!-- Dual offer template : START -->
-                    <!-- ngIf: 'dual' === routeFuelType -->
-                    <!-- Dual offer template : END -->
-                    <!-- ngIf: filtered.length === 1 -->
-                </li><!-- end ngRepeat: offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount()) --><li ng-repeat="offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount())" is-open="false" ng-init="filteredTopOffers(filtered)" class="ng-scope">
-                    <!-- ngIf: 'dual' !== routeFuelType --><div class="row ng-scope" ng-if="'dual' !== routeFuelType" ng-class="{'best-retailer': offer.isBestOffer}">
-
-                        <!-- checkbox draw  -->
-                        <div class="col-md-1 col-xs-1 col-sm-1 checkbox-compare hidden-sm hidden-xs">
-                            <div class="checkbox checkbox-warning">
-                                <input type="checkbox" class="styled ng-pristine ng-valid" aria-labelledby="offer-info-5" ng-disabled="!(offer.isChecked || 3 &gt; offersListStateService.getCheckedCount())" ng-click="checkOffer(offer)" ng-model="offer.isChecked"><label></label>
-                            </div>
-                        </div>
-
-                        <!-- retailer image -->
-
-                        <!-- ngRepeat: offerInfo in offer.offerDetails --><div ng-repeat="offerInfo in offer.offerDetails" id="offer-info-5" class="ng-scope">
-                            <div class="retailer-logo col-xs-6 col-sm-6">
-                                <a href="javascript:void(0)" ng-click="viewRetailer(offerInfo, $event)" id="retailer-11521-5">
-                                    <img ng-src="img/retailers/big/energyaustralia.jpg" alt="Energy Australia." src="img/retailers/big/energyaustralia.jpg">
-                                </a>
-                            </div>
-
-                            <div class="retailer-details col-md-2 col-xs-6 col-sm-6">
-                                <p class="retailer-name" aria-hidden="true">
-                                    <span class="HelveticaNeueLTStd-Regular ng-binding">Energy Australia</span>
-                                </p>
-
-                                <p class="ng-binding">
-                                    ID: TRU44791MR
-                                    <a href="javascript:void(0);" class="anchor-style" alt="view offer." id="11521-5" ng-click="viewOffer(offerInfo, $event)">view offer</a>
-                                </p>
-                            </div>
-
-                            <div class="feature-display col-md-2 col-xs-6 col-sm-6">
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.isDirectDebitOnly -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasPayOnTimeDiscount -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasIncentive --><i class="material-icons incentive ng-scope" ng-if="true === offerInfo.hasIncentive" tabindex="0" popover="Offer has an incentive" aria-label="Offer has an incentive" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.hasIncentive -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: 0 !== offerInfo.greenPowerDisplay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="contract-display col-md-1 col-xs-6 col-sm-6">
-                                <img src="img/offers/ic_contract_multiple.png" ng-show="false" class="ng-hide"> <img src="img/offers/ic_contract_ongoing.png" alt="Ongoing contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_other.png" alt="Other contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_1_year.png" alt="1 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_2_year.png" alt="2 year contract." ng-show="true" class="">
-                                <img src="img/offers/ic_contract_3_year.png" alt="3 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_4_year.png" alt="4 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_5_year.png" alt="5 year contract." ng-show="false" class="ng-hide">
-
-                                <p class="exitFee ng-binding">Exit fee:                                    Multiple</p>
-                            </div>
-
-                            <div class="price-display col-sm-12 col-xs-12">
-                                <div class="row solar-credit-display ng-hide" ng-hide="true">
-                                    <p>Estimate includes solar credit of <strong class="ng-binding">$0</strong></p>
-                                </div>
-                                <div class="row" ng-show="true">
-                                    <p> &nbsp;</p>
-                                </div>
-                                <!-- ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() --><div class="row ng-scope" ng-if="'conditionalPrice' === offersListStateService.getSortingOrder()">
-                                    <div class="price-condition col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            With conditional discounts                                            <strong class="ng-binding">$410
-                                                <!-- ngIf: 0 > offerInfo.fullDiscountedPrice -->
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="actual-price col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            <sup class="usd">$</sup>
-                                            <span class="currency-value ng-binding">410</span>
-                                            <!-- ngIf: 0 > offerInfo.conditionalPrice -->
-
-                                            <sub>/ year</sub>
-                                        </p>
-                                    </div>
-                                </div><!-- end ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() -->
-
-
-                                <!-- ngIf: 'conditionalPrice' !== offersListStateService.getSortingOrder() -->
-
-                            </div>
-
-                        </div><!-- end ngRepeat: offerInfo in offer.offerDetails -->
-                        <div class="cancel-icon-display col-md-1 col-xs-1 col-sm-1 hidden-sm hidden-xs">
-                            <button ng-click="closeOffer(offer)" ng-hide="offer.isBestOffer" type="button" class="btn btn-link" aria-label="delete offer">
-                                <i class="material-icons cancel-icon"></i>
-                            </button>
-                        </div>
-                    </div><!-- end ngIf: 'dual' !== routeFuelType -->
-                    <!-- Dual offer template : START -->
-                    <!-- ngIf: 'dual' === routeFuelType -->
-                    <!-- Dual offer template : END -->
-                    <!-- ngIf: filtered.length === 1 -->
-                </li><!-- end ngRepeat: offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount()) --><li ng-repeat="offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount())" is-open="false" ng-init="filteredTopOffers(filtered)" class="ng-scope">
-                    <!-- ngIf: 'dual' !== routeFuelType --><div class="row ng-scope" ng-if="'dual' !== routeFuelType" ng-class="{'best-retailer': offer.isBestOffer}">
-
-                        <!-- checkbox draw  -->
-                        <div class="col-md-1 col-xs-1 col-sm-1 checkbox-compare hidden-sm hidden-xs">
-                            <div class="checkbox checkbox-warning">
-                                <input type="checkbox" class="styled ng-pristine ng-valid" aria-labelledby="offer-info-6" ng-disabled="!(offer.isChecked || 3 &gt; offersListStateService.getCheckedCount())" ng-click="checkOffer(offer)" ng-model="offer.isChecked"><label></label>
-                            </div>
-                        </div>
-
-                        <!-- retailer image -->
-
-                        <!-- ngRepeat: offerInfo in offer.offerDetails --><div ng-repeat="offerInfo in offer.offerDetails" id="offer-info-6" class="ng-scope">
-                            <div class="retailer-logo col-xs-6 col-sm-6">
-                                <a href="javascript:void(0)" ng-click="viewRetailer(offerInfo, $event)" id="retailer-12471-6">
-                                    <img ng-src="img/retailers/big/dodo.png" alt="Dodo Power &amp; Gas." src="img/retailers/big/dodo.png">
-                                </a>
-                            </div>
-
-                            <div class="retailer-details col-md-2 col-xs-6 col-sm-6">
-                                <p class="retailer-name" aria-hidden="true">
-                                    <span class="HelveticaNeueLTStd-Regular ng-binding">Dodo Power &amp; Gas</span>
-                                </p>
-
-                                <p class="ng-binding">
-                                    ID: DOD45915MR
-                                    <a href="javascript:void(0);" class="anchor-style" alt="view offer." id="12471-6" ng-click="viewOffer(offerInfo, $event)">view offer</a>
-                                </p>
-                            </div>
-
-                            <div class="feature-display col-md-2 col-xs-6 col-sm-6">
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.isDirectDebitOnly --><i class="material-icons direct-debit ng-scope" ng-if="true === offerInfo.isDirectDebitOnly" tabindex="0" popover="Direct Debit Only" aria-label="Direct Debit Only" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.isDirectDebitOnly -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasPayOnTimeDiscount --><i class="material-icons payontime ng-scope" tabindex="0" ng-if="true === offerInfo.hasPayOnTimeDiscount" popover="Offer has a pay on time discount" aria-label="Offer has a pay on time discount" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.hasPayOnTimeDiscount -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasIncentive --><i class="material-icons incentive ng-scope" ng-if="true === offerInfo.hasIncentive" tabindex="0" popover="Offer has an incentive" aria-label="Offer has an incentive" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.hasIncentive -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: 0 !== offerInfo.greenPowerDisplay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="contract-display col-md-1 col-xs-6 col-sm-6">
-                                <img src="img/offers/ic_contract_multiple.png" ng-show="false" class="ng-hide"> <img src="img/offers/ic_contract_ongoing.png" alt="Ongoing contract." ng-show="true" class="">
-                                <img src="img/offers/ic_contract_other.png" alt="Other contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_1_year.png" alt="1 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_2_year.png" alt="2 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_3_year.png" alt="3 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_4_year.png" alt="4 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_5_year.png" alt="5 year contract." ng-show="false" class="ng-hide">
-
-                                <p class="exitFee ng-binding">Exit fee:                                    $0</p>
-                            </div>
-
-                            <div class="price-display col-sm-12 col-xs-12">
-                                <div class="row solar-credit-display ng-hide" ng-hide="true">
-                                    <p>Estimate includes solar credit of <strong class="ng-binding">$0</strong></p>
-                                </div>
-                                <div class="row" ng-show="true">
-                                    <p> &nbsp;</p>
-                                </div>
-                                <!-- ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() --><div class="row ng-scope" ng-if="'conditionalPrice' === offersListStateService.getSortingOrder()">
-                                    <div class="price-condition col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            With conditional discounts                                            <strong class="ng-binding">$380
-                                                <!-- ngIf: 0 > offerInfo.fullDiscountedPrice -->
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="actual-price col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            <sup class="usd">$</sup>
-                                            <span class="currency-value ng-binding">410</span>
-                                            <!-- ngIf: 0 > offerInfo.conditionalPrice -->
-
-                                            <sub>/ year</sub>
-                                        </p>
-                                    </div>
-                                </div><!-- end ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() -->
-
-
-                                <!-- ngIf: 'conditionalPrice' !== offersListStateService.getSortingOrder() -->
-
-                            </div>
-
-                        </div><!-- end ngRepeat: offerInfo in offer.offerDetails -->
-                        <div class="cancel-icon-display col-md-1 col-xs-1 col-sm-1 hidden-sm hidden-xs">
-                            <button ng-click="closeOffer(offer)" ng-hide="offer.isBestOffer" type="button" class="btn btn-link" aria-label="delete offer">
-                                <i class="material-icons cancel-icon"></i>
-                            </button>
-                        </div>
-                    </div><!-- end ngIf: 'dual' !== routeFuelType -->
-                    <!-- Dual offer template : START -->
-                    <!-- ngIf: 'dual' === routeFuelType -->
-                    <!-- Dual offer template : END -->
-                    <!-- ngIf: filtered.length === 1 -->
-                </li><!-- end ngRepeat: offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount()) --><li ng-repeat="offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount())" is-open="false" ng-init="filteredTopOffers(filtered)" class="ng-scope">
-                    <!-- ngIf: 'dual' !== routeFuelType --><div class="row ng-scope" ng-if="'dual' !== routeFuelType" ng-class="{'best-retailer': offer.isBestOffer}">
-
-                        <!-- checkbox draw  -->
-                        <div class="col-md-1 col-xs-1 col-sm-1 checkbox-compare hidden-sm hidden-xs">
-                            <div class="checkbox checkbox-warning">
-                                <input type="checkbox" class="styled ng-pristine ng-valid" aria-labelledby="offer-info-7" ng-disabled="!(offer.isChecked || 3 &gt; offersListStateService.getCheckedCount())" ng-click="checkOffer(offer)" ng-model="offer.isChecked"><label></label>
-                            </div>
-                        </div>
-
-                        <!-- retailer image -->
-
-                        <!-- ngRepeat: offerInfo in offer.offerDetails --><div ng-repeat="offerInfo in offer.offerDetails" id="offer-info-7" class="ng-scope">
-                            <div class="retailer-logo col-xs-6 col-sm-6">
-                                <a href="javascript:void(0)" ng-click="viewRetailer(offerInfo, $event)" id="retailer-11857-7">
-                                    <img ng-src="img/retailers/big/energyaustralia.jpg" alt="Energy Australia." src="img/retailers/big/energyaustralia.jpg">
-                                </a>
-                            </div>
-
-                            <div class="retailer-details col-md-2 col-xs-6 col-sm-6">
-                                <p class="retailer-name" aria-hidden="true">
-                                    <span class="HelveticaNeueLTStd-Regular ng-binding">Energy Australia</span>
-                                </p>
-
-                                <p class="ng-binding">
-                                    ID: TRU45314MR
-                                    <a href="javascript:void(0);" class="anchor-style" alt="view offer." id="11857-7" ng-click="viewOffer(offerInfo, $event)">view offer</a>
-                                </p>
-                            </div>
-
-                            <div class="feature-display col-md-2 col-xs-6 col-sm-6">
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.isDirectDebitOnly -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasPayOnTimeDiscount -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasIncentive -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: 0 !== offerInfo.greenPowerDisplay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="contract-display col-md-1 col-xs-6 col-sm-6">
-                                <img src="img/offers/ic_contract_multiple.png" ng-show="false" class="ng-hide"> <img src="img/offers/ic_contract_ongoing.png" alt="Ongoing contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_other.png" alt="Other contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_1_year.png" alt="1 year contract." ng-show="true" class="">
-                                <img src="img/offers/ic_contract_2_year.png" alt="2 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_3_year.png" alt="3 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_4_year.png" alt="4 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_5_year.png" alt="5 year contract." ng-show="false" class="ng-hide">
-
-                                <p class="exitFee ng-binding">Exit fee:                                    $0</p>
-                            </div>
-
-                            <div class="price-display col-sm-12 col-xs-12">
-                                <div class="row solar-credit-display ng-hide" ng-hide="true">
-                                    <p>Estimate includes solar credit of <strong class="ng-binding">$0</strong></p>
-                                </div>
-                                <div class="row" ng-show="true">
-                                    <p> &nbsp;</p>
-                                </div>
-                                <!-- ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() --><div class="row ng-scope" ng-if="'conditionalPrice' === offersListStateService.getSortingOrder()">
-                                    <div class="price-condition col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            With conditional discounts                                            <strong class="ng-binding">$430
-                                                <!-- ngIf: 0 > offerInfo.fullDiscountedPrice -->
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="actual-price col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            <sup class="usd">$</sup>
-                                            <span class="currency-value ng-binding">430</span>
-                                            <!-- ngIf: 0 > offerInfo.conditionalPrice -->
-
-                                            <sub>/ year</sub>
-                                        </p>
-                                    </div>
-                                </div><!-- end ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() -->
-
-
-                                <!-- ngIf: 'conditionalPrice' !== offersListStateService.getSortingOrder() -->
-
-                            </div>
-
-                        </div><!-- end ngRepeat: offerInfo in offer.offerDetails -->
-                        <div class="cancel-icon-display col-md-1 col-xs-1 col-sm-1 hidden-sm hidden-xs">
-                            <button ng-click="closeOffer(offer)" ng-hide="offer.isBestOffer" type="button" class="btn btn-link" aria-label="delete offer">
-                                <i class="material-icons cancel-icon"></i>
-                            </button>
-                        </div>
-                    </div><!-- end ngIf: 'dual' !== routeFuelType -->
-                    <!-- Dual offer template : START -->
-                    <!-- ngIf: 'dual' === routeFuelType -->
-                    <!-- Dual offer template : END -->
-                    <!-- ngIf: filtered.length === 1 -->
-                </li><!-- end ngRepeat: offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount()) --><li ng-repeat="offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount())" is-open="false" ng-init="filteredTopOffers(filtered)" class="ng-scope">
-                    <!-- ngIf: 'dual' !== routeFuelType --><div class="row ng-scope" ng-if="'dual' !== routeFuelType" ng-class="{'best-retailer': offer.isBestOffer}">
-
-                        <!-- checkbox draw  -->
-                        <div class="col-md-1 col-xs-1 col-sm-1 checkbox-compare hidden-sm hidden-xs">
-                            <div class="checkbox checkbox-warning">
-                                <input type="checkbox" class="styled ng-pristine ng-valid" aria-labelledby="offer-info-8" ng-disabled="!(offer.isChecked || 3 &gt; offersListStateService.getCheckedCount())" ng-click="checkOffer(offer)" ng-model="offer.isChecked"><label></label>
-                            </div>
-                        </div>
-
-                        <!-- retailer image -->
-
-                        <!-- ngRepeat: offerInfo in offer.offerDetails --><div ng-repeat="offerInfo in offer.offerDetails" id="offer-info-8" class="ng-scope">
-                            <div class="retailer-logo col-xs-6 col-sm-6">
-                                <a href="javascript:void(0)" ng-click="viewRetailer(offerInfo, $event)" id="retailer-3635-8">
-                                    <img ng-src="img/retailers/big/alintaenergy.png" alt="Alinta Energy." src="img/retailers/big/alintaenergy.png">
-                                </a>
-                            </div>
-
-                            <div class="retailer-details col-md-2 col-xs-6 col-sm-6">
-                                <p class="retailer-name" aria-hidden="true">
-                                    <span class="HelveticaNeueLTStd-Regular ng-binding">Alinta Energy</span>
-                                </p>
-
-                                <p class="ng-binding">
-                                    ID: ALI36988MR
-                                    <a href="javascript:void(0);" class="anchor-style" alt="view offer." id="3635-8" ng-click="viewOffer(offerInfo, $event)">view offer</a>
-                                </p>
-                            </div>
-
-                            <div class="feature-display col-md-2 col-xs-6 col-sm-6">
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.isDirectDebitOnly -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasPayOnTimeDiscount --><i class="material-icons payontime ng-scope" tabindex="0" ng-if="true === offerInfo.hasPayOnTimeDiscount" popover="Offer has a pay on time discount" aria-label="Offer has a pay on time discount" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.hasPayOnTimeDiscount -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasIncentive -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: 0 !== offerInfo.greenPowerDisplay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="contract-display col-md-1 col-xs-6 col-sm-6">
-                                <img src="img/offers/ic_contract_multiple.png" ng-show="false" class="ng-hide"> <img src="img/offers/ic_contract_ongoing.png" alt="Ongoing contract." ng-show="true" class="">
-                                <img src="img/offers/ic_contract_other.png" alt="Other contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_1_year.png" alt="1 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_2_year.png" alt="2 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_3_year.png" alt="3 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_4_year.png" alt="4 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_5_year.png" alt="5 year contract." ng-show="false" class="ng-hide">
-
-                                <p class="exitFee ng-binding">Exit fee:                                    $0</p>
-                            </div>
-
-                            <div class="price-display col-sm-12 col-xs-12">
-                                <div class="row solar-credit-display ng-hide" ng-hide="true">
-                                    <p>Estimate includes solar credit of <strong class="ng-binding">$0</strong></p>
-                                </div>
-                                <div class="row" ng-show="true">
-                                    <p> &nbsp;</p>
-                                </div>
-                                <!-- ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() --><div class="row ng-scope" ng-if="'conditionalPrice' === offersListStateService.getSortingOrder()">
-                                    <div class="price-condition col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            With conditional discounts                                            <strong class="ng-binding">$420
-                                                <!-- ngIf: 0 > offerInfo.fullDiscountedPrice -->
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="actual-price col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            <sup class="usd">$</sup>
-                                            <span class="currency-value ng-binding">440</span>
-                                            <!-- ngIf: 0 > offerInfo.conditionalPrice -->
-
-                                            <sub>/ year</sub>
-                                        </p>
-                                    </div>
-                                </div><!-- end ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() -->
-
-
-                                <!-- ngIf: 'conditionalPrice' !== offersListStateService.getSortingOrder() -->
-
-                            </div>
-
-                        </div><!-- end ngRepeat: offerInfo in offer.offerDetails -->
-                        <div class="cancel-icon-display col-md-1 col-xs-1 col-sm-1 hidden-sm hidden-xs">
-                            <button ng-click="closeOffer(offer)" ng-hide="offer.isBestOffer" type="button" class="btn btn-link" aria-label="delete offer">
-                                <i class="material-icons cancel-icon"></i>
-                            </button>
-                        </div>
-                    </div><!-- end ngIf: 'dual' !== routeFuelType -->
-                    <!-- Dual offer template : START -->
-                    <!-- ngIf: 'dual' === routeFuelType -->
-                    <!-- Dual offer template : END -->
-                    <!-- ngIf: filtered.length === 1 -->
-                </li><!-- end ngRepeat: offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount()) --><li ng-repeat="offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount())" is-open="false" ng-init="filteredTopOffers(filtered)" class="ng-scope">
-                    <!-- ngIf: 'dual' !== routeFuelType --><div class="row ng-scope" ng-if="'dual' !== routeFuelType" ng-class="{'best-retailer': offer.isBestOffer}">
-
-                        <!-- checkbox draw  -->
-                        <div class="col-md-1 col-xs-1 col-sm-1 checkbox-compare hidden-sm hidden-xs">
-                            <div class="checkbox checkbox-warning">
-                                <input type="checkbox" class="styled ng-pristine ng-valid" aria-labelledby="offer-info-9" ng-disabled="!(offer.isChecked || 3 &gt; offersListStateService.getCheckedCount())" ng-click="checkOffer(offer)" ng-model="offer.isChecked"><label></label>
-                            </div>
-                        </div>
-
-                        <!-- retailer image -->
-
-                        <!-- ngRepeat: offerInfo in offer.offerDetails --><div ng-repeat="offerInfo in offer.offerDetails" id="offer-info-9" class="ng-scope">
-                            <div class="retailer-logo col-xs-6 col-sm-6">
-                                <a href="javascript:void(0)" ng-click="viewRetailer(offerInfo, $event)" id="retailer-7234-9">
-                                    <img ng-src="img/retailers/big/lumo.jpg" alt="Lumo Energy." src="img/retailers/big/lumo.jpg">
-                                </a>
-                            </div>
-
-                            <div class="retailer-details col-md-2 col-xs-6 col-sm-6">
-                                <p class="retailer-name" aria-hidden="true">
-                                    <span class="HelveticaNeueLTStd-Regular ng-binding">Lumo Energy</span>
-                                </p>
-
-                                <p class="ng-binding">
-                                    ID: LU240167MR
-                                    <a href="javascript:void(0);" class="anchor-style" alt="view offer." id="7234-9" ng-click="viewOffer(offerInfo, $event)">view offer</a>
-                                </p>
-                            </div>
-
-                            <div class="feature-display col-md-2 col-xs-6 col-sm-6">
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.isDirectDebitOnly -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasPayOnTimeDiscount --><i class="material-icons payontime ng-scope" tabindex="0" ng-if="true === offerInfo.hasPayOnTimeDiscount" popover="Offer has a pay on time discount" aria-label="Offer has a pay on time discount" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.hasPayOnTimeDiscount -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: true === offerInfo.hasIncentive --><i class="material-icons incentive ng-scope" ng-if="true === offerInfo.hasIncentive" tabindex="0" popover="Offer has an incentive" aria-label="Offer has an incentive" popover-placement="top" popover-trigger="hover focus mouseenter"></i><!-- end ngIf: true === offerInfo.hasIncentive -->
-                                    </div>
-                                    <div class="col-md-3 col-xs-3 col-sm-3">
-                                        <!-- ngIf: 0 !== offerInfo.greenPowerDisplay -->
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="contract-display col-md-1 col-xs-6 col-sm-6">
-                                <img src="img/offers/ic_contract_multiple.png" ng-show="false" class="ng-hide"> <img src="img/offers/ic_contract_ongoing.png" alt="Ongoing contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_other.png" alt="Other contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_1_year.png" alt="1 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_2_year.png" alt="2 year contract." ng-show="true" class="">
-                                <img src="img/offers/ic_contract_3_year.png" alt="3 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_4_year.png" alt="4 year contract." ng-show="false" class="ng-hide">
-                                <img src="img/offers/ic_contract_5_year.png" alt="5 year contract." ng-show="false" class="ng-hide">
-
-                                <p class="exitFee ng-binding">Exit fee:                                    $0</p>
-                            </div>
-
-                            <div class="price-display col-sm-12 col-xs-12">
-                                <div class="row solar-credit-display ng-hide" ng-hide="true">
-                                    <p>Estimate includes solar credit of <strong class="ng-binding">$0</strong></p>
-                                </div>
-                                <div class="row" ng-show="true">
-                                    <p> &nbsp;</p>
-                                </div>
-                                <!-- ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() --><div class="row ng-scope" ng-if="'conditionalPrice' === offersListStateService.getSortingOrder()">
-                                    <div class="price-condition col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            With conditional discounts                                            <strong class="ng-binding">$370
-                                                <!-- ngIf: 0 > offerInfo.fullDiscountedPrice -->
-                                            </strong>
-                                        </p>
-                                    </div>
-                                    <div class="actual-price col-md-6 col-sm-6 col-xs-6">
-                                        <p>
-                                            <sup class="usd">$</sup>
-                                            <span class="currency-value ng-binding">440</span>
-                                            <!-- ngIf: 0 > offerInfo.conditionalPrice -->
-
-                                            <sub>/ year</sub>
-                                        </p>
-                                    </div>
-                                </div><!-- end ngIf: 'conditionalPrice' === offersListStateService.getSortingOrder() -->
-
-
-                                <!-- ngIf: 'conditionalPrice' !== offersListStateService.getSortingOrder() -->
-
-                            </div>
-
-                        </div><!-- end ngRepeat: offerInfo in offer.offerDetails -->
-                        <div class="cancel-icon-display col-md-1 col-xs-1 col-sm-1 hidden-sm hidden-xs">
-                            <button ng-click="closeOffer(offer)" ng-hide="offer.isBestOffer" type="button" class="btn btn-link" aria-label="delete offer">
-                                <i class="material-icons cancel-icon"></i>
-                            </button>
-                        </div>
-                    </div><!-- end ngIf: 'dual' !== routeFuelType -->
-                    <!-- Dual offer template : START -->
-                    <!-- ngIf: 'dual' === routeFuelType -->
-                    <!-- Dual offer template : END -->
-                    <!-- ngIf: filtered.length === 1 -->
-                </li><!-- end ngRepeat: offer in filtered = ((offersService.offers | filter: {offerFuelType: offersListStateService.getCurrentOfferFuelType()} | filter: filterIsPartDual| filter: filterTouOffer | orderBy: orderBySortingField) | filter: {isClosed:false} | filter: filterUserSelection | limitTo: offersListStateService.getLimitCount()) -->
-            </ul>
-            <div class="row page-divider">
-                <div class="col-md-7 hidden-sm hidden-xs">
-                    <a class="btn compare-offer-btn compare-offer-btn-txt" ng-disabled="0 === offersListStateService.getCheckedCount()" ng-href="#/compare/gas" ng-click="compareClick()" href="#/compare/gas">Compare selected offers</a>
-                </div>
-                <div class="col-md-5">
-                    <button class="btn more-offer-btn more-offer-btn-txt" ng-click="offersListStateService.incrementLimitCount()" ng-disabled="filtered.length &lt; offersListStateService.getLimitCount()">
-                        View more offers<span class="glyphicon glyphicon-chevron-down"></span>
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="hidden-lg col-sm-12 col-xs-12">
-                    <button class="btn email-offer-btn email-offer-btn-txt" ng-click="email()">
-                        Email My Offers                    </button>
-                </div>
-            </div>
-
-            <div class="row print-icons ng-scope  hidden-xs hidden-sm">
-                <p id="print-results">
-                    <a href="javascript:window.print()">
-                        <span class="glyphicon glyphicon-print"></span>
-                        - print these results</a>
-                </p>
-                <button type="button" class="btn btn-link" id="email-results" ng-click="email()">
-                    <span class="glyphicon glyphicon-envelope"></span>
-                    - email these results                </button>
-
-            </div>
-            <div class="row add-another-energy" ng-show="offersService.metaData.showLoopback">
-                <button type="submit" id="btn-new-energy" ng-click="goLoopback()" class="ng-binding">
-                    Compare electricity offers as well
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<!-- START view cms_footer -->
-<!-- END CIPC Content ********************************************************************************************** -->
-
-        <!-- End of container -->
-    </div>
-    <div class="footer" data-no-email="">
-        <div class="footer-primary hidden-sm hidden-xs">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2 col-sm-2 col-sm-offset-1 col-md-offset-1 footer-desc">
-                        <h3>
-                            <a target="_blank" href="http://switchon.vic.gov.au/get-the-best-deal">Get the
-                                best deal </a>
-                        </h3>
-                        <ul>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/get-the-best-deal/compare-offers-with-my-power-planner">Compare
-                                offers with Victorian Energy Compare</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/get-the-best-deal/why-bother-to-switch">Why
-                                bother to switch</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/get-the-best-deal/switching-retailers-or-plans-the-process">
-                                Switching retailers or plans - the process</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/get-the-best-deal/concessions-and-rebates">Concessions
-                                &amp; rebates</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-2 footer-desc">
-                        <h3>
-                            <a href="http://switchon.vic.gov.au/more-ways-to-save">More ways
-                                to save</a>
-                        </h3>
-                        <ul>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/more-ways-to-save/top-10-ways-to-save-power">Top
-                                10 ways to save power</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/more-ways-to-save/visit-our-interactive-energy-efficient-house">Visit
-                                our interactive energy-efficient house</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/more-ways-to-save/household-electricity-calculator">Household
-                                electricity calculator</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/more-ways-to-save/flexible-pricing-profiler">Flexible
-                                pricing profiler</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/more-ways-to-save/appliance-calculator">Appliance
-                                calculator</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/more-ways-to-save/energy-saver-incentive">Energy
-                                Saver Incentive</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/more-ways-to-save/saving-with-solar">Saving
-                                with solar</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/more-ways-to-save/switch-on-your-house-for-christmas">Switch
-                                On your house for Christmas</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-2 footer-desc">
-                        <h3>
-                            <a target="_blank" href="http://switchon.vic.gov.au/bills-pricing-and-meters">Bills,
-                                pricing &amp; meters</a>
-                        </h3>
-                        <ul>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/bills-pricing-and-meters/how-the-electricity-system-works">How
-                                the electricity system works</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/bills-pricing-and-meters/understand-your-electricity-bill">Understand
-                                your electricity bill</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/bills-pricing-and-meters/electricity-bill-shock">Electricity
-                                bill shock</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/bills-pricing-and-meters/smart-meters-and-how-they-work">Smart
-                                meters and how they work</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/bills-pricing-and-meters/smart-meters-in-home-displays-and-web-portals">Smart
-                                meters, web portals and in-home displays</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/bills-pricing-and-meters/flexible-pricing">Flexible
-                                pricing</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/bills-pricing-and-meters/community-education-programs">Community
-                                education programs</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/bills-pricing-and-meters/energy-retail-companies-contact-list">Energy
-                                retail companies - contact list</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/bills-pricing-and-meters/complaints-safety-and-outages">Complaints,
-                                safety and outages</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-2 footer-desc">
-                        <h3>
-                            <a target="_blank" href="http://switchon.vic.gov.au/electricity-users-like-you">Electricity
-                                users like you</a>
-                        </h3>
-                        <ul>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/electricity-users-like-you/singles-and-couples">Singles
-                                and couples</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/electricity-users-like-you/families">Families</a>
-                            </li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/electricity-users-like-you/seniors">Seniors</a>
-                            </li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/electricity-users-like-you/low-income">Low
-                                income</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/electricity-users-like-you/rural-and-remote">Rural
-                                and remote</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/electricity-users-like-you/small-business">Small
-                                business</a></li>
-                            <li><a target="_blank" href="http://switchon.vic.gov.au/electricity-users-like-you/information-in-other-languages">Information
-                                in other languages</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-2 footer-desc">
-                        <h3>
-                            <a target="_blank" href="http://switchon.vic.gov.au/about-switch-on">About Switch
-                                On</a>
-                        </h3>
-                        <ul>
-                            <li>
-                                <a target="_blank" href="http://switchon.vic.gov.au/about-switch-on/news">
-                                    News
-                                </a>
-                            </li>
-                            <li>
-                                <a target="_blank" href="http://switchon.vic.gov.au/about-switch-on/contact-us">
-                                    Contact us
-                                </a>
-                            </li>
-                            <li>
-                                For languages other than English, please call 136 186.
-                                <img class="img-responsive" alt="Interpreter" style="width: 70px; height: 70px;" src="img/interpreter.png">
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-secondary">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-xs-12 col-sm-12">
-                        <ul class="row">
-                            <li class="col-sm-4 col-md-2"><a target="_blank" href="http://switchon.vic.gov.au/privacy">Privacy</a>
-                            </li>
-                            <li class="col-sm-4 col-md-2"><a target="_blank" href="http://switchon.vic.gov.au/disclaimer">Disclaimer</a>
-                            </li>
-                            <li class="col-sm-4 col-md-2"><a target="_blank" href="http://switchon.vic.gov.au/copyright">Copyright</a>
-                            </li>
-                            <li class="col-sm-4 col-md-2"><a target="_blank" href="http://switchon.vic.gov.au/accessibility">Accessibility</a>
-                            </li>
-                            <li class="col-sm-4 col-md-2"><a target="_blank" href="http://switchon.vic.gov.au/sitemap">Sitemap</a>
-                            </li>
-                            <li class="col-sm-4 col-md-2"><a target="_blank" href="http://switchon.vic.gov.au/about-switch-on/contact-us">Contact
-                                us</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-md-2 col-xs-12 col-sm-12">
-                        <div class="social">
-                            <span><a class="icon-ftwitter external" href="https://twitter.com/switchonvic" target="_blank" rel="external" title="External link - opens in same window">twitter</a>
-                            </span>
-                            <span><a class="icon-ffacebook external" href="https://www.facebook.com/switchonvic" target="_blank" rel="external" title="External link - opens in same window">facebook</a>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-xs-12 col-sm-12">
-                        <div class="last">
-                            <div class="row last-updated">Page last updated 17 October 2015</div>
-                            <div class="row"><em>Copyright 2015</em> <br> <br>Department of Economic Development,
-                                Jobs, Transport and Resources
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End of wrapper -->
-
-
-</body></html>
+{
+ "postCode": 3011,
+ "retailer": "Dodo Power & Gas",
+ "offerName": "AusNet Gas Res Standing Offer (G3SC1R-SAT1)",
+ "offerNo": "DOD36978SR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Standing offer",
+ "releaseDate": "15/10/2015",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "Standard contracts do not expire",
+ "dailySupplyChargePrice": "52.99 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Lumo Energy",
+ "offerName": "Lumo Velocity",
+ "offerNo": "LU240179MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "21/01/2016",
+ "contractTerm": "2 Year",
+ "contractExpiryDetails": "Before the expiry date, we will send you a notice offering to extend the term of this contract and advise of your options.",
+ "dailySupplyChargePrice": "57.83 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Momentum Energy",
+ "offerName": "Momentum Gas Standing Offer - Ausnet Central",
+ "offerNo": "MOM41356SR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Standing offer",
+ "releaseDate": "27/02/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "The agreement continues until terminated by you or us.",
+ "dailySupplyChargePrice": "53.85 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Momentum Energy",
+ "offerName": "Momentum Gas - Ausnet Central",
+ "offerNo": "MOM45566MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "29/07/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "The agreement continues until terminated by you or us in accordance with our Market Retail Terms for SmallCustomers. We can end the agreement at any time in accordance with the Terms. You can end thisagreement by giving us 20 business days notice.",
+ "dailySupplyChargePrice": "63.32 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Dodo Power & Gas",
+ "offerName": "AusNet Gas Res Market Offer (G3SC1R-MAT1)",
+ "offerNo": "DOD42545MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "18/03/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "“No Term” contracts do not expire until you notify us in accordance with our Energy Market Terms and Conditions.",
+ "dailySupplyChargePrice": "54.99 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Energy Australia",
+ "offerName": "Rate Fix - Home (A1)",
+ "offerNo": "TRU44791MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "08/07/2016",
+ "contractTerm": "2 Year",
+ "contractExpiryDetails": "The Benefit Period for this plan is for 2 years. We will provide you with notice of your options prior to the end of the Benefit Period. Your contract will continue until it is ended by either party.",
+ "dailySupplyChargePrice": "65.00 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Dodo Power & Gas",
+ "offerName": "AusNet Gas Res Market Offer (G3SC1R-MAT1)",
+ "offerNo": "DOD45915MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "18/08/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "“No Term” contracts do not expire until you notify us in accordance with our Energy Market Terms and Conditions.",
+ "dailySupplyChargePrice": "54.99 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Energy Australia",
+ "offerName": "Anytime Saver - Home (A1)",
+ "offerNo": "TRU45314MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "29/07/2016",
+ "contractTerm": "1 Year",
+ "contractExpiryDetails": "The Benefit Period for this plan is for 1 year. We will provide you with notice of your options prior to the end of the Benefit Period. Your contract will continue until it is ended by either party.",
+ "dailySupplyChargePrice": "65.00 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Alinta Energy",
+ "offerName": "Fair Deal Gas",
+ "offerNo": "ALI36988MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "15/10/2015",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "This offer has no fixed term.",
+ "dailySupplyChargePrice": "61.93 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Lumo Energy",
+ "offerName": "Lumo Advantage",
+ "offerNo": "LU240167MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "21/01/2016",
+ "contractTerm": "2 Year",
+ "contractExpiryDetails": "Before the expiry date, we will send you a notice offering to extend the term of this contract and advise of your options.",
+ "dailySupplyChargePrice": "64.25 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Lumo Energy",
+ "offerName": "Lumo Movers",
+ "offerNo": "LU240175MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "21/01/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "Before the expiry date, we will send you a notice offering to extend the term of this contract and advise of your options.",
+ "dailySupplyChargePrice": "64.25 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Alinta Energy",
+ "offerName": "Fair Deal Gas",
+ "offerNo": "ALI36987MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "15/10/2015",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "This offer has no fixed term.",
+ "dailySupplyChargePrice": "62.61 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Lumo Energy",
+ "offerName": "Lumo Options",
+ "offerNo": "LU242292SR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Standing offer",
+ "releaseDate": "16/02/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "Before the expiry date, we will send you a notice offering to extend the term of this contract and advise of your options.",
+ "dailySupplyChargePrice": "65.56 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Alinta Energy",
+ "offerName": "Fair Deal Gas",
+ "offerNo": "ALI44640MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "29/06/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "This offer has no fixed term.",
+ "dailySupplyChargePrice": "62.61 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "AGL",
+ "offerName": "AGL Fixed Victoria residential gas offer",
+ "offerNo": "AGD45114MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "06/07/2016",
+ "contractTerm": "2 Year",
+ "contractExpiryDetails": "Evergreen with fixed benefit period",
+ "dailySupplyChargePrice": "70.23 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "AGL",
+ "offerName": "AGL Fixed Victoria residential gas offer",
+ "offerNo": "AGD46081MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "18/08/2016",
+ "contractTerm": "2 Year",
+ "contractExpiryDetails": "Evergreen with fixed benefit period",
+ "dailySupplyChargePrice": "70.23 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Click Energy",
+ "offerName": "Click Amber - AusNet Central 1 - Tariff V (residential)",
+ "offerNo": "CLI38752MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "22/12/2015",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "No contract exit fee.",
+ "dailySupplyChargePrice": "66.50 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Click Energy",
+ "offerName": "Click Comfort - AusNet Central 1 - Tariff V (residential)",
+ "offerNo": "CLI38808MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "22/12/2015",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "No contract exit fee.",
+ "dailySupplyChargePrice": "66.50 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Click Energy",
+ "offerName": "Click Standing - AusNet Central 1 - Tariff V (residential)",
+ "offerNo": "CLI38814SR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Standing offer",
+ "releaseDate": "09/02/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "No contract exit fee.",
+ "dailySupplyChargePrice": "66.50 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Red Energy",
+ "offerName": "Gas Easy Saver",
+ "offerNo": "RED45548MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "26/07/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "Your contract is ongoing until it is ended by you or us.",
+ "dailySupplyChargePrice": "68.00 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Energy Australia",
+ "offerName": "Flexi Saver - Home (A1)",
+ "offerNo": "TRU45511MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "29/07/2016",
+ "contractTerm": "1 Year",
+ "contractExpiryDetails": "The Benefit Period for this plan is for 1 year. We will provide you with notice of your options prior to the end of the Benefit Period. Your contract will continue until it is ended by either party.",
+ "dailySupplyChargePrice": "65.00 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Origin Energy",
+ "offerName": "Origin Supply",
+ "offerNo": "OR246509MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "06/09/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "The agreement continues until you or we end it.",
+ "dailySupplyChargePrice": "61.74 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Origin Energy",
+ "offerName": "Standing Offer",
+ "offerNo": "OR246531SR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Standing offer",
+ "releaseDate": "06/09/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "The agreement continues until you or we end it.",
+ "dailySupplyChargePrice": "61.74 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Energy Australia",
+ "offerName": "Basic - Home (A1)",
+ "offerNo": "TRU38542SR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Standing offer",
+ "releaseDate": "07/01/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "This contract continues for as long as you remain on the plan.",
+ "dailySupplyChargePrice": "66.30 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Red Energy",
+ "offerName": "Gas Standing Offer",
+ "offerNo": "RED42770SR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Standing offer",
+ "releaseDate": "16/03/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "Your contract is ongoing until it is ended by you or us.",
+ "dailySupplyChargePrice": "70.00 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "CovaU",
+ "offerName": "Smart Saver Residential Ausnet Services - Central",
+ "offerNo": "COV44001MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "20/05/2016",
+ "contractTerm": "1 Year",
+ "contractExpiryDetails": "Contact expires on the Contract end date unless terminated earlier",
+ "dailySupplyChargePrice": "66.00 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "CovaU",
+ "offerName": "Standard Offer Residential Ausnet Services - Central",
+ "offerNo": "COV44000SR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Standing offer",
+ "releaseDate": "20/05/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "No Fixed Term Contract",
+ "dailySupplyChargePrice": "66.00 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "AGL",
+ "offerName": "AGL Standing Victoria residential gas offer",
+ "offerNo": "AGD44493SR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Standing offer",
+ "releaseDate": "09/06/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "no fixed term",
+ "dailySupplyChargePrice": "74.15 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "AGL",
+ "offerName": "AGL Savers Victoria residential gas offer",
+ "offerNo": "AGD45480MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "19/07/2016",
+ "contractTerm": "1 Year",
+ "contractExpiryDetails": "Evergreen with fixed benefit period. Your market contract has no fixed term. However, at the end of your 1 year energy plan period, you will be placed on a new energy plan. We will notify you if there are any differences between these plans.",
+ "dailySupplyChargePrice": "74.15 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "AGL",
+ "offerName": "AGL Set and Forget Victoria residential gas offer",
+ "offerNo": "AGD45494MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "20/07/2016",
+ "contractTerm": "1 Year",
+ "contractExpiryDetails": "Evergreen with fixed benefit period. Your market contract has no fixed term. However, at the end of your 1 year energy plan period, you will be placed on a new energy plan. We will notify you if there are any differences between these plans.",
+ "dailySupplyChargePrice": "74.15 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "AGL",
+ "offerName": "AGL Savers Victoria residential gas offer",
+ "offerNo": "AGD46104MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "18/08/2016",
+ "contractTerm": "1 Year",
+ "contractExpiryDetails": "Evergreen with fixed benefit period. Your market contract has no fixed term. However, at the end of your 1 year energy plan period, you will be placed on a new energy plan. We will notify you if there are any differences between these plans.",
+ "dailySupplyChargePrice": "74.15 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "AGL",
+ "offerName": "AGL Standing Victoria residential gas offer",
+ "offerNo": "AGD46036SR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Standing offer",
+ "releaseDate": "18/08/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "no fixed term",
+ "dailySupplyChargePrice": "74.15 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "AGL",
+ "offerName": "AGL Set and Forget Victoria residential gas offer",
+ "offerNo": "AGD46162MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "20/08/2016",
+ "contractTerm": "1 Year",
+ "contractExpiryDetails": "Evergreen with fixed benefit period. Your market contract has no fixed term. However, at the end of your 1 year energy plan period, you will be placed on a new energy plan. We will notify you if there are any differences between these plans.",
+ "dailySupplyChargePrice": "74.15 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Origin Energy",
+ "offerName": "Origin Supply",
+ "offerNo": "OR246509MR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Market offer",
+ "releaseDate": "06/09/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "The agreement continues until you or we end it.",
+ "dailySupplyChargePrice": "61.74 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}{
+ "postCode": 3011,
+ "retailer": "Origin Energy",
+ "offerName": "Standing Offer",
+ "offerNo": "OR246531SR",
+ "customerType": "Residential",
+ "fuelType": "gas",
+ "distributor": "AusNet Services (formerly SP AusNet)",
+ "tariffType": "Single Rate",
+ "offerType": "Standing offer",
+ "releaseDate": "06/09/2016",
+ "contractTerm": "Ongoing contract",
+ "contractExpiryDetails": "The agreement continues until you or we end it.",
+ "dailySupplyChargePrice": "61.74 ¢/day",
+ "firstUsagePrice": "",
+ "secondUsagePrice": "",
+ "thirdUsagePrice": "",
+ "fourthUagePrice": "",
+ "fifthUsagePrice": "",
+ "balanceUsagePrice": "",
+ "peak": "",
+ "shoulder": "",
+ "offPeak": ""
+}

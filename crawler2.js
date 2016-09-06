@@ -7,16 +7,31 @@ var x = require('casper').selectXPath,
     utils = require('utils'),
     url = 'https://compare.switchon.vic.gov.au',
     offerList = [],
-    gasHomePostcodeList = [3011, 3953, 3179, 3141, 3199],
+    gasHomePostcodeList = [3011],
+//gasHomePostcodeList = [3011, 3953, 3179, 3141, 3199],
     gasSmallBusinessPostcodeList = [3011, 3953, 3179, 3141, 3199]
-    electricHomePostcodeList = [3000, 3011, 3944, 3284, 3841],
+electricHomePostcodeList = [3000, 3011, 3944, 3284, 3841],
     electricSmallBusinessPostcodeList = [3000, 3011, 3944, 3284, 3841],
-    current = 0,
-    end = 0;
+    current = 0, end = 0, moreOfferIndex = 0,
+
+    postCode = "", frequency = "", guaranteedDiscounts = "", discountPercent2 = "",
+    discountApplicability2 = "", exitFee1Year = "", exitFee2Year = "", contributionFee1 = "", contributionFee2 = "",
+    retailer = "", offerName = "", offerNo = "", customerType = "", fuelType = "", distributor = "", tariffType = "",
+    offerType = "", releaseDate = "", contractTerm = "", contractExpiryDetails = "", billFrequency = "" , allUsagePrice = "",
+    dailySupplyChargePrice = "", firstUsagePrice = "", secondUsagePrice = "", thirdUsagePrice = "", fourthUagePrice = "",
+    fifthUsagePrice = "", balanceUsagePrice = "", firstStep = "", secondStep = "", thirdStep = "", fourthStep = "", fifthStep = "",
+    offPeakControlledLoad1AllControlledLoad1ALLUSAGEPrice = "", offPeakControlledLoad1AllControlledLoad1DailySupplyChargePrice = "",
+    offPeakControlledLoad2AllControlledLoad1ALLUSAGEPrice = "", offPeakControlledLoad2AllControlledLoad1DailySupplyChargePrice = "",
+    conditionalDiscount = "", discountPercent = "", discountApplicableTo = "", areThesePricesFixed = "", eligibilityCriteria = "",
+    chequeDishonourPaymentFee = "", directDebitDishonourPaymentFee = "", paymentProcessingFee = "", disconnectionFee = "", reconnectionFee = "",
+    otherFee1 = "", latePaymentFee = "", creditCardPaymentProcessingFee = "", otherFee2 = "", voluntaryFiT = "", greenPowerOption = "", incentives = "",
+    peak = "", shoulder = "", offPeak = "", peakSummer = "", peakWinter = "", peakFirstUsagePrice = "", peakSecondUsagePrice = "", peakThirdUsagePrice = "",
+    peakFourthUsagePrice = "", peakFifthUsagePrice = "", peakBalancePrice = "", summerMonthlyDemand = "", winterMonthlyDemand = "", additionalMonthlyDemand = "",
+    conditionalDiscount2 = "", conditionalDiscount2Percentage = "", conditionalDiscount2Applicableto = "";
 
 var casper = require("casper").create({
-    verbose: true,
-    logLevel: "debug",
+    //verbose: true,
+    //logLevel: "debug",
     waitTimeout: 2000000,
     stepTimeout: 2000000,
     pageSettings: {
@@ -26,45 +41,140 @@ var casper = require("casper").create({
     }
 });
 
-casper.renderJSON = function(what) {
+casper.renderJSON = function (what) {
     return this.echo(JSON.stringify(what, null, '  '));
 };
 
-casper.saveJSON = function(what) {
+casper.saveJSON = function (what) {
     fs.write('json/parse_result.json', JSON.stringify(what, null, '  '), 'w');
 };
 
-casper.clickMoreOfferButton = function(){
+casper.clickMoreOfferButton = function () {
     if (!casper.exists(x("//*/button[@class='btn more-offer-btn more-offer-btn-txt'][@disabled]"))) {
         casper.click(".more-offer-btn");
         casper.wait(5000, casper.clickMoreOfferButton);
     }
 };
 
-casper.get
+casper.formatString = function (containBetweenHtmlTag) {
+    containBetweenHtmlTag = containBetweenHtmlTag.replace(/(\r\n|\n|\r)/gm, "");
+    containBetweenHtmlTag = containBetweenHtmlTag.replace(/\s+/gm, " ");
+    containBetweenHtmlTag = containBetweenHtmlTag.trim();
+
+    return containBetweenHtmlTag;
+};
+
+casper.getUsagePrice = function (tariffDetailElementPattern, tariffDetailElement) {
+    var matches = [],
+        tariffDetailsHtml = "";
+    try{
+        tariffDetailsHtml = casper.formatString(tariffDetailElement["html"]);
+        require('utils').dump("333333333333333333333333333333333333333333333333333333333333");
+        require('utils').dump(tariffDetailElementPattern.toString());
+        require('utils').dump(typeof tariffDetailsHtml);
+        require('utils').dump(tariffDetailsHtml);
+
+        matches = tariffDetailElementPattern.exec(tariffDetailsHtml);
+        require('utils').dump(matches);
+        require('utils').dump(Object.prototype.toString.call(matches));
+        require('utils').dump(matches.length);
+
+        require('utils').dump("333333333333333333333333333333333333333333333333333333333333");
+        if (utils.isArray(matches) && (matches.length>1)){
+            return matches[1];
+        }
+
+    } catch (err) {
+        console.log(err);
+    } finally {
+
+    }
+
+    return "";
+};
+
+casper.getBalance = function (tariffDetailElementPattern, tariffDetailElements) {
+    var matches = [], tariffDetailsHtml = "";
+    try {
+        for (var i = 0; i < tariffDetailElements.length; i++) {
+            tariffDetailsHtml = this.formatString(tariffDetailElements[i]["html"]);
+            matches = tariffDetailElementPattern.exec(tariffDetailsHtml);
+
+            if (utils.isArray(matches) && (matches.length>1)){
+                return matches[1];
+            }
+        }
+    }
+    catch(err){
+        console.log(err);
+    }
+    return "";
+};
+
+casper.getPeak = function (tariffDetailElementPattern, tariffDetailElements) {
+    var matches = [], tariffDetailsHtml = "";
+    for (var i = 0; i < tariffDetailElements.length; i++) {
+        tariffDetailsHtml = this.formatString(tariffDetailElements[i]["html"]);
+        matches = tariffDetailElementPattern.exec(tariffDetailsHtml);
+
+        if (utils.isArray(matches) && (matches.length>1)){
+            return matches[1];
+        }
+    }
+
+    return "";
+};
+
+casper.getShoulder = function (tariffDetailElementPattern, tariffDetailElements) {
+    var matches = [], tariffDetailsHtml = "";
+    for (var i = 0; i < tariffDetailElements.length; i++) {
+        tariffDetailsHtml = this.formatString(tariffDetailElements[i]["html"]);
+        matches = tariffDetailElementPattern.exec(tariffDetailsHtml);
+
+        if (utils.isArray(matches) && (matches.length>1)){
+            return matches[1];
+        }
+    }
+
+    return "";
+};
+
+casper.getOffpeak = function (tariffDetailElementPattern, tariffDetailElements) {
+    var matches = [], tariffDetailsHtml = "";
+    for (var i = 0; i < tariffDetailElements.length; i++) {
+        tariffDetailsHtml = this.formatString(tariffDetailElements[i]["html"]);
+        matches = tariffDetailElementPattern.exec(tariffDetailsHtml);
+
+        if (utils.isArray(matches) && (matches.length>1)){
+            return matches[1];
+        }
+    }
+
+    return "";
+};
 
 casper.start(url);
 
 //--------------------------------------------------------------------------------------------------------
 //start parse for gas home
 end = gasHomePostcodeList.length;
-for (;current < end;) {
-    (function(cntr) {
-        casper.then(function() {
+for (; current < end;) {
+    (function (cntr) {
+        casper.then(function () {
             this.mouse.click("label[for='gas']");
             this.mouse.click("label[for='home']");
             this.mouse.click("label[for='home-shift']");
-            this.sendKeys("input[name='postcode']", casper.page.event.key.Enter , {keepFocus: true});
+            this.sendKeys("input[name='postcode']", casper.page.event.key.Enter, {keepFocus: true});
             this.sendKeys("input[name='postcode']", gasHomePostcodeList[cntr] + "");
             this.click("#postcode-btn");
 
-            this.wait(5000, function() {
+            this.wait(5000, function () {
                 this.click("label[for='energy-concession-no']");
                 this.click("#disclaimer_chkbox");
                 this.click("#btn-proceed");
             });
 
-            this.wait(15000, function() {
+            this.wait(15000, function () {
                 this.mouse.click("#select2-number_person-container");
                 this.mouse.click("#select2-number_person-results li:first-child");
 
@@ -79,63 +189,213 @@ for (;current < end;) {
                 this.click(".profile-btn");
             });
 
-            this.wait(15000, function(){
+            this.wait(15000, function () {
                 //click until more offer button disabled
                 this.clickMoreOfferButton();
             });
 
-            this.then(function(){
-                var linkCount = this.getElementsInfo(x('//a[text()="view offer"]')).length;
-                this.echo("total link found " + linkCount);
+            moreOfferIndex = 0;
+            casper.then(function loadResults() {
+                var linkCount = this.getElementsInfo("ul.offer-list div.retailer-details a").length;
+                this.repeat(linkCount, function () {
+                    try {
+                        // opens modal popup
+                        this.evaluate(function (index) {
+                            $("ul.offer-list div.retailer-details a")[index].click();
+                        }, moreOfferIndex);
 
-                this.click('a#3613-0'); // opens modal popup
+                        this.wait(5000, function () {
+                            postCode = gasHomePostcodeList[cntr];
+                            retailer = this.exists("div.offerModalEmail div.col-md-8 h1") ? this.formatString(this.fetchText("div.offerModalEmail div.col-md-8 h1")) : "";
+                            offerName = this.exists("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer") ?
+                                this.formatString(this.fetchText("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer")) : "";
 
-                        this.wait(5000, function(){
-                            this.capture("png-gas-home.png");
-                            this.exit();
+                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(1)") == "Offer ID:") {
+                                offerNo = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(2)"));
+                            }
+
+                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(1)") == "Customer type:") {
+                                customerType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(2)"));
+                            }
+                            fuelType = "gas";
+
+                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(1)") == "Distributor:") {
+                                distributor = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(2)"));
+                            }
+
+                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(4) td:nth-child(1)") == "Rate type:") {
+                                tariffType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(4) td:nth-child(2)"));
+                            }
+
+                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(5) td:nth-child(1)") == "Offer type:") {
+                                offerType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(5) td:nth-child(2)"));
+                            }
+
+                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(6) td:nth-child(1)") == "Release date:") {
+                                releaseDate = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(6) td:nth-child(2)"));
+                            }
+
+                            if (this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(1) td:nth-child(1)") == "Select contract term:") {
+                                contractTerm = this.formatString(this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(1) td:nth-child(2) button"));
+                            }
+
+                            if (this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(6) td:nth-child(1)") == "Contract expiry details") {
+                                contractExpiryDetails = this.formatString(this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(6) td:nth-child(2)"));
+                            }
+                            var dailySupplyChargePriceElementValue = this.getElementInfo("div.tariff-details div.supply-charge div:nth-child(2) p"),
+                                dailySupplyChargePriceElementText = this.getElementInfo("div.tariff-details div.supply-charge div:nth-child(1) p");
+
+                            if (!utils.isNull(dailySupplyChargePriceElementValue) && !utils.isNull(dailySupplyChargePriceElementText) && (dailySupplyChargePriceElementText["text"] == "Supply charges")) {
+                                dailySupplyChargePrice = this.formatString(dailySupplyChargePriceElementValue["text"]);
+                            }
+
+                            var tariffDetailElements = this.getElementsInfo("div.view-offer-section2 div.col-md-4 div.offer-rate-header+div div.tariff-details div.line-separator"),
+                                firstUsagePricePattern = /.+?<p>First.+?<strong>(.+?)<\/strong>/gim,
+                                nextUsagePricePattern = /.+?<p>Next.+?<strong>(.+?)<\/strong>/gim,
+                                balanceUsagePricePattern = /.+?<p>Balance.+?<strong>(.+?)<\/strong>/gim,
+                                peakPattern = /.+?<p>All consumption.+?<strong>(.+?)<\/strong>/gim,
+                                shoulderPattern = /.+?Shoulder.+?<p>All consumption.+?<strong>(.+?)<\/strong>/gim,
+                                offPeakPattern = /.+?Off-peak.+?<p>All consumption.+?<strong>(.+?)<\/strong>/gim;
+
+
+                            if (!utils.isNull(tariffDetailElements[0]) && (!utils.isUndefined(tariffDetailElements[0]))) {
+                                firstUsagePrice = this.getUsagePrice(firstUsagePricePattern, tariffDetailElements[0]);
+                            }
+
+                            if (!utils.isNull(tariffDetailElements[1]) && (!utils.isUndefined(tariffDetailElements[1]))) {
+                                secondUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[1]);
+                            }
+
+
+                            require('utils').dump("######################################################");
+                            if (!utils.isNull(tariffDetailElements[2]) && (!utils.isUndefined(tariffDetailElements[2]))) {
+                                try{
+                                    thirdUsagePrice = casper.getUsagePrice(nextUsagePricePattern, tariffDetailElements[2]);
+                                    require('utils').dump(thirdUsagePrice);
+                                    this.exit();
+                                }
+                                catch(err){
+                                    console.log(err);
+                                }
+                            }
+                            require('utils').dump("######################################################");
+
+                            if (!utils.isNull(tariffDetailElements[3]) && (!utils.isUndefined(tariffDetailElements[3]))) {
+                                fourthUagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[3]);
+                            }
+
+                            if (!utils.isNull(tariffDetailElements[4]) && (!utils.isUndefined(tariffDetailElements[4]))) {
+                                fifthUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[4]);
+                            }
+
+                            balanceUsagePrice = this.getBalance(balanceUsagePricePattern, tariffDetailElements);
+                            peak = this.getPeak(peakPattern, tariffDetailElements);
+
+                            tariffDetailElements = this.getElementsInfo("div.view-offer-section2 div.tariff-details div.tariff-separator");
+                            shoulder = this.getShoulder(shoulderPattern, tariffDetailElements);
+                            offPeak = this.getShoulder(offPeakPattern, tariffDetailElements);
+
+                            offerList.push({
+                                'postCode': postCode,
+                                'retailer': retailer,
+                                'offerName': offerName,
+                                'offerNo': offerNo,
+                                'customerType': customerType,
+                                'fuelType': fuelType,
+                                'distributor': distributor,
+                                'tariffType': tariffType,
+                                'offerType': offerType,
+                                'releaseDate': releaseDate,
+                                'contractTerm': contractTerm,
+                                'contractExpiryDetails': contractExpiryDetails,
+                                'dailySupplyChargePrice': dailySupplyChargePrice,
+                                'firstUsagePrice': firstUsagePrice,
+                                'secondUsagePrice': secondUsagePrice,
+                                'thirdUsagePrice': thirdUsagePrice,
+                                'fourthUagePrice': fourthUagePrice,
+                                'fifthUsagePrice': fifthUsagePrice,
+                                'balanceUsagePrice': balanceUsagePrice,
+                                'peak': peak,
+                                'shoulder': shoulder,
+                                'offPeak': offPeak
+                            });
                         });
 
-                //this.repeat(linkCount, function() {
-                //        this.echo("inside the repeat");
-                //        this.click(x('//a[text()="view offer"]')); // opens modal popup
-                //
-                //        this.wait(5000, function(){
-                //            this.capture("png-gas-home.png");
-                //            this.exit();
-                //        });
-                //        //this.waitUntilVisible('div.modal-dialog', function() {
-                //        //
-                //        //});
-                //        this.click('div.modal-dialog button.close'); // close modal popup
-                //});
-            });
-
-            this.then(function(){
-                this.capture("png-gas-home" + gasHomePostcodeList[cntr] + ".png");
-            });
-
-            this.wait(30000, function() {
-                this.thenOpen("https://compare.switchon.vic.gov.au/service/offers", {
-                    method: 'get',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+                        // close modal popup
+                        if (this.exists('button.close')) {
+                            this.click('button.close');
+                        }
+                    } catch (err) {
+                        console.log(err);
+                    } finally {
+                        moreOfferIndex++;
                     }
                 });
+
             });
 
-            this.wait(15000, function(){
-                var data = this.getPageContent().replace(/<\/?[^>]+(>|$)/g, ""),
-                    json = JSON.parse(data),
-                    offers = json["offersList"];
+            //this.evaluate(function(viewOfferIndex) {
+            //    $("ul.offer-list div.retailer-details a")[0].click();
+            //
+            //    this.wait(10000, function(){
+            //        this.capture("png-gas-home" + 0 + ".png", {
+            //            top: 0,
+            //            left: 0,
+            //            width: 1024,
+            //            height: 5000
+            //        });
+            //    });
+            //});
 
-                this.each(offers, function(self, offer){
-                    offerList.push(offer);
-                });
+            //this.then(function(){
+            //    var linkCount = this.getElementsInfo('ul.offer-list div.retailer-details a').length,
+            //        offerIndex = 0;
+            //
+            //    for (;offerIndex < linkCount; offerIndex++) {
+            //        this.evaluate(function(viewOfferIndex){
+            //            $("ul.offer-list div.retailer-details a")[viewOfferIndex].click();
+            //
+            //            this.wait(10000, function(){
+            //                this.capture("png-gas-home" + viewOfferIndex + ".png", {
+            //                    top: 0,
+            //                    left: 0,
+            //                    width: 1024,
+            //                    height: 5000
+            //                });
+            //            });
+            //        }, offerIndex);
+            //    }
+            //
+            //    //this.click('div.modal-dialog button.close'); // close modal popup
+            //    //this.exit();
+            //});
 
-                casper.thenOpen(url, function(){
-                });
-            });
+            //this.then(function(){
+            //    this.capture("png-gas-home" + gasHomePostcodeList[cntr] + ".png");
+            //});
+
+            //this.wait(30000, function() {
+            //    this.thenOpen("https://compare.switchon.vic.gov.au/service/offers", {
+            //        method: 'get',
+            //        headers: {
+            //            'Content-Type': 'application/json',
+            //            'Accept': 'application/json'
+            //        }
+            //    });
+            //});
+            //
+            //this.wait(15000, function(){
+            //    var data = this.getPageContent().replace(/<\/?[^>]+(>|$)/g, ""),
+            //        json = JSON.parse(data),
+            //        offers = json["offersList"];
+            //
+            //    this.each(offers, function(self, offer){
+            //        offerList.push(offer);
+            //    });
+            //
+            //    casper.thenOpen(url, function(){
+            //    });
+            //});
         });
     })(current);
     current++;
@@ -353,7 +613,13 @@ for (;current < end;) {
 //end electricity small business
 //--------------------------------------------------------------------------------------------------------
 
-casper.then(function(){
-    casper.echo(offerList.length);
+casper.then(function () {
+    var str = "";
+
+    for (var i = 0; i < offerList.length; i++) {
+        str += JSON.stringify(offerList[i], null, ' ');
+    }
+
+    fs.write('json/parse_result.json', str, 'w');
 })
 casper.run();
