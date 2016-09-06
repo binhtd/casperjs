@@ -196,6 +196,7 @@ for (; current < end;) {
                         }, moreOfferIndex);
 
                         this.wait(5000, function () {
+                            this.capture("home-gas-" + gasHomePostcodeList[cntr] + ".png");
                             postCode = gasHomePostcodeList[cntr];
                             retailer = this.exists("div.offerModalEmail div.col-md-8 h1") ? this.formatString(this.fetchText("div.offerModalEmail div.col-md-8 h1")) : "";
                             offerName = this.exists("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer") ?
@@ -249,23 +250,27 @@ for (; current < end;) {
                                 offPeakPattern = /.+?Off-peak.+?<p>All consumption.+?<strong>(.+?)<\/strong>/im;
 
 
+                            firstUsagePrice = "";
                             if (!utils.isNull(tariffDetailElements[0]) && (!utils.isUndefined(tariffDetailElements[0]))) {
                                 firstUsagePrice = this.getUsagePrice(firstUsagePricePattern, tariffDetailElements[0]);
                             }
 
+                            secondUsagePrice = "";
                             if (!utils.isNull(tariffDetailElements[1]) && (!utils.isUndefined(tariffDetailElements[1]))) {
                                 secondUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[1]);
                             }
 
-
+                            thirdUsagePrice = "";
                             if (!utils.isNull(tariffDetailElements[2]) && (!utils.isUndefined(tariffDetailElements[2]))) {
                                 thirdUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[2]);
                             }
 
+                            fourthUagePrice = "";
                             if (!utils.isNull(tariffDetailElements[3]) && (!utils.isUndefined(tariffDetailElements[3]))) {
                                 fourthUagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[3]);
                             }
 
+                            fifthUsagePrice = "";
                             if (!utils.isNull(tariffDetailElements[4]) && (!utils.isUndefined(tariffDetailElements[4]))) {
                                 fifthUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[4]);
                             }
