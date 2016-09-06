@@ -68,18 +68,9 @@ casper.getUsagePrice = function (tariffDetailElementPattern, tariffDetailElement
     var matches = [],
         tariffDetailsHtml = "";
     try{
-        tariffDetailsHtml = casper.formatString(tariffDetailElement["html"]);
-        require('utils').dump("333333333333333333333333333333333333333333333333333333333333");
-        require('utils').dump(tariffDetailElementPattern.toString());
-        require('utils').dump(typeof tariffDetailsHtml);
-        require('utils').dump(tariffDetailsHtml);
-
+        tariffDetailsHtml = this.formatString(tariffDetailElement["html"]);
         matches = tariffDetailElementPattern.exec(tariffDetailsHtml);
-        require('utils').dump(matches);
-        require('utils').dump(Object.prototype.toString.call(matches));
-        require('utils').dump(matches.length);
 
-        require('utils').dump("333333333333333333333333333333333333333333333333333333333333");
         if (utils.isArray(matches) && (matches.length>1)){
             return matches[1];
         }
@@ -250,12 +241,12 @@ for (; current < end;) {
                             }
 
                             var tariffDetailElements = this.getElementsInfo("div.view-offer-section2 div.col-md-4 div.offer-rate-header+div div.tariff-details div.line-separator"),
-                                firstUsagePricePattern = /.+?<p>First.+?<strong>(.+?)<\/strong>/gim,
-                                nextUsagePricePattern = /.+?<p>Next.+?<strong>(.+?)<\/strong>/gim,
-                                balanceUsagePricePattern = /.+?<p>Balance.+?<strong>(.+?)<\/strong>/gim,
-                                peakPattern = /.+?<p>All consumption.+?<strong>(.+?)<\/strong>/gim,
-                                shoulderPattern = /.+?Shoulder.+?<p>All consumption.+?<strong>(.+?)<\/strong>/gim,
-                                offPeakPattern = /.+?Off-peak.+?<p>All consumption.+?<strong>(.+?)<\/strong>/gim;
+                                firstUsagePricePattern = /.+?<p>First.+?<strong>(.+?)<\/strong>/im,
+                                nextUsagePricePattern = /.+?<p>Next.+?<strong>(.+?)<\/strong>/im,
+                                balanceUsagePricePattern = /.+?<p>Balance.+?<strong>(.+?)<\/strong>/im,
+                                peakPattern = /.+?<p>All consumption.+?<strong>(.+?)<\/strong>/im,
+                                shoulderPattern = /.+?Shoulder.+?<p>All consumption.+?<strong>(.+?)<\/strong>/im,
+                                offPeakPattern = /.+?Off-peak.+?<p>All consumption.+?<strong>(.+?)<\/strong>/im;
 
 
                             if (!utils.isNull(tariffDetailElements[0]) && (!utils.isUndefined(tariffDetailElements[0]))) {
@@ -267,18 +258,9 @@ for (; current < end;) {
                             }
 
 
-                            require('utils').dump("######################################################");
                             if (!utils.isNull(tariffDetailElements[2]) && (!utils.isUndefined(tariffDetailElements[2]))) {
-                                try{
-                                    thirdUsagePrice = casper.getUsagePrice(nextUsagePricePattern, tariffDetailElements[2]);
-                                    require('utils').dump(thirdUsagePrice);
-                                    this.exit();
-                                }
-                                catch(err){
-                                    console.log(err);
-                                }
+                                thirdUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[2]);
                             }
-                            require('utils').dump("######################################################");
 
                             if (!utils.isNull(tariffDetailElements[3]) && (!utils.isUndefined(tariffDetailElements[3]))) {
                                 fourthUagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[3]);
