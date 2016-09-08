@@ -30,8 +30,8 @@ electricHomePostcodeList = [3000, 3011, 3944, 3284, 3841],
     conditionalDiscount2 = "", conditionalDiscount2Percentage = "", conditionalDiscount2Applicableto = "";
 
 var casper = require("casper").create({
-    //verbose: true,
-    //logLevel: "debug",
+    verbose: true,
+    logLevel: "debug",
     waitTimeout: 2000000,
     stepTimeout: 2000000,
     pageSettings: {
@@ -144,6 +144,140 @@ casper.getOffpeak = function (tariffDetailElementPattern, tariffDetailElements) 
     return "";
 };
 
+casper.loadResults = function (postCodeValue){
+    var linkCount = this.getElementsInfo("ul.offer-list div.retailer-details a").length;
+    this.repeat(linkCount, function () {
+        try {
+            // opens modal popup
+            this.evaluate(function (index) {
+                $("ul.offer-list div.retailer-details a")[index].click();
+            }, moreOfferIndex);
+
+            this.wait(5000, function () {
+                postCode = postCodeValue;
+                retailer = this.exists("div.offerModalEmail div.col-md-8 h1") ? this.formatString(this.fetchText("div.offerModalEmail div.col-md-8 h1")) : "";
+                offerName = this.exists("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer") ?
+                    this.formatString(this.fetchText("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer")) : "";
+
+                if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(1)") == "Offer ID:") {
+                    offerNo = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(2)"));
+                }
+
+                if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(1)") == "Customer type:") {
+                    customerType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(2)"));
+                }
+                fuelType = "gas";
+
+                if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(1)") == "Distributor:") {
+                    distributor = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(2)"));
+                }
+
+                if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(4) td:nth-child(1)") == "Rate type:") {
+                    tariffType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(4) td:nth-child(2)"));
+                }
+
+                if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(5) td:nth-child(1)") == "Offer type:") {
+                    offerType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(5) td:nth-child(2)"));
+                }
+
+                if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(6) td:nth-child(1)") == "Release date:") {
+                    releaseDate = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(6) td:nth-child(2)"));
+                }
+
+                if (this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(1) td:nth-child(1)") == "Select contract term:") {
+                    contractTerm = this.formatString(this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(1) td:nth-child(2) button"));
+                }
+
+                if (this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(6) td:nth-child(1)") == "Contract expiry details") {
+                    contractExpiryDetails = this.formatString(this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(6) td:nth-child(2)"));
+                }
+                var dailySupplyChargePriceElementValue = this.getElementInfo("div.tariff-details div.supply-charge div:nth-child(2) p"),
+                    dailySupplyChargePriceElementText = this.getElementInfo("div.tariff-details div.supply-charge div:nth-child(1) p");
+
+                if (!utils.isNull(dailySupplyChargePriceElementValue) && !utils.isNull(dailySupplyChargePriceElementText) && (dailySupplyChargePriceElementText["text"] == "Supply charges")) {
+                    dailySupplyChargePrice = this.formatString(dailySupplyChargePriceElementValue["text"]);
+                }
+
+                var tariffDetailElements = this.getElementsInfo("div.view-offer-section2 div.col-md-4 div.offer-rate-header+div div.tariff-details div.line-separator"),
+                    firstUsagePricePattern = /.+?<p>First.+?<strong>(.+?)<\/strong>/im,
+                    nextUsagePricePattern = /.+?<p>Next.+?<strong>(.+?)<\/strong>/im,
+                    balanceUsagePricePattern = /.+?<p>Balance.+?<strong>(.+?)<\/strong>/im,
+                    peakPattern = /.+?<p>All consumption.+?<strong>(.+?)<\/strong>/im,
+                    shoulderPattern = /.+?Shoulder.+?<p>All consumption.+?<strong>(.+?)<\/strong>/im,
+                    offPeakPattern = /.+?Off-peak.+?<p>All consumption.+?<strong>(.+?)<\/strong>/im;
+
+
+                firstUsagePrice = "";
+                if (!utils.isNull(tariffDetailElements[0]) && (!utils.isUndefined(tariffDetailElements[0]))) {
+                    firstUsagePrice = this.getUsagePrice(firstUsagePricePattern, tariffDetailElements[0]);
+                }
+
+                secondUsagePrice = "";
+                if (!utils.isNull(tariffDetailElements[1]) && (!utils.isUndefined(tariffDetailElements[1]))) {
+                    secondUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[1]);
+                }
+
+                thirdUsagePrice = "";
+                if (!utils.isNull(tariffDetailElements[2]) && (!utils.isUndefined(tariffDetailElements[2]))) {
+                    thirdUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[2]);
+                }
+
+                fourthUagePrice = "";
+                if (!utils.isNull(tariffDetailElements[3]) && (!utils.isUndefined(tariffDetailElements[3]))) {
+                    fourthUagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[3]);
+                }
+
+                fifthUsagePrice = "";
+                if (!utils.isNull(tariffDetailElements[4]) && (!utils.isUndefined(tariffDetailElements[4]))) {
+                    fifthUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[4]);
+                }
+
+                balanceUsagePrice = this.getBalance(balanceUsagePricePattern, tariffDetailElements);
+                peak = this.getPeak(peakPattern, tariffDetailElements);
+
+                tariffDetailElements = this.getElementsInfo("div.view-offer-section2 div.tariff-details div.tariff-separator");
+                shoulder = this.getShoulder(shoulderPattern, tariffDetailElements);
+                offPeak = this.getShoulder(offPeakPattern, tariffDetailElements);
+
+                offerList.push({
+                    'postCode': postCode,
+                    'retailer': retailer,
+                    'offerName': offerName,
+                    'offerNo': offerNo,
+                    'customerType': customerType,
+                    'fuelType': fuelType,
+                    'distributor': distributor,
+                    'tariffType': tariffType,
+                    'offerType': offerType,
+                    'releaseDate': releaseDate,
+                    'contractTerm': contractTerm,
+                    'contractExpiryDetails': contractExpiryDetails,
+                    'dailySupplyChargePrice': dailySupplyChargePrice,
+                    'firstUsagePrice': firstUsagePrice,
+                    'secondUsagePrice': secondUsagePrice,
+                    'thirdUsagePrice': thirdUsagePrice,
+                    'fourthUagePrice': fourthUagePrice,
+                    'fifthUsagePrice': fifthUsagePrice,
+                    'balanceUsagePrice': balanceUsagePrice,
+                    'peak': peak,
+                    'shoulder': shoulder,
+                    'offPeak': offPeak
+                });
+            });
+
+            // close modal popup
+            if (this.exists('button.close')) {
+                this.click('button.close');
+            }
+        } catch (err) {
+            console.log(err);
+        } finally {
+            moreOfferIndex++;
+        }
+    });
+
+}
+
 casper.start(url);
 
 //--------------------------------------------------------------------------------------------------------
@@ -186,203 +320,9 @@ for (; current < end;) {
             });
 
             moreOfferIndex = 0;
-            casper.then(function loadResults() {
-                var linkCount = this.getElementsInfo("ul.offer-list div.retailer-details a").length;
-                this.repeat(linkCount, function () {
-                    try {
-                        // opens modal popup
-                        this.evaluate(function (index) {
-                            $("ul.offer-list div.retailer-details a")[index].click();
-                        }, moreOfferIndex);
-
-                        this.wait(5000, function () {
-                            this.capture("home-gas-" + gasHomePostcodeList[cntr] + ".png");
-                            postCode = gasHomePostcodeList[cntr];
-                            retailer = this.exists("div.offerModalEmail div.col-md-8 h1") ? this.formatString(this.fetchText("div.offerModalEmail div.col-md-8 h1")) : "";
-                            offerName = this.exists("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer") ?
-                                this.formatString(this.fetchText("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer")) : "";
-
-                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(1)") == "Offer ID:") {
-                                offerNo = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(2)"));
-                            }
-
-                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(1)") == "Customer type:") {
-                                customerType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(2)"));
-                            }
-                            fuelType = "gas";
-
-                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(1)") == "Distributor:") {
-                                distributor = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(2)"));
-                            }
-
-                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(4) td:nth-child(1)") == "Rate type:") {
-                                tariffType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(4) td:nth-child(2)"));
-                            }
-
-                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(5) td:nth-child(1)") == "Offer type:") {
-                                offerType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(5) td:nth-child(2)"));
-                            }
-
-                            if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(6) td:nth-child(1)") == "Release date:") {
-                                releaseDate = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(6) td:nth-child(2)"));
-                            }
-
-                            if (this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(1) td:nth-child(1)") == "Select contract term:") {
-                                contractTerm = this.formatString(this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(1) td:nth-child(2) button"));
-                            }
-
-                            if (this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(6) td:nth-child(1)") == "Contract expiry details") {
-                                contractExpiryDetails = this.formatString(this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(6) td:nth-child(2)"));
-                            }
-                            var dailySupplyChargePriceElementValue = this.getElementInfo("div.tariff-details div.supply-charge div:nth-child(2) p"),
-                                dailySupplyChargePriceElementText = this.getElementInfo("div.tariff-details div.supply-charge div:nth-child(1) p");
-
-                            if (!utils.isNull(dailySupplyChargePriceElementValue) && !utils.isNull(dailySupplyChargePriceElementText) && (dailySupplyChargePriceElementText["text"] == "Supply charges")) {
-                                dailySupplyChargePrice = this.formatString(dailySupplyChargePriceElementValue["text"]);
-                            }
-
-                            var tariffDetailElements = this.getElementsInfo("div.view-offer-section2 div.col-md-4 div.offer-rate-header+div div.tariff-details div.line-separator"),
-                                firstUsagePricePattern = /.+?<p>First.+?<strong>(.+?)<\/strong>/im,
-                                nextUsagePricePattern = /.+?<p>Next.+?<strong>(.+?)<\/strong>/im,
-                                balanceUsagePricePattern = /.+?<p>Balance.+?<strong>(.+?)<\/strong>/im,
-                                peakPattern = /.+?<p>All consumption.+?<strong>(.+?)<\/strong>/im,
-                                shoulderPattern = /.+?Shoulder.+?<p>All consumption.+?<strong>(.+?)<\/strong>/im,
-                                offPeakPattern = /.+?Off-peak.+?<p>All consumption.+?<strong>(.+?)<\/strong>/im;
-
-
-                            firstUsagePrice = "";
-                            if (!utils.isNull(tariffDetailElements[0]) && (!utils.isUndefined(tariffDetailElements[0]))) {
-                                firstUsagePrice = this.getUsagePrice(firstUsagePricePattern, tariffDetailElements[0]);
-                            }
-
-                            secondUsagePrice = "";
-                            if (!utils.isNull(tariffDetailElements[1]) && (!utils.isUndefined(tariffDetailElements[1]))) {
-                                secondUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[1]);
-                            }
-
-                            thirdUsagePrice = "";
-                            if (!utils.isNull(tariffDetailElements[2]) && (!utils.isUndefined(tariffDetailElements[2]))) {
-                                thirdUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[2]);
-                            }
-
-                            fourthUagePrice = "";
-                            if (!utils.isNull(tariffDetailElements[3]) && (!utils.isUndefined(tariffDetailElements[3]))) {
-                                fourthUagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[3]);
-                            }
-
-                            fifthUsagePrice = "";
-                            if (!utils.isNull(tariffDetailElements[4]) && (!utils.isUndefined(tariffDetailElements[4]))) {
-                                fifthUsagePrice = this.getUsagePrice(nextUsagePricePattern, tariffDetailElements[4]);
-                            }
-
-                            balanceUsagePrice = this.getBalance(balanceUsagePricePattern, tariffDetailElements);
-                            peak = this.getPeak(peakPattern, tariffDetailElements);
-
-                            tariffDetailElements = this.getElementsInfo("div.view-offer-section2 div.tariff-details div.tariff-separator");
-                            shoulder = this.getShoulder(shoulderPattern, tariffDetailElements);
-                            offPeak = this.getShoulder(offPeakPattern, tariffDetailElements);
-
-                            offerList.push({
-                                'postCode': postCode,
-                                'retailer': retailer,
-                                'offerName': offerName,
-                                'offerNo': offerNo,
-                                'customerType': customerType,
-                                'fuelType': fuelType,
-                                'distributor': distributor,
-                                'tariffType': tariffType,
-                                'offerType': offerType,
-                                'releaseDate': releaseDate,
-                                'contractTerm': contractTerm,
-                                'contractExpiryDetails': contractExpiryDetails,
-                                'dailySupplyChargePrice': dailySupplyChargePrice,
-                                'firstUsagePrice': firstUsagePrice,
-                                'secondUsagePrice': secondUsagePrice,
-                                'thirdUsagePrice': thirdUsagePrice,
-                                'fourthUagePrice': fourthUagePrice,
-                                'fifthUsagePrice': fifthUsagePrice,
-                                'balanceUsagePrice': balanceUsagePrice,
-                                'peak': peak,
-                                'shoulder': shoulder,
-                                'offPeak': offPeak
-                            });
-                        });
-
-                        // close modal popup
-                        if (this.exists('button.close')) {
-                            this.click('button.close');
-                        }
-                    } catch (err) {
-                        console.log(err);
-                    } finally {
-                        moreOfferIndex++;
-                    }
-                });
-
+            casper.then(function(){
+                this.loadResults(gasHomePostcodeList[cntr]);
             });
-
-            //this.evaluate(function(viewOfferIndex) {
-            //    $("ul.offer-list div.retailer-details a")[0].click();
-            //
-            //    this.wait(10000, function(){
-            //        this.capture("png-gas-home" + 0 + ".png", {
-            //            top: 0,
-            //            left: 0,
-            //            width: 1024,
-            //            height: 5000
-            //        });
-            //    });
-            //});
-
-            //this.then(function(){
-            //    var linkCount = this.getElementsInfo('ul.offer-list div.retailer-details a').length,
-            //        offerIndex = 0;
-            //
-            //    for (;offerIndex < linkCount; offerIndex++) {
-            //        this.evaluate(function(viewOfferIndex){
-            //            $("ul.offer-list div.retailer-details a")[viewOfferIndex].click();
-            //
-            //            this.wait(10000, function(){
-            //                this.capture("png-gas-home" + viewOfferIndex + ".png", {
-            //                    top: 0,
-            //                    left: 0,
-            //                    width: 1024,
-            //                    height: 5000
-            //                });
-            //            });
-            //        }, offerIndex);
-            //    }
-            //
-            //    //this.click('div.modal-dialog button.close'); // close modal popup
-            //    //this.exit();
-            //});
-
-            //this.then(function(){
-            //    this.capture("png-gas-home" + gasHomePostcodeList[cntr] + ".png");
-            //});
-
-            //this.wait(30000, function() {
-            //    this.thenOpen("https://compare.switchon.vic.gov.au/service/offers", {
-            //        method: 'get',
-            //        headers: {
-            //            'Content-Type': 'application/json',
-            //            'Accept': 'application/json'
-            //        }
-            //    });
-            //});
-            //
-            //this.wait(15000, function(){
-            //    var data = this.getPageContent().replace(/<\/?[^>]+(>|$)/g, ""),
-            //        json = JSON.parse(data),
-            //        offers = json["offersList"];
-            //
-            //    this.each(offers, function(self, offer){
-            //        offerList.push(offer);
-            //    });
-            //
-            //    casper.thenOpen(url, function(){
-            //    });
-            //});
         });
     })(current);
     current++;
