@@ -159,7 +159,7 @@ casper.getDiscounts = function () {
         discountFeeElements = this.getElementsInfo(x("//*/span[contains(text(),'Discounts and fees')]/../../following-sibling::div/div/span[contains(text(),'Discounts:')]/../p"));
 
     while (discountFeeIndex < discountFeeElements.length) {
-        if (!utils.isNull(discountFeeElements[discountFeeIndex]) && utils.isArray(discountFeeElements[discountFeeIndex])) {
+        if (!utils.isNull(discountFeeElements[discountFeeIndex])) {
             discountRecord["discountPercentage"] = this.fetchText(x('//*/span[contains(text(),"Discounts and fees")]/../../following-sibling::div/div/span[contains(text(),"Discounts:")]/../p[' + (discountFeeIndex+1) + ']'));
             discountRecord["discountPercentage"] = this.formatString(discountRecord["discountPercentage"]);
             discountPercentageArray = discountRecord["discountPercentage"].match(/(\$?\d+%?)/);
@@ -169,7 +169,7 @@ casper.getDiscounts = function () {
             }
         }
 
-        if (!utils.isNull(discountFeeElements[discountFeeIndex + 1]) && utils.isArray(discountFeeElements[discountFeeIndex + 1])) {
+        if (!utils.isNull(discountFeeElements[discountFeeIndex + 1])) {
             discountRecord["discountDescription"] = this.fetchText(x('//*/span[contains(text(),"Discounts and fees")]/../../following-sibling::div/div/span[contains(text(),"Discounts:")]/../p[' + (discountFeeIndex + 2) + ']'));
         }
 
