@@ -27,7 +27,11 @@ electricHomePostcodeList = [3000, 3011, 3944, 3284, 3841],
     otherFee1 = "", latePaymentFee = "", creditCardPaymentProcessingFee = "", otherFee2 = "", voluntaryFiT = "", greenPowerOption = "", incentives = "",
     peak = "", shoulder = "", offPeak = "", peakSummer = "", peakWinter = "", peakFirstUsagePrice = "", peakSecondUsagePrice = "", peakThirdUsagePrice = "",
     peakFourthUsagePrice = "", peakFifthUsagePrice = "", peakBalancePrice = "", summerMonthlyDemand = "", winterMonthlyDemand = "", additionalMonthlyDemand = "",
-    conditionalDiscount2 = "", conditionalDiscount2Percentage = "", conditionalDiscount2Applicableto = "";
+    conditionalDiscount2 = "", conditionalDiscount2Percentage = "", conditionalDiscount2Applicableto = "",
+    directDebitOnly = "", payOnTimeDiscount = "", incentive = "", greenPower = "", coolingOffPeriod = "", eligibilityCriteria= "", fullTermsAndConditions = "",
+    pricesChanges = "", contractExpiry = "", availToSolarCustomers = "", discountArray = [];
+
+
 
 var casper = require("casper").create({
     verbose: true,
@@ -144,7 +148,7 @@ casper.getOffpeak = function (tariffDetailElementPattern, tariffDetailElements) 
     return "";
 };
 
-casper.loadResults = function (postCodeValue){
+casper.loadResults = function (postCodeValue, fuealTypeValue){
     var linkCount = this.getElementsInfo("ul.offer-list div.retailer-details a").length;
     this.repeat(linkCount, function () {
         try {
@@ -154,6 +158,11 @@ casper.loadResults = function (postCodeValue){
             }, moreOfferIndex);
 
             this.wait(5000, function () {
+                utils.dump("#################################################");
+                //utils.dump( this.getElementsInfo(x('//*/table[@class="table table-striped contract-table"]/*/tr')));
+                utils.dump( __utils__.getElementsByXPath('//*/table[@class="table table-striped contract-table"]/*/tr'));
+                utils.dump("#################################################");
+                this.exit();
                 postCode = postCodeValue;
                 retailer = this.exists("div.offerModalEmail div.col-md-8 h1") ? this.formatString(this.fetchText("div.offerModalEmail div.col-md-8 h1")) : "";
                 offerName = this.exists("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer") ?
@@ -166,7 +175,7 @@ casper.loadResults = function (postCodeValue){
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(1)") == "Customer type:") {
                     customerType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(2)"));
                 }
-                fuelType = "gas";
+                fuelType = fuealTypeValue;
 
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(1)") == "Distributor:") {
                     distributor = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(2)"));
@@ -239,6 +248,43 @@ casper.loadResults = function (postCodeValue){
                 shoulder = this.getShoulder(shoulderPattern, tariffDetailElements);
                 offPeak = this.getShoulder(offPeakPattern, tariffDetailElements);
 
+                directDebitOnly =  this.fetchText(x('//*/i[@class="material-icons debit-img"]/../following-sibling::td')).match(/^(not|no)/i) ? "No" : "Yes";
+                payOnTimeDiscount = this.fetchText(x('//*/table[@class="table offer-feature-table"]/*/tr[2]/td[2]')).match(/^(not|no)/i) ? "No" : "Yes" ;
+                incentive = this.fetchText(x('//*/table[@class="table offer-feature-table"]/*/tr[3]/td[2]')).match(/^(not|no)/i) ? "No" : "Yes" ;
+                greenPower = this.fetchText(x('//*/table[@class="table offer-feature-table"]/*/tr[3]/td[2]'));
+
+                coolingOffPeriod = this.fetchText(x('//*/table[@class="table table-striped contract-table"]/*/tr[2]/td[2]'));
+                eligibilityCriteria = this.fetchText(x('//*/table[@class="table table-striped contract-table"]/*/tr[3]/td[2]'));
+                fullTermsAndConditions = this.fetchText(x('//*/table[@class="table table-striped contract-table"]/*/tr[4]/td[2]'));
+                pricesChanges = this.fetchText(x('//*/table[@class="table table-striped contract-table"]/*/tr[5]/td[2]'));
+                contractExpiry = this.fetchText(x('//*/table[@class="table table-striped contract-table"]/*/tr[6]/td[2]'));
+                availToSolarCustomers = this.fetchText(x('//*/table[@class="table table-striped contract-table"]/*/tr[8]/td[2]'));
+
+                var discountFeeIndex = 1,
+                    discountFeeElements = [],
+                    discountPercentageArray = [],
+                    discountRecord = {},
+                    discountFeeElements = this.getElementsInfo(x("//*/span[contains(text(),'Discounts and fees')]/../../following-sibling::div/div/span[contains(text(),'Discounts:')]/../p"));
+
+                while (discountFeeIndex < discountFeeElements.length){
+                    if (!utils.isNull(discountFeeElements[discountFeeIndex]) && utils.isArray(discountFeeElements[discountFeeIndex])){
+                        discountRecord["discountPercentage"] = this.fetchText(x('//*/span[contains(text(),'Discounts and fees')]/../../following-sibling::div/div/span[contains(text(),'Discounts:')]/../p[' + discountFeeIndex + ']'));
+                        discountRecord["discountPercentage"] = this.formatString(discountRecord["discountPercentage"]);
+                        discountPercentageArray = discountRecord["discountPercentage"].match(/(\$?\d+%?)/);
+
+                        if (!utils.isNull(discountPercentageArray[1])){
+                            discountRecord["discountPercentage"] = discountPercentageArray[1];
+                        }
+                    }
+
+                    if (!utils.isNull(discountFeeElements[discountFeeIndex+1]) && utils.isArray(discountFeeElements[discountFeeIndex+1])){
+                        discountRecord["discountDescription"] = this.fetchText(x('//*/span[contains(text(),'Discounts and fees')]/../../following-sibling::div/div/span[contains(text(),'Discounts:')]/../p[' + (discountFeeIndex+1) + ']'));
+                    }
+
+                    discountArray.push(discountRecord);
+                    discountFeeIndex +=2;
+                }
+                    
                 offerList.push({
                     'postCode': postCode,
                     'retailer': retailer,
@@ -261,7 +307,18 @@ casper.loadResults = function (postCodeValue){
                     'balanceUsagePrice': balanceUsagePrice,
                     'peak': peak,
                     'shoulder': shoulder,
-                    'offPeak': offPeak
+                    'offPeak': offPeak,
+                    'directDebitOnly' : directDebitOnly,
+                    'payOnTimeDiscount' : payOnTimeDiscount,
+                    'incentive' : incentive,
+                    'greenPower' : greenPower,
+                    'coolingOffPeriod': coolingOffPeriod,
+                    'eligibilityCriteria': eligibilityCriteria,
+                    'fullTermsAndConditions' : fullTermsAndConditions,
+                    'pricesChanges' : pricesChanges,
+                    'contractExpiry' : contractExpiry,
+                    'availToSolarCustomers' : availToSolarCustomers,
+                    'discount': discountArray
                 });
             });
 
@@ -321,7 +378,7 @@ for (; current < end;) {
 
             moreOfferIndex = 0;
             casper.then(function(){
-                this.loadResults(gasHomePostcodeList[cntr]);
+                this.loadResults(gasHomePostcodeList[cntr], "gas");
             });
         });
     })(current);
