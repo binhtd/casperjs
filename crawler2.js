@@ -7,11 +7,11 @@ var x = require('casper').selectXPath,
     utils = require('utils'),
     url = 'https://compare.switchon.vic.gov.au',
     offerList = [],
-    gasHomePostcodeList = [],
+    gasHomePostcodeList = [3011],
 //gasHomePostcodeList = [3011, 3953, 3179, 3141, 3199],
     gasSmallBusinessPostcodeList = [],
     //gasSmallBusinessPostcodeList = [3011, 3953, 3179, 3141, 3199]
-    electricHomePostcodeList = [3000]
+    electricHomePostcodeList = []
 //electricHomePostcodeList = [3000, 3011, 3944, 3284, 3841],
     electricSmallBusinessPostcodeList = [],
     //electricSmallBusinessPostcodeList = [3000, 3011, 3944, 3284, 3841],
@@ -160,7 +160,7 @@ casper.getDiscounts = function () {
 
     while (discountFeeIndex < discountFeeElements.length) {
         if (!utils.isNull(discountFeeElements[discountFeeIndex]) && utils.isArray(discountFeeElements[discountFeeIndex])) {
-            discountRecord["discountPercentage"] = this.fetchText(x('//*/span[contains(text(),"Discounts and fees")]/../../following-sibling::div/div/span[contains(text(),"Discounts:")]/../p[' + discountFeeIndex + ']'));
+            discountRecord["discountPercentage"] = this.fetchText(x('//*/span[contains(text(),"Discounts and fees")]/../../following-sibling::div/div/span[contains(text(),"Discounts:")]/../p[' + (discountFeeIndex+1) + ']'));
             discountRecord["discountPercentage"] = this.formatString(discountRecord["discountPercentage"]);
             discountPercentageArray = discountRecord["discountPercentage"].match(/(\$?\d+%?)/);
 
@@ -170,7 +170,7 @@ casper.getDiscounts = function () {
         }
 
         if (!utils.isNull(discountFeeElements[discountFeeIndex + 1]) && utils.isArray(discountFeeElements[discountFeeIndex + 1])) {
-            discountRecord["discountDescription"] = this.fetchText(x('//*/span[contains(text(),"Discounts and fees")]/../../following-sibling::div/div/span[contains(text(),"Discounts:")]/../p[' + (discountFeeIndex + 1) + ']'));
+            discountRecord["discountDescription"] = this.fetchText(x('//*/span[contains(text(),"Discounts and fees")]/../../following-sibling::div/div/span[contains(text(),"Discounts:")]/../p[' + (discountFeeIndex + 2) + ']'));
         }
 
         discountResultset.push(discountRecord);
