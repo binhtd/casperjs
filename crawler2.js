@@ -7,8 +7,8 @@ var x = require('casper').selectXPath,
     utils = require('utils'),
     url = 'https://compare.switchon.vic.gov.au',
     offerList = [],
-    gasHomePostcodeList = [3011],
-//gasHomePostcodeList = [3011, 3953, 3179, 3141, 3199],
+
+    gasHomePostcodeList = [3011, 3953, 3179, 3141, 3199],
     gasSmallBusinessPostcodeList = [],
     //gasSmallBusinessPostcodeList = [3011, 3953, 3179, 3141, 3199]
     electricHomePostcodeList = []
@@ -456,6 +456,10 @@ for (; current < end;) {
             casper.then(function () {
                 this.loadResults(gasHomePostcodeList[cntr], "gas");
             });
+
+            //reopen starting url before continue loop
+            casper.thenOpen(url, function(){
+            });
         });
     })(current);
     current++;
@@ -500,6 +504,10 @@ for (;current < end;) {
             moreOfferIndex = 0;
             casper.then(function () {
                 this.loadResults(gasSmallBusinessPostcodeList[cntr], "gas");
+            });
+
+            //reopen starting url before continue loop
+            casper.thenOpen(url, function(){
             });
         });
     })(current);
@@ -560,6 +568,10 @@ for (;current < end;) {
             casper.then(function () {
                 this.loadResults(electricHomePostcodeList[cntr], "electric");
             });
+
+            //reopen starting url before continue loop
+            casper.thenOpen(url, function(){
+            });
         });
     })(current);
     current++;
@@ -614,6 +626,10 @@ for (;current < end;) {
             moreOfferIndex = 0;
             casper.then(function () {
                 this.loadResults(electricSmallBusinessPostcodeList[cntr], "electric");
+            });
+
+            //reopen starting url before continue loop
+            casper.thenOpen(url, function(){
             });
         });
     })(current);
