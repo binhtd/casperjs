@@ -162,9 +162,9 @@ casper.getDiscounts = function () {
         if (!utils.isNull(discountFeeElements[discountFeeIndex])) {
             discountRecord["discountPercentage"] = this.fetchText(x('//*/span[contains(text(),"Discounts and fees")]/../../following-sibling::div/div/span[contains(text(),"Discounts:")]/../p[' + (discountFeeIndex+1) + ']'));
             discountRecord["discountPercentage"] = this.formatString(discountRecord["discountPercentage"]);
-            discountPercentageArray = discountRecord["discountPercentage"].match(/(\$?\d+%?)/);
 
-            if (!utils.isNull(discountPercentageArray[1])) {
+            discountPercentageArray = discountRecord["discountPercentage"].match(/(\$?\d+%?)/);
+            if (utils.isArray(discountPercentageArray) && !utils.isNull(discountPercentageArray[1])) {
                 discountRecord["discountPercentage"] = discountPercentageArray[1];
             }
         }
@@ -212,7 +212,6 @@ casper.getFees = function () {
             pattern = new RegExp(feeTitleHeaders[i], "i");
 
             if (!utils.isNull(feeElements[feeIndex]) && !utils.isNull(feeElements[feeIndex]["html"]) && pattern.test( this.formatString(feeElements[feeIndex]["html"]))) {
-                //utils.dump("inside if 1");
                 isChangedInsideCheckingTitleHeader = true;
                 if (!utils.isNull(feeElements[feeIndex+1])){
                     feeRecord["feeDescription"] = this.formatString(this.fetchText(x("//*/div[@class='col-md-6']/span[@class='sub-header'][text()='Fees']/../p[" + (feeIndex + 2) + "]")));
@@ -231,7 +230,6 @@ casper.getFees = function () {
                     feeIndex += 2;
                 }
 
-                //utils.dump("feeIndex:" + feeIndex);
                 feeResultset[feeTitleHeaders[i]].push(feeRecord);
                 break;
             }
@@ -242,7 +240,6 @@ casper.getFees = function () {
         }
 
         if (!isChangedInsideCheckingTitleHeader){
-            //utils.dump("inside if 4");
             feeIndex++;
             isChangedInsideCheckingTitleHeader = false;
         }
