@@ -9,12 +9,9 @@ var x = require('casper').selectXPath,
     offerList = [],
 
     gasHomePostcodeList = [3011, 3953, 3179, 3141, 3199],
-    gasSmallBusinessPostcodeList = [],
-    //gasSmallBusinessPostcodeList = [3011, 3953, 3179, 3141, 3199]
-    electricHomePostcodeList = []
-//electricHomePostcodeList = [3000, 3011, 3944, 3284, 3841],
-    electricSmallBusinessPostcodeList = [],
-    //electricSmallBusinessPostcodeList = [3000, 3011, 3944, 3284, 3841],
+    gasSmallBusinessPostcodeList = [3011, 3953, 3179, 3141, 3199],
+    electricHomePostcodeList = [3000, 3011, 3944, 3284, 3841],
+    electricSmallBusinessPostcodeList = [3000, 3011, 3944, 3284, 3841],
     current = 0, end = 0, moreOfferIndex = 0,
 
     postCode = "", frequency = "", guaranteedDiscounts = "", discountPercent2 = "",
@@ -55,19 +52,40 @@ casper.saveJSON = function (what) {
     fs.write('json/parse_result.json', JSON.stringify(what, null, '  '), 'w');
 };
 
-casper.clickMoreOfferButton = function () {
-    if (!casper.exists(x("//*/button[@class='btn more-offer-btn more-offer-btn-txt'][@disabled]"))) {
-        casper.click(".more-offer-btn");
-        casper.wait(5000, casper.clickMoreOfferButton);
-    }
-};
-
 casper.formatString = function (containBetweenHtmlTag) {
     containBetweenHtmlTag = containBetweenHtmlTag.replace(/(\r\n|\n|\r)/gm, "");
     containBetweenHtmlTag = containBetweenHtmlTag.replace(/\s+/gm, " ");
     containBetweenHtmlTag = containBetweenHtmlTag.trim();
 
     return containBetweenHtmlTag;
+};
+
+casper.stripHtmlTag = function(str){
+    return body.replace(/(<([^>]+)>)/ig, "");
+};
+
+casper.formatParagraphInsideFeeSection = function(str){
+    var contentInsideEachParagraph = "";
+
+    contentInsideEachParagraph = str.replace(/(\r\n|\n|\r)/gm, "");
+    contentInsideEachParagraph = contentInsideEachParagraph.replace(/\s+/gm, " ");
+    contentInsideEachParagraph = contentInsideEachParagraph.trim();
+    contentInsideEachParagraph = contentInsideEachParagraph.replace(/(<([^>]+)>)/ig, "");
+
+    return contentInsideEachParagraph;
+}
+
+casper.getFeeDiscountAmount = function(str){
+    var feePercentageArray =  str.match(/(\$?\d+%?)/);
+
+    return utils.isArray(feePercentageArray) && !utils.isNull(feePercentageArray[1]) ? feePercentageArray[1] : str;
+}
+
+casper.clickMoreOfferButton = function () {
+    if (!casper.exists(x("//*/button[@class='btn more-offer-btn more-offer-btn-txt'][@disabled]"))) {
+        casper.click(".more-offer-btn");
+        casper.wait(5000, casper.clickMoreOfferButton);
+    }
 };
 
 casper.getUsagePrice = function (tariffDetailElementPattern, tariffDetailElement) {
@@ -182,67 +200,61 @@ casper.getDiscounts = function () {
 
 casper.getFees = function () {
     var feeElements = this.getElementsInfo(x("//*/div[@class='col-md-6']/span[@class='sub-header'][text()='Fees']/../p")),
+        contentInsideEachParagraph = "",
         feeIndex = 0,
-        feeTitleHeaders = ["Early termination fee", "Disconnection fee", "Reconnection fee", "Additional Fee Information", "Credit card payment processing fee",
-            "other fee", "payment processing fee", "Direct debit dishonour payment fee", "Account establishment fee", "Cheque dishonour payment fee", "Connection fee",
-            "100% GreenPower", "10% GreenPower", "20% GreenPower", "25% GreenPower", "Late payment fee", "50% GreenPower"],
+        feeTitleHeaders = ["early termination fee", "disconnection fee", "reconnection fee", "additional fee information", "credit card payment processing fee",
+            "other fee", "payment processing fee", "direct debit dishonour payment fee", "account establishment fee", "cheque dishonour payment fee", "connection fee",
+            "100% greenpower", "10% greenpower", "20% greenpower", "25% greenpower", "late payment fee", "50% greenpower"],
+        feeTitleHeaderContainOnlyDescription = ["additional fee information", "100% greenpower", "10% greenpower", "20% greenpower", "25% greenpower", "50% greenpower"],
         feeResultset = {
-            "Early termination fee":[],
-            "Disconnection fee": [],
-            "Reconnection fee": [],
-            "Additional Fee Information": [],
-            "Credit card payment processing fee": [],
+            "early termination fee":[],
+            "disconnection fee": [],
+            "reconnection fee": [],
+            "additional fee information": [],
+            "credit card payment processing fee": [],
             "other fee": [],
             "payment processing fee": [],
-            "Direct debit dishonour payment fee": [],
-            "Account establishment fee": [],
-            "Cheque dishonour payment fee": [],
-            "Connection fee": [],
-            "100% GreenPower": [],
-            "10% GreenPower": [],
-            "20% GreenPower": [],
-            "25% GreenPower": [],
-            "Late payment fee": [],
-            "50% GreenPower": [],
-        }, pattern, feeRecord = {}, feePercentageArray = [], isChangedInsideCheckingTitleHeader = false;
+            "direct debit dishonour payment fee": [],
+            "account establishment fee": [],
+            "cheque dishonour payment fee": [],
+            "connection fee": [],
+            "100% greenpower": [],
+            "10% greenpower": [],
+            "20% greenpower": [],
+            "25% greenpower": [],
+            "late payment fee": [],
+            "50% greenpower": []
+        }, feeRecord = {};
 
     while (feeIndex < feeElements.length) {
         feeRecord = {"feeDescription" : "", "feePercentage" : ""};
-        for (var i = 0; i < feeTitleHeaders.length; i++) {
-            pattern = new RegExp(feeTitleHeaders[i], "i");
+        contentInsideEachParagraph = this.formatParagraphInsideFeeSection(feeElements[feeIndex]["text"]);
 
-            if (!utils.isNull(feeElements[feeIndex]) && !utils.isNull(feeElements[feeIndex]["html"]) && pattern.test( this.formatString(feeElements[feeIndex]["html"]))) {
-                isChangedInsideCheckingTitleHeader = true;
-                if (!utils.isNull(feeElements[feeIndex+1])){
-                    feeRecord["feeDescription"] = this.formatString(this.fetchText(x("//*/div[@class='col-md-6']/span[@class='sub-header'][text()='Fees']/../p[" + (feeIndex + 2) + "]")));
-                }
+        if (feeTitleHeaders.toString().toLowerCase().indexOf(contentInsideEachParagraph.toLowerCase()) > 0){
 
-                if ( (["Additional Fee Information", "100% GreenPower", "10% GreenPower", "20% GreenPower", "25% GreenPower", "50% GreenPower"].indexOf(feeTitleHeaders[i]) < 0) && !utils.isNull(feeElements[feeIndex+2])) {
-                    feeRecord["feePercentage"] = this.formatString(this.fetchText(x("//*/div[@class='col-md-6']/span[@class='sub-header'][text()='Fees']/../p[" + (feeIndex + 3) + "]")));
-                    feePercentageArray = feeRecord["feePercentage"].match(/(\$?\d+%?)/);
-
-                    if (utils.isArray(feePercentageArray) && !utils.isNull(feePercentageArray[1])) {
-                        feeRecord["feePercentage"] = feePercentageArray[1];
-                    }
-
-                    feeIndex += 3;
-                } else {
-                    feeIndex += 2;
-                }
-
-                feeResultset[feeTitleHeaders[i]].push(feeRecord);
-                break;
-            }
-
-            if (!isChangedInsideCheckingTitleHeader && (i==feeTitleHeaders.length-1)){
+            if ((feeIndex < feeElements.length -1) && (feeTitleHeaders.toString().toLowerCase().indexOf(this.formatParagraphInsideFeeSection(feeElements[feeIndex + 1]["text"])) < 0)){
+                feeRecord["feeDescription"] = this.formatString( feeElements[feeIndex + 1]["text"]);
                 feeIndex++;
             }
-        }
 
-        if (!isChangedInsideCheckingTitleHeader){
-            feeIndex++;
-            isChangedInsideCheckingTitleHeader = false;
+            if ( (feeIndex < feeElements.length -1) && (feeTitleHeaders.toString().toLowerCase().indexOf(this.formatParagraphInsideFeeSection(feeElements[feeIndex + 1]["text"])) < 0)){
+                feeRecord["feePercentage"] = this.formatString( feeElements[feeIndex + 1]["text"]);
+                feeIndex++;
+                feeRecord["feePercentage"] = this.getFeeDiscountAmount(feeRecord["feePercentage"]);
+            }
+
+            if ((feeIndex < feeElements.length) && !/^(\$?[\d\.,]+%?)$/.test(feeRecord["feePercentage"])){
+                feeRecord["feePercentage"] = this.getFeeDiscountAmount(feeRecord["feeDescription"]);
+            }
+
+            if ( (feeTitleHeaderContainOnlyDescription.toString().toLowerCase().indexOf(contentInsideEachParagraph.toLowerCase()) > 0) ||
+                  !/^(\$?[\d\.,]+%?)$/.test(feeRecord["feePercentage"])){
+                feeRecord["feePercentage"] = "";
+            }
+
+            feeResultset[contentInsideEachParagraph.toLowerCase()].push(feeRecord);
         }
+        feeIndex++;
     }
 
     return feeResultset;
@@ -258,6 +270,7 @@ casper.loadResults = function (postCodeValue, fuealTypeValue) {
             }, moreOfferIndex);
 
             this.wait(5000, function () {
+                //fs.write('html/postCodeValue.html', this.getPageContent(), 'w');
                 postCode = postCodeValue;
                 retailer = this.exists("div.offerModalEmail div.col-md-8 h1") ? this.formatString(this.fetchText("div.offerModalEmail div.col-md-8 h1")) : "";
                 offerName = this.exists("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer") ?
@@ -267,7 +280,7 @@ casper.loadResults = function (postCodeValue, fuealTypeValue) {
                     offerNo = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(2)"));
                 }
 
-                utils.dump(offerNo);
+                utils.dump("postCode :" + postCode + ", fuealType:"  + fuealTypeValue + " , offerNo:" + offerNo + "");
 
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(1)") == "Customer type:") {
                     customerType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(2)"));
@@ -467,6 +480,9 @@ for (; current < end;) {
 //end parse for gas home
 //--------------------------------------------------------------------------------------------------------
 
+//reopen starting url before continue loop
+casper.thenOpen(url, function(){
+});
 //--------------------------------------------------------------------------------------------------------
 //start parse for gas small business
 current = 0;
@@ -516,6 +532,9 @@ for (;current < end;) {
 //end parse for gas small business
 //--------------------------------------------------------------------------------------------------------
 
+//reopen starting url before continue loop
+casper.thenOpen(url, function(){
+});
 //--------------------------------------------------------------------------------------------------------
 //start electricity home
 current = 0;
@@ -579,7 +598,9 @@ for (;current < end;) {
 //end electricity home
 //--------------------------------------------------------------------------------------------------------
 
-
+//reopen starting url before continue loop
+casper.thenOpen(url, function(){
+});
 //--------------------------------------------------------------------------------------------------------
 //start electricity small business
 current = 0;
