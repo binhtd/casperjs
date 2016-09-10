@@ -52,6 +52,11 @@ casper.saveJSON = function (what) {
     fs.write('json/parse_result.json', JSON.stringify(what, null, '  '), 'w');
 };
 
+casper.getRandomInt = function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+
 casper.formatString = function (containBetweenHtmlTag) {
     containBetweenHtmlTag = containBetweenHtmlTag.replace(/(\r\n|\n|\r)/gm, "");
     containBetweenHtmlTag = containBetweenHtmlTag.replace(/\s+/gm, " ");
@@ -260,7 +265,7 @@ casper.getFees = function () {
     return feeResultset;
 }
 
-casper.loadResults = function (postCodeValue, fuealTypeValue) {
+casper.loadResults = function (postCodeValue, fuelTypeValue) {
     var linkCount = this.getElementsInfo("ul.offer-list div.retailer-details a").length;
     this.repeat(linkCount, function () {
         try {
@@ -270,7 +275,7 @@ casper.loadResults = function (postCodeValue, fuealTypeValue) {
             }, moreOfferIndex);
 
             this.wait(5000, function () {
-                //fs.write('html/postCodeValue.html', this.getPageContent(), 'w');
+                var htmlFileName = '' + fuelTypeValue + '-home-'  + postCodeValue + '-' + offerNo + '-' + this.getRandomInt(500000, 1200000);
                 postCode = postCodeValue;
                 retailer = this.exists("div.offerModalEmail div.col-md-8 h1") ? this.formatString(this.fetchText("div.offerModalEmail div.col-md-8 h1")) : "";
                 offerName = this.exists("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer") ?
@@ -280,12 +285,14 @@ casper.loadResults = function (postCodeValue, fuealTypeValue) {
                     offerNo = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(2)"));
                 }
 
-                utils.dump("postCode :" + postCode + ", fuealType:"  + fuealTypeValue + " , offerNo:" + offerNo + "");
+                fs.write('html/' +  htmlFileName + '.html', this.getPageContent(), 'w');
+
+                utils.dump("postCode :" + postCode + ", fuealType:"  + fuelTypeValue + " , offerNo:" + offerNo + "");
 
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(1)") == "Customer type:") {
                     customerType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(2)"));
                 }
-                fuelType = fuealTypeValue;
+                fuelType = fuelTypeValue;
 
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(1)") == "Distributor:") {
                     distributor = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(2)"));
@@ -374,6 +381,7 @@ casper.loadResults = function (postCodeValue, fuealTypeValue) {
                 feeObject = this.getFees();
 
                 offerList.push({
+                    'htmlFileName': htmlFileName,
                     'postCode': postCode,
                     'retailer': retailer,
                     'offerName': offerName,
