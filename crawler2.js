@@ -610,7 +610,7 @@ casper.thenOpen(url, function(){
                     this.click("#disclaimer_chkbox");
                     this.click("#btn-proceed");
 
-                    this.waitForSelector("ul.offer-list div.best-retailer", function () {
+                    this.waitUntilVisible("#btn-new-energy", function () {
                         //click until more offer button disabled
                         this.clickMoreOfferButton();
                     });
@@ -671,7 +671,7 @@ casper.thenOpen(url, function(){
                     this.click("#disclaimer_chkbox");
                     this.click("#btn-proceed");
 
-                    this.waitForSelector("ul.offer-list div.best-retailer", function () {
+                    this.waitUntilVisible("#btn-new-energy", function () {
                         //click until more offer button disabled
                         this.clickMoreOfferButton();
                     });
