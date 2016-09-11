@@ -448,7 +448,7 @@ casper.uploadFileUntilSuccessful = function(){
             $("#data-file-secondary input[name=fileupload]").trigger("fileuploadadd");
         });
 
-        this.wait(100000,function(){
+        this.waitForText("File was successfully uploaded",function(){
             casper.uploadFileUntilSuccessful();
         });
 
