@@ -90,7 +90,7 @@ casper.getFeeDiscountAmount = function(str){
 casper.clickMoreOfferButton = function () {
     if (!casper.exists(x("//*/button[@class='btn more-offer-btn more-offer-btn-txt'][@disabled]"))) {
         casper.click(".more-offer-btn");
-        casper.wait(10000, casper.clickMoreOfferButton);
+        casper.wait(1000, casper.clickMoreOfferButton);
     }
 };
 
@@ -460,6 +460,7 @@ casper.start();
 //--------------------------------------------------------------------------------------------------------
 //start parse for gas home
 casper.thenOpen(url, function(){
+    phantom.clearCookies();
     end = gasHomePostcodeList.length;
     for (; current < end;) {
         (function (cntr) {
@@ -516,6 +517,7 @@ casper.thenOpen(url, function(){
 //--------------------------------------------------------------------------------------------------------
 //start parse for gas small business
 casper.thenOpen(url, function(){
+    phantom.clearCookies();
     current = 0;
     end = gasSmallBusinessPostcodeList.length;
     for (;current < end;) {
@@ -567,6 +569,7 @@ casper.thenOpen(url, function(){
 //--------------------------------------------------------------------------------------------------------
 //start electricity home
 casper.thenOpen(url, function(){
+    phantom.clearCookies();
     current = 0;
     end = electricHomePostcodeList.length;
     for (;current < end;) {
@@ -632,6 +635,7 @@ casper.thenOpen(url, function(){
 //--------------------------------------------------------------------------------------------------------
 //start electricity small business
 casper.thenOpen(url, function(){
+    phantom.clearCookies();
     current = 0;
     end = electricSmallBusinessPostcodeList.length;
     for (;current < end;) {
