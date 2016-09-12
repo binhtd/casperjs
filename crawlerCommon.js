@@ -8,10 +8,10 @@ var x = require('casper').selectXPath,
     url = 'https://compare.switchon.vic.gov.au',
     offerList = [],
 
-    gasHomePostcodeList = [3011, 3953, 3179, 3141, 3199],
-    gasSmallBusinessPostcodeList = [3011, 3953, 3179, 3141, 3199],
-    electricHomePostcodeList = [3000, 3011, 3944, 3284, 3841],
-    electricSmallBusinessPostcodeList = [3000, 3011, 3944, 3284, 3841],
+    gasHomePostcodeList = [],
+    gasSmallBusinessPostcodeList = [],
+    electricHomePostcodeList = [],
+    electricSmallBusinessPostcodeList = [],
     current = 0, end = 0, moreOfferIndex = 0,
 
     postCode = "", frequency = "", guaranteedDiscounts = "", discountPercent2 = "",
@@ -454,5 +454,3 @@ casper.uploadFileUntilSuccessful = function(){
 
     }
 };
-
-casper.start();

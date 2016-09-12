@@ -4,6 +4,9 @@
 
 
 phantom.injectJs('crawlerCommon.js');
+
+casper.start();
+gasSmallBusinessPostcodeList = [3011, 3953, 3179, 3141, 3199];
 //--------------------------------------------------------------------------------------------------------
 //start parse for gas small business
 casper.thenOpen(url, function(){

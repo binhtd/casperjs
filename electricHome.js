@@ -3,6 +3,8 @@
  */
 phantom.injectJs('crawlerCommon.js');
 
+casper.start();
+electricHomePostcodeList = [3000, 3011, 3944, 3284, 3841];
 //--------------------------------------------------------------------------------------------------------
 //start electricity home
 casper.thenOpen(url, function(){

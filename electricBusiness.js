@@ -4,6 +4,8 @@
 
 phantom.injectJs('crawlerCommon.js');
 
+casper.start();
+electricSmallBusinessPostcodeList = [3000, 3011, 3944, 3284, 3841];
 //--------------------------------------------------------------------------------------------------------
 //start electricity small business
 casper.thenOpen(url, function(){

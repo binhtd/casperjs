@@ -4,8 +4,10 @@
 
 phantom.injectJs('crawlerCommon.js');
 
+casper.start();
 //--------------------------------------------------------------------------------------------------------
 //start parse for gas home
+gasHomePostcodeList = [3011, 3953, 3179, 3141, 3199];
 casper.thenOpen(url, function(){
     phantom.clearCookies();
     end = gasHomePostcodeList.length;
