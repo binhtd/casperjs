@@ -287,8 +287,8 @@ casper.loadResults = function (postCodeValue, fuelTypeValue, typeBusiness) {
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(1)") == "Offer ID:") {
                     offerNo = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(2)"));
                 }
-                pricePerYear =  this.formatString(this.fetchText("span.currency-value"));
-                pricePerYearIncludeDiscount = utils.isArray(pricePerYearIncludeDiscountElement) ? this.formatString(pricePerYearIncludeDiscountElement["text"]):"";
+                pricePerYear =  this.formatString(this.fetchText(".modal-body span.currency-value"));
+                pricePerYearIncludeDiscount = !utils.isNull(pricePerYearIncludeDiscountElement) && !utils.isNull(pricePerYearIncludeDiscountElement["text"]) ? this.formatString(pricePerYearIncludeDiscountElement["text"]):"";
 
                 htmlFileName = fuelTypeValue + '-' + typeBusiness+'-'  + postCodeValue + '-' + offerNo + '-' + this.getRandomInt(500000, 1200000);
                 fs.write('html/' +  htmlFileName + '.html', this.getPageContent(), 'w');
