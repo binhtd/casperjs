@@ -1,31 +1,35 @@
 /**
  * Created by binhtd on 9/12/16.
  */
-
 phantom.injectJs('crawlerCommon.js');
 
 casper.start();
-electricSmallBusinessPostcodeList = [3000, 3011, 3944, 3284, 3841];
+electricHomePostcodeList = [3000, 3011, 3944];
 //--------------------------------------------------------------------------------------------------------
-//start electricity small business
+//start electricity home
 casper.thenOpen(url, function(){
     phantom.clearCookies();
     current = 0;
-    end = electricSmallBusinessPostcodeList.length;
+    end = electricHomePostcodeList.length;
     for (;current < end;) {
         (function(cntr) {
             casper.then(function() {
                 this.mouse.click("label[for='electricity']");
-                this.mouse.click("label[for='small-business']");
+                this.mouse.click("label[for='home']");
+                this.mouse.click("label[for='home-here']");
 
                 this.mouse.click("#select2-retailer-container");
                 this.mouse.click("#select2-retailer-results li:nth-child(2)");
 
 
                 this.sendKeys("input[name='postcode']", casper.page.event.key.Enter , {keepFocus: true});
-                this.sendKeys("input[name='postcode']", electricSmallBusinessPostcodeList[cntr] + "");
+                this.sendKeys("input[name='postcode']", electricHomePostcodeList[cntr] + "");
                 this.click("#postcode-btn");
 
+                this.wait(5000, function() {
+                    this.click("label[for='energy-concession-no']");
+                    this.click("label[for='upload-yes']");
+                });
 
                 this.wait(5000, function(){
                     this.evaluate(function(){
@@ -52,7 +56,7 @@ casper.thenOpen(url, function(){
 
                     moreOfferIndex = 0;
                     casper.then(function () {
-                        this.loadResults(electricSmallBusinessPostcodeList[cntr], "electric", "business");
+                        this.loadResults(electricHomePostcodeList[cntr], "electric", "home");
                     });
 
                     //reopen starting url before continue loop
@@ -64,11 +68,10 @@ casper.thenOpen(url, function(){
         current++;
     }
 });
-
-//end electricity small business
+//end electricity home
 //--------------------------------------------------------------------------------------------------------
 
 casper.then(function () {
-    this.saveJSON(offerList, 'electric-business');
+    this.saveJSON(offerList, 'electric-home1');
 })
 casper.run();

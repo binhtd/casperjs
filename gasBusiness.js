@@ -38,7 +38,7 @@ casper.thenOpen(url, function(){
                     this.click(".profile-btn");
                 });
 
-                this.wait(5000, function () {
+                this.wait(15000, function () {
                     //click until more offer button disabled
                     this.clickMoreOfferButton();
                 });
