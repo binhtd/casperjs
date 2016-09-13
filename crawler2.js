@@ -52,7 +52,7 @@ casper.renderJSON = function (what) {
 casper.saveJSON = function (what) {
     var oldParseResult = [];
 
-    if (fs.exists("'json/parse_result.json'")){
+    if (fs.exists("json/parse_result.json")){
         oldParseResult = require("json/parse_result.json");
 
         if (utils.isArray(oldParseResult) && !utils.isNull(oldParseResult) && utils.isArray(what)){
