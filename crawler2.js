@@ -8,10 +8,10 @@ var x = require('casper').selectXPath,
     url = 'https://compare.switchon.vic.gov.au',
     offerList = [],
 
-    gasHomePostcodeList = [3011, 3953, 3179, 3141, 3199],
-    gasSmallBusinessPostcodeList = [3011, 3953, 3179, 3141, 3199],
-    electricHomePostcodeList = [3000, 3011, 3944, 3284, 3841],
-    electricSmallBusinessPostcodeList = [3000, 3011, 3944, 3284, 3841],
+    gasHomePostcodeList = [],
+    gasSmallBusinessPostcodeList = [],
+    electricHomePostcodeList = [],
+    electricSmallBusinessPostcodeList = [],
     current = 0, end = 0, moreOfferIndex = 0,
 
     postCode = "", frequency = "", guaranteedDiscounts = "", discountPercent2 = "",
@@ -50,6 +50,16 @@ casper.renderJSON = function (what) {
 };
 
 casper.saveJSON = function (what) {
+    var oldParseResult = [];
+
+    if (fs.exists("'json/parse_result.json'")){
+        oldParseResult = require("json/parse_result.json");
+
+        if (utils.isArray(oldParseResult) && !utils.isNull(oldParseResult) && utils.isArray(what)){
+            what = what.concat(oldParseResult);
+        }
+    }
+
     fs.write('json/parse_result.json', JSON.stringify(what, null, '  '), 'w');
 };
 
@@ -287,8 +297,8 @@ casper.loadResults = function (postCodeValue, fuelTypeValue, typeBusiness) {
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(1)") == "Offer ID:") {
                     offerNo = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(2)"));
                 }
-                pricePerYear =  this.formatString(this.fetchText("span.currency-value"));
-                pricePerYearIncludeDiscount = utils.isArray(pricePerYearIncludeDiscountElement) ? this.formatString(pricePerYearIncludeDiscountElement["text"]):"";
+                pricePerYear =  this.formatString(this.fetchText(".modal-body span.currency-value"));
+                pricePerYearIncludeDiscount = !utils.isNull(pricePerYearIncludeDiscountElement) && !utils.isNull(pricePerYearIncludeDiscountElement["text"]) ? this.formatString(pricePerYearIncludeDiscountElement["text"]):"";
 
                 htmlFileName = fuelTypeValue + '-' + typeBusiness+'-'  + postCodeValue + '-' + offerNo + '-' + this.getRandomInt(500000, 1200000);
                 fs.write('html/' +  htmlFileName + '.html', this.getPageContent(), 'w');
@@ -306,6 +316,10 @@ casper.loadResults = function (postCodeValue, fuelTypeValue, typeBusiness) {
 
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(4) td:nth-child(1)") == "Rate type:") {
                     tariffType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(4) td:nth-child(2)"));
+                }
+
+                if ( (new RegExp("flexible pricing", "i")).test(tariffType)){
+                    tariffType = "flexible";
                 }
 
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(5) td:nth-child(1)") == "Offer type:") {
@@ -402,16 +416,16 @@ casper.loadResults = function (postCodeValue, fuelTypeValue, typeBusiness) {
                     'releaseDate': releaseDate,
                     'contractTerm': contractTerm,
                     'contractExpiryDetails': contractExpiryDetails,
-                    'dailySupplyChargePrice': dailySupplyChargePrice,
-                    'firstUsagePrice': firstUsagePrice,
-                    'secondUsagePrice': secondUsagePrice,
-                    'thirdUsagePrice': thirdUsagePrice,
-                    'fourthUsagePrice': fourthUagePrice,
-                    'fifthUsagePrice': fifthUsagePrice,
-                    'balanceUsagePrice': balanceUsagePrice,
-                    'peak': peak,
-                    'shoulder': shoulder,
-                    'offPeak': offPeak,
+                    'dailySupplyChargePrice': dailySupplyChargePrice.replace(/[^\w.,]/i),
+                    'firstUsagePrice': firstUsagePrice.replace(/[^\w.,]/i),
+                    'secondUsagePrice': secondUsagePrice.replace(/[^\w.,]/i),
+                    'thirdUsagePrice': thirdUsagePrice.replace(/[^\w.,]/i),
+                    'fourthUsagePrice': fourthUagePrice.replace(/[^\w.,]/i),
+                    'fifthUsagePrice': fifthUsagePrice.replace(/[^\w.,]/i),
+                    'balanceUsagePrice': balanceUsagePrice.replace(/[^\w.,]/i),
+                    'peak': peak.replace(/[^\w.,]/i),
+                    'shoulder': shoulder.replace(/[^\w.,]/i),
+                    'offPeak': offPeak.replace(/[^\w.,]/i),
                     'directDebitOnly': directDebitOnly,
                     'payOnTimeDiscount': payOnTimeDiscount,
                     'incentive': incentive,
@@ -455,7 +469,62 @@ casper.uploadFileUntilSuccessful = function(){
     }
 };
 
+casper.getInputData = function(){
+    var fuelType = "",
+        businessType = "",
+        postCode = "";
+
+    if (casper.cli.has("fueltype")){
+        fuelType = casper.cli.get("fueltype");
+    }
+
+    if (casper.cli.has("businesstype")){
+        businessType = casper.cli.get("businesstype");
+    }
+
+    if (casper.cli.has("postcode")){
+        postCode = casper.cli.get("postcode");
+    }
+
+    if ( (fuelType =="") || (businessType == "") || (postCode == "")){
+        this.echo("--------------------------------------------------");
+        this.echo("Please input your parameter as below");
+        this.echo("casperjs crawler.js --fueltype=fuelType --businesstype=businessType --postcode=postCode");
+        this.exit();
+        this.echo("--------------------------------------------------");
+        this.exit();
+    }
+
+    switch(fuelType){
+        case "gas":
+            if (businessType == "home"){
+                gasHomePostcodeList.push(postCode);
+            }
+
+            if (businessType == "business"){
+                gasSmallBusinessPostcodeList.push(postCode);
+            }
+            break;
+        case "electric":
+            if (businessType == "home"){
+                electricHomePostcodeList.push(postCode);
+            }
+
+            if (businessType == "business"){
+                electricSmallBusinessPostcodeList.push(postCode);
+            }
+            break;
+        default:
+            break;
+    }
+};
+
 casper.start();
+
+//set input data
+casper.then(function(){
+    this.getInputData();
+});
 
 //--------------------------------------------------------------------------------------------------------
 //start parse for gas home
@@ -617,7 +686,7 @@ casper.thenOpen(url, function(){
 
                     moreOfferIndex = 0;
                     casper.then(function () {
-                        this.loadResults(electricHomePostcodeList[cntr], "electric", "home");
+                        this.loadResults(electricHomePostcodeList[cntr], "electricity", "home");
                     });
 
                     //reopen starting url before continue loop
@@ -678,7 +747,7 @@ casper.thenOpen(url, function(){
 
                     moreOfferIndex = 0;
                     casper.then(function () {
-                        this.loadResults(electricSmallBusinessPostcodeList[cntr], "electric", "business");
+                        this.loadResults(electricSmallBusinessPostcodeList[cntr], "electricity", "business");
                     });
 
                     //reopen starting url before continue loop

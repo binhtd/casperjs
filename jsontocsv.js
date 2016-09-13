@@ -1,12 +1,7 @@
 /**
  * Created by binhtd on 12/09/2016.
  */
-var gasHomeResult = require("gas-home.json"),
-    gasBusinessResult =  require("gas-business.json"),
-    electricHomeResult1 = require("electric-home1.json"),
-    electricHomeResult2 = require("electric-home2.json"),
-    electricBusinessResult1 = require("electric-business1.json"),
-    electricBusinessResult2 = require("electric-business2.json"),
+var parseResult = require("json/parse_result.json"),
     totalDiscountColumn = 0,
     totalEarlyTerminationFee = 0,
     totalDisconnectionFee = 0,
@@ -25,14 +20,14 @@ var gasHomeResult = require("gas-home.json"),
     total25GreenPower = 0,
     totalLatePaymentFee = 0,
     total50GreenPower = 0,
-    resultArray = [gasHomeResult, gasBusinessResult, electricHomeResult1, electricHomeResult2, electricBusinessResult1, electricBusinessResult2];
+    resultArray = [parseResult];
     utils = require('utils'),
     fs = require('fs'),
-    csvHeader = [ "html file name", "post code", "retailer", "offer name", "offer no", "price per year", "price per year include discount", "customer type",
-    "fuel type", "distributor", "tariff type", "offer type", "release date", "contract term", "contract expiry eetails",
-    "daily supply charge price", "first usage price", "second usage price", "third usage price", "fourth usage price", "fifth usage price", "balance usage price",
-    "peak", "shoulder", "off peak", "direct debit only", "pay on time discount", "incentive", "green power", "cooling off period",
-    "eligibility criteria", "full terms and conditions", "prices changes", "contract expiry", "avail to solar customers"];
+    csvHeader = [ "HTML file name", "Postcode", "Retailer", "Offer Name", "Offer No.", "Customer type",
+    "Fuel type", "Distributor(s)", "Tariff type", "Offer type", "Release Date", "Contract term", "Contract expiry details",
+    "Daily supply charge Price (exc. GST)", "First usage Price (exc. GST)", "Second usage Price (exc. GST)", "Third Usage Price (exc. GST)", "Fourth Uage Price (exc. GST)",
+    "Fifth Usage Price (exc. GST)", "Balance Usage Price", "Peak", "Shoulder", "Off Peak", "Direct debit only", "Pay on time discount", "Incentive", "Green power", "Cooling off period",
+    "Eligibility criteria", "Full terms and conditions", "Prices changes", "Contract expiry", "Avail to solar customers"];
 
 function getTotalDiscountColumn(resultObjectArray, totalDiscountColumn) {
     var totalDiscountColumn = totalDiscountColumn;
@@ -56,10 +51,14 @@ function getTotalFeeColumnByColumnName(resultObjectArray, columnName, totalFeeCo
     return totalColumn;
 }
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function feeAddHeaderColumn(csvHeader, columnName, totalRepeatTime){
     for(var i=0; i<totalRepeatTime; i++){
-        csvHeader.push(columnName + " description " + (i + 1));
-        csvHeader.push(columnName + " value " + (i + 1));
+        csvHeader.push(capitalizeFirstLetter(columnName) + " description " + (i + 1));
+        csvHeader.push(capitalizeFirstLetter(columnName) + " value " + (i + 1));
     }
 
     return csvHeader;
@@ -69,6 +68,15 @@ function appendElementToEqualMaximumColumn(feeArray, totalColumn){
     for (var k= feeArray.length; k<totalColumn;k++){
         feeArray.push({ "feeDescription": "", "feePercentage": "" });
     }
+}
+
+function getFeeRowLine(rowData){
+    var line = "";
+    for(var k=0; k<rowData.length; k++){
+        line += rowData[k]["feeDescription"] + "#" + rowData[k]["feePercentage"] + "#"
+    }
+
+    return line;
 }
 
 for(var i=0; i<resultArray.length; i++){
@@ -94,8 +102,8 @@ for(var i=0; i<resultArray.length; i++){
 
 
 for(var i=0; i<totalDiscountColumn; i++){
-    csvHeader.push("discount percentage " + (i + 1));
-    csvHeader.push("discount description " + (i + 1));
+    csvHeader.push("Discount percentage " + (i + 1));
+    csvHeader.push("Discount description " + (i + 1));
 }
 
 csvHeader = feeAddHeaderColumn(csvHeader, "early termination fee", totalEarlyTerminationFee);
@@ -146,14 +154,16 @@ for(var i=0; i<resultArray.length; i++){
     }
 }
 
-var str = csvHeader.join("#") + "\n", line = "", feeObject = {};
+var str = csvHeader.join("#") + "\n",
+    line = "",
+    feeArrayHeaderTitle = ["early termination fee", "disconnection fee", "reconnection fee", "additional fee information", "credit card payment processing fee", "other fee", "payment processing fee", "direct debit dishonour payment fee",
+        "account establishment fee", "cheque dishonour payment fee", "connection fee", "100% greenpower", "10% greenpower", "20% greenpower", "25% greenpower", "late payment fee", "50% greenpower"];
 for(var i=0; i<resultArray.length; i++){
     for (var j=0; j<resultArray[i].length; j++ ){
         line = "";
 
         line += resultArray[i][j]["htmlFileName"] + "#" + resultArray[i][j]["postCode"] + "#" + resultArray[i][j]["retailer"] + "#" +
-                resultArray[i][j]["offerName"] + "#" + resultArray[i][j]["offerNo"] + "#" + resultArray[i][j]["pricePerYear"] + "#" +
-                resultArray[i][j]["pricePerYearIncludeDiscount"] + "#" + resultArray[i][j]["customerType"] + "#" + resultArray[i][j]["fuelType"] + "#" +
+                resultArray[i][j]["offerName"] + "#" + resultArray[i][j]["offerNo"] + "#" + resultArray[i][j]["customerType"] + "#" + resultArray[i][j]["fuelType"] + "#" +
                 resultArray[i][j]["distributor"] + "#" + resultArray[i][j]["tariffType"] + "#" + resultArray[i][j]["offerType"] + "#" +
                 resultArray[i][j]["releaseDate"] + "#" + resultArray[i][j]["contractTerm"] + "#" + resultArray[i][j]["contractExpiryDetails"] + "#" +
                 resultArray[i][j]["dailySupplyChargePrice"] + "#" + resultArray[i][j]["firstUsagePrice"] + "#" + resultArray[i][j]["secondUsagePrice"] + "#" +
@@ -168,72 +178,8 @@ for(var i=0; i<resultArray.length; i++){
             line += resultArray[i][j]["discount"][k]["discountPercentage"] + "#" + resultArray[i][j]["discount"][k]["discountDescription"] + "#"
         }
 
-        for(var k=0; k<resultArray[i][j]["fee"]["early termination fee"].length; k++){
-            line += resultArray[i][j]["fee"]["early termination fee"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["early termination fee"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["disconnection fee"].length; k++){
-            line += resultArray[i][j]["fee"]["disconnection fee"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["disconnection fee"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["reconnection fee"].length; k++){
-            line += resultArray[i][j]["fee"]["reconnection fee"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["reconnection fee"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["additional fee information"].length; k++){
-            line += resultArray[i][j]["fee"]["additional fee information"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["additional fee information"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["credit card payment processing fee"].length; k++){
-            line += resultArray[i][j]["fee"]["credit card payment processing fee"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["credit card payment processing fee"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["other fee"].length; k++){
-            line += resultArray[i][j]["fee"]["other fee"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["other fee"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["payment processing fee"].length; k++){
-            line += resultArray[i][j]["fee"]["payment processing fee"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["payment processing fee"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["direct debit dishonour payment fee"].length; k++){
-            line += resultArray[i][j]["fee"]["direct debit dishonour payment fee"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["direct debit dishonour payment fee"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["account establishment fee"].length; k++){
-            line += resultArray[i][j]["fee"]["account establishment fee"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["account establishment fee"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["cheque dishonour payment fee"].length; k++){
-            line += resultArray[i][j]["fee"]["cheque dishonour payment fee"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["cheque dishonour payment fee"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["connection fee"].length; k++){
-            line += resultArray[i][j]["fee"]["connection fee"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["connection fee"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["100% greenpower"].length; k++){
-            line += resultArray[i][j]["fee"]["100% greenpower"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["100% greenpower"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["10% greenpower"].length; k++){
-            line += resultArray[i][j]["fee"]["10% greenpower"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["10% greenpower"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["20% greenpower"].length; k++){
-            line += resultArray[i][j]["fee"]["20% greenpower"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["20% greenpower"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["25% greenpower"].length; k++){
-            line += resultArray[i][j]["fee"]["25% greenpower"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["25% greenpower"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["late payment fee"].length; k++){
-            line += resultArray[i][j]["fee"]["late payment fee"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["late payment fee"][k]["feePercentage"] + "#"
-        }
-
-        for(var k=0; k<resultArray[i][j]["fee"]["50% greenpower"].length; k++){
-            line += resultArray[i][j]["fee"]["50% greenpower"][k]["feeDescription"] + "#" + resultArray[i][j]["fee"]["50% greenpower"][k]["feePercentage"] + "#"
+        for (var k=0; i< feeArrayHeaderTitle.length; i++){
+            line += getFeeRowLine(resultArray[i1][j]["fee"][feeArrayHeaderTitle[k]]);
         }
 
         line.slice(0,line.length -1);
