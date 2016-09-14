@@ -541,6 +541,13 @@ casper.thenOpen(url, function(){
                 this.sendKeys("input[name='postcode']", gasHomePostcodeList[cntr] + "");
                 this.click("#postcode-btn");
 
+                this.wait(3000, function(){
+                    if (this.exists("div.popover-inner label[for='postcode']")){
+                        this.echo("not support postcode: " + "gas->home->" + gasHomePostcodeList[cntr]);
+                        this.exit();
+                    }
+                });
+
                 this.wait(5000, function () {
                     this.click("label[for='energy-concession-no']");
                     this.click("#disclaimer_chkbox");
@@ -601,6 +608,13 @@ casper.thenOpen(url, function(){
                 this.sendKeys("input[name='postcode']", casper.page.event.key.Enter , {keepFocus: true});
                 this.sendKeys("input[name='postcode']", gasSmallBusinessPostcodeList[cntr] + "");
                 this.click("#postcode-btn");
+
+                this.wait(3000, function(){
+                    if (this.exists("div.popover-inner label[for='postcode']")){
+                        this.echo("not support postcode: " + "gas->business->" + gasSmallBusinessPostcodeList[cntr]);
+                        this.exit();
+                    }
+                });
 
                 this.wait(10000, function() {
                     this.click("#disclaimer_chkbox");
@@ -669,6 +683,10 @@ casper.thenOpen(url, function(){
                 });
 
                 this.wait(5000, function(){
+                    if (this.exists("div.popover-inner label[for='postcode']")){
+                        this.echo("not support postcode: " + "electricity->home->" + electricHomePostcodeList[cntr]);
+                        this.exit();
+                    }
                 });
 
                 this.then(function(){
@@ -730,6 +748,10 @@ casper.thenOpen(url, function(){
                 });
 
                 this.wait(5000, function(){
+                    if (this.exists("div.popover-inner label[for='postcode']")){
+                        this.echo("not support postcode: " + "electricity->business->" + electricSmallBusinessPostcodeList[cntr]);
+                        this.exit();
+                    }
                 });
 
                 this.then(function(){
