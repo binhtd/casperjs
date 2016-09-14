@@ -175,11 +175,11 @@ for(var i=0; i<resultArray.length; i++){
                 resultArray[i][j]["pricesChanges"] + "#" + resultArray[i][j]["contractExpiry"] + "#" + resultArray[i][j]["availToSolarCustomers"] + "#";
 
         for(var k=0; k<resultArray[i][j]["discount"].length; k++){
-            line += resultArray[i][j]["discount"][k]["discountPercentage"] + "#" + resultArray[i][j]["discount"][k]["discountDescription"] + "#"
+            line += resultArray[i][j]["discount"][k]["discountPercentage"] + "#" + resultArray[i][j]["discount"][k]["discountDescription"] + "#";
         }
 
-        for (var k=0; i< feeArrayHeaderTitle.length; i++){
-            line += getFeeRowLine(resultArray[i1][j]["fee"][feeArrayHeaderTitle[k]]);
+        for (var k=0; k< feeArrayHeaderTitle.length; k++){
+            line += getFeeRowLine(resultArray[i][j]["fee"][feeArrayHeaderTitle[k]]);
         }
 
         line.slice(0,line.length -1);
