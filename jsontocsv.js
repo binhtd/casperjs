@@ -73,7 +73,7 @@ function appendElementToEqualMaximumColumn(feeArray, totalColumn){
 function getFeeRowLine(rowData){
     var line = "";
     for(var k=0; k<rowData.length; k++){
-        line += rowData[k]["feeDescription"] + "#" + rowData[k]["feePercentage"] + "#"
+        line += (rowData[k]["feeDescription"]+"").replace(/["]/g, "") + "#" + (rowData[k]["feePercentage"]+"").replace(/["]/g, "") + "#"
     }
 
     return line;
@@ -162,20 +162,20 @@ for(var i=0; i<resultArray.length; i++){
     for (var j=0; j<resultArray[i].length; j++ ){
         line = "";
 
-        line += resultArray[i][j]["htmlFileName"] + "#" + resultArray[i][j]["postCode"] + "#" + resultArray[i][j]["retailer"] + "#" +
-                resultArray[i][j]["offerName"] + "#" + resultArray[i][j]["offerNo"] + "#" + resultArray[i][j]["customerType"] + "#" + resultArray[i][j]["fuelType"] + "#" +
-                resultArray[i][j]["distributor"] + "#" + resultArray[i][j]["tariffType"] + "#" + resultArray[i][j]["offerType"] + "#" +
-                resultArray[i][j]["releaseDate"] + "#" + resultArray[i][j]["contractTerm"] + "#" + resultArray[i][j]["contractExpiryDetails"] + "#" +
-                resultArray[i][j]["dailySupplyChargePrice"] + "#" + resultArray[i][j]["firstUsagePrice"] + "#" + resultArray[i][j]["secondUsagePrice"] + "#" +
-                resultArray[i][j]["thirdUsagePrice"] + "#" + resultArray[i][j]["fourthUsagePrice"] + "#" + resultArray[i][j]["fifthUsagePrice"] + "#" +
-                resultArray[i][j]["balanceUsagePrice"] + "#" + resultArray[i][j]["peak"] + "#" + resultArray[i][j]["shoulder"] + "#" +
-                resultArray[i][j]["offPeak"] + "#" + resultArray[i][j]["directDebitOnly"] + "#" + resultArray[i][j]["payOnTimeDiscount"] + "#" +
-                resultArray[i][j]["incentive"] + "#" + resultArray[i][j]["greenPower"] + "#" + resultArray[i][j]["coolingOffPeriod"] + "#" +
-                resultArray[i][j]["eligibilityCriteria"] + "#" + resultArray[i][j]["fullTermsAndConditions"] + "#" +
-                resultArray[i][j]["pricesChanges"] + "#" + resultArray[i][j]["contractExpiry"] + "#" + resultArray[i][j]["availToSolarCustomers"] + "#";
+        line += (resultArray[i][j]["htmlFileName"] + "").replace(/["]/g, "") + "#" + (resultArray[i][j]["postCode"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["retailer"]+"").replace(/["]/g, "") + "#" +
+                (resultArray[i][j]["offerName"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["offerNo"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["customerType"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["fuelType"]+"").replace(/["]/g, "") + "#" +
+                (resultArray[i][j]["distributor"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["tariffType"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["offerType"]+"").replace(/["]/g, "") + "#" +
+                (resultArray[i][j]["releaseDate"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["contractTerm"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["contractExpiryDetails"]+"").replace(/["]/g, "") + "#" +
+                (resultArray[i][j]["dailySupplyChargePrice"]+"").replace(/["]/g, "").replace(/[^\d.,]/gi,"") + "#" + (resultArray[i][j]["firstUsagePrice"]+"").replace(/["]/g, "").replace(/[^\d.,]/gi,"") + "#" + (resultArray[i][j]["secondUsagePrice"]+"").replace(/["]/g, "").replace(/[^\d.,]/gi,"") + "#" +
+                (resultArray[i][j]["thirdUsagePrice"]+"").replace(/["]/g, "").replace(/[^\d.,]/gi,"") + "#" + (resultArray[i][j]["fourthUsagePrice"]+"").replace(/["]/g, "").replace(/[^\d.,]/gi,"") + "#" + (resultArray[i][j]["fifthUsagePrice"]+"").replace(/["]/g, "").replace(/[^\d.,]/gi,"") + "#" +
+                (resultArray[i][j]["balanceUsagePrice"]+"").replace(/["]/g, "").replace(/[^\d.,]/gi,"") + "#" + (resultArray[i][j]["peak"]+"").replace(/["]/g, "").replace(/[^\d.,]/gi,"") + "#" + (resultArray[i][j]["shoulder"]+"").replace(/["]/g, "").replace(/[^\d.,]/gi,"") + "#" +
+                (resultArray[i][j]["offPeak"]+"").replace(/["]/g, "").replace(/[^\d.,]/gi,"") + "#" + (resultArray[i][j]["directDebitOnly"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["payOnTimeDiscount"]+"").replace(/["]/g, "") + "#" +
+                (resultArray[i][j]["incentive"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["greenPower"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["coolingOffPeriod"]+"").replace(/["]/g, "") + "#" +
+                (resultArray[i][j]["eligibilityCriteria"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["fullTermsAndConditions"]+"").replace(/["]/g, "") + "#" +
+                (resultArray[i][j]["pricesChanges"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["contractExpiry"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["availToSolarCustomers"]+"").replace(/["]/g, "") + "#";
 
         for(var k=0; k<resultArray[i][j]["discount"].length; k++){
-            line += resultArray[i][j]["discount"][k]["discountPercentage"] + "#" + resultArray[i][j]["discount"][k]["discountDescription"] + "#";
+            line += (resultArray[i][j]["discount"][k]["discountPercentage"]+"").replace(/["]/g, "") + "#" + (resultArray[i][j]["discount"][k]["discountDescription"]+"").replace(/["]/g, "") + "#";
         }
 
         for (var k=0; k< feeArrayHeaderTitle.length; k++){

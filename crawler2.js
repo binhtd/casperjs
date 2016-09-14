@@ -416,16 +416,16 @@ casper.loadResults = function (postCodeValue, fuelTypeValue, typeBusiness) {
                     'releaseDate': releaseDate,
                     'contractTerm': contractTerm,
                     'contractExpiryDetails': contractExpiryDetails,
-                    'dailySupplyChargePrice': dailySupplyChargePrice.replace(/[^\w.,]/i),
-                    'firstUsagePrice': firstUsagePrice.replace(/[^\w.,]/i),
-                    'secondUsagePrice': secondUsagePrice.replace(/[^\w.,]/i),
-                    'thirdUsagePrice': thirdUsagePrice.replace(/[^\w.,]/i),
-                    'fourthUsagePrice': fourthUagePrice.replace(/[^\w.,]/i),
-                    'fifthUsagePrice': fifthUsagePrice.replace(/[^\w.,]/i),
-                    'balanceUsagePrice': balanceUsagePrice.replace(/[^\w.,]/i),
-                    'peak': peak.replace(/[^\w.,]/i),
-                    'shoulder': shoulder.replace(/[^\w.,]/i),
-                    'offPeak': offPeak.replace(/[^\w.,]/i),
+                    'dailySupplyChargePrice': dailySupplyChargePrice.replace(/[^\d.,]/gi,""),
+                    'firstUsagePrice': firstUsagePrice.replace(/[^\d.,]/gi,""),
+                    'secondUsagePrice': secondUsagePrice.replace(/[^\d.,]/gi,""),
+                    'thirdUsagePrice': thirdUsagePrice.replace(/[^\d.,]/gi,""),
+                    'fourthUsagePrice': fourthUagePrice.replace(/[^\d.,]/gi,""),
+                    'fifthUsagePrice': fifthUsagePrice.replace(/[^\d.,]/gi,""),
+                    'balanceUsagePrice': balanceUsagePrice.replace(/[^\d.,]/gi,""),
+                    'peak': peak.replace(/[^\d.,]/gi,""),
+                    'shoulder': shoulder.replace(/[^\d.,]/gi,""),
+                    'offPeak': offPeak.replace(/[^\d.,]/gi,""),
                     'directDebitOnly': directDebitOnly,
                     'payOnTimeDiscount': payOnTimeDiscount,
                     'incentive': incentive,
@@ -490,7 +490,6 @@ casper.getInputData = function(){
         this.echo("--------------------------------------------------");
         this.echo("Please input your parameter as below");
         this.echo("casperjs crawler.js --fueltype=fuelType --businesstype=businessType --postcode=postCode");
-        this.exit();
         this.echo("--------------------------------------------------");
         this.exit();
     }
