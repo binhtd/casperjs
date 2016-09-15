@@ -670,6 +670,11 @@ casper.thenOpen(url, function(){
                 this.click("#postcode-btn");
 
                 this.wait(5000, function() {
+                    if (this.exists("div.popover-inner label[for='postcode']")){
+                        this.echo("not support postcode: " + "electricity->home->" + electricHomePostcodeList[cntr]);
+                        this.exit();
+                    }
+
                     this.click("label[for='energy-concession-no']");
                     this.click("label[for='upload-yes']");
                 });
@@ -682,10 +687,6 @@ casper.thenOpen(url, function(){
                 });
 
                 this.wait(5000, function(){
-                    if (this.exists("div.popover-inner label[for='postcode']")){
-                        this.echo("not support postcode: " + "electricity->home->" + electricHomePostcodeList[cntr]);
-                        this.exit();
-                    }
                 });
 
                 this.then(function(){
@@ -740,6 +741,11 @@ casper.thenOpen(url, function(){
 
 
                 this.wait(5000, function(){
+                    if (this.exists("div.popover-inner label[for='postcode']")){
+                        this.echo("not support postcode: " + "electricity->business->" + electricSmallBusinessPostcodeList[cntr]);
+                        this.exit();
+                    }
+
                     this.evaluate(function(){
                         $("select#file-provider").select2("val", "agl");
                         $("#uploadFile").val("MyUsageData_06-05-2016.csv");
@@ -747,10 +753,6 @@ casper.thenOpen(url, function(){
                 });
 
                 this.wait(5000, function(){
-                    if (this.exists("div.popover-inner label[for='postcode']")){
-                        this.echo("not support postcode: " + "electricity->business->" + electricSmallBusinessPostcodeList[cntr]);
-                        this.exit();
-                    }
                 });
 
                 this.then(function(){
