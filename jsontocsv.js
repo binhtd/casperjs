@@ -65,8 +65,11 @@ function feeAddHeaderColumn(csvHeader, columnName, totalRepeatTime){
 }
 
 function appendElementToEqualMaximumColumn(feeArray, totalColumn){
-    for (var k= feeArray.length; k<totalColumn;k++){
+    var i= 1, repeatation = totalColumn - feeArray.length;
+
+    while(i <= repeatation){
         feeArray.push({ "feeDescription": "", "feePercentage": "" });
+        i++;
     }
 }
 

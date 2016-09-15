@@ -204,7 +204,7 @@ casper.getDiscounts = function () {
         }
 
         if (!utils.isNull(discountFeeElements[discountFeeIndex + 1])) {
-            discountRecord["discountDescription"] = this.fetchText(x('//*/span[contains(text(),"Discounts and fees")]/../../following-sibling::div/div/span[contains(text(),"Discounts:")]/../p[' + (discountFeeIndex + 2) + ']'));
+            discountRecord["discountDescription"] = this.formatString(this.fetchText(x('//*/span[contains(text(),"Discounts and fees")]/../../following-sibling::div/div/span[contains(text(),"Discounts:")]/../p[' + (discountFeeIndex + 2) + ']')));
         }
 
         discountResultset.push(discountRecord);
@@ -294,6 +294,7 @@ casper.loadResults = function (postCodeValue, fuelTypeValue, typeBusiness) {
                 offerName = this.exists("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer") ?
                     this.formatString(this.fetchText("div.offerModalEmail div.col-md-8 span.HelveticaNeueLTStd-UltLt-Offer")) : "";
 
+                offerNo = "";
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(1)") == "Offer ID:") {
                     offerNo = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(1) td:nth-child(2)"));
                 }
@@ -305,41 +306,50 @@ casper.loadResults = function (postCodeValue, fuelTypeValue, typeBusiness) {
 
                 utils.dump("fuelType:"  + fuelTypeValue + ", typeBusiness:" + typeBusiness +", postCode :" + postCode + ", offerNo:" + offerNo + "");
 
+                customerType = "";
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(1)") == "Customer type:") {
                     customerType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(2) td:nth-child(2)"));
                 }
                 fuelType = fuelTypeValue;
 
+                distributor = "";
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(1)") == "Distributor:") {
                     distributor = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(3) td:nth-child(2)"));
                 }
 
+                tariffType = "";
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(4) td:nth-child(1)") == "Rate type:") {
                     tariffType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(4) td:nth-child(2)"));
                 }
 
+                tariffType = "";
                 if ( (new RegExp("flexible pricing", "i")).test(tariffType)){
                     tariffType = "flexible";
                 }
 
+                offerType = "";
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(5) td:nth-child(1)") == "Offer type:") {
                     offerType = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(5) td:nth-child(2)"));
                 }
 
+                releaseDate = "";
                 if (this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(6) td:nth-child(1)") == "Release date:") {
                     releaseDate = this.formatString(this.fetchText("div.offerModalEmail table.offer-detail-table tr:nth-child(6) td:nth-child(2)"));
                 }
 
+                contractTerm = "";
                 if (this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(1) td:nth-child(1)") == "Select contract term:") {
                     contractTerm = this.formatString(this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(1) td:nth-child(2) button"));
                 }
 
+                contractExpiryDetails = "";
                 if (this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(6) td:nth-child(1)") == "Contract expiry details") {
                     contractExpiryDetails = this.formatString(this.fetchText("div.view-offer-section2 div.table-responsive table.contract-table tr:nth-child(6) td:nth-child(2)"));
                 }
                 var dailySupplyChargePriceElementValue = this.getElementInfo("div.tariff-details div.supply-charge div:nth-child(2) p"),
                     dailySupplyChargePriceElementText = this.getElementInfo("div.tariff-details div.supply-charge div:nth-child(1) p");
 
+                dailySupplyChargePrice = "";
                 if (!utils.isNull(dailySupplyChargePriceElementValue) && !utils.isNull(dailySupplyChargePriceElementText) && (dailySupplyChargePriceElementText["text"] == "Supply charges")) {
                     dailySupplyChargePrice = this.formatString(dailySupplyChargePriceElementValue["text"]);
                 }
